@@ -1,4 +1,4 @@
-import { loadSeedData, counts, validateSeed } from '../server/src/data.js';
+import { loadSeedData, counts, validateSeed } from '../server/src/validation/seed.js';
 import fs from 'node:fs';
 
 const file = process.argv[2] || 'data/seed.json';

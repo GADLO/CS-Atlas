@@ -1,25 +1,22 @@
-import path from 'node:path';
-import { loadSeedData, counts } from './data.js';
-import { openDatabase, ensureSeed, createRepository } from './db.js';
+import { config } from './config.js';
+import { loadSeedData, counts } from './validation/seed.js';
+import { openDatabase } from './db/connection.js';
+import { ensureSeed } from './db/seed.js';
+import { createRepository } from './repositories/index.js';
 import { createApp } from './app.js';
 
-const port = Number(process.env.PORT || 8787);
-const host = process.env.HOST || '127.0.0.1';
-const dbPath = process.env.DB_PATH || path.resolve('data/cs-atlas.db');
-const webDist = process.env.WEB_DIST || path.resolve('dist/web');
-
-const data = loadSeedData();
-const db = openDatabase(dbPath);
+const data = loadSeedData(config.seedPath);
+const db = openDatabase(config.dbPath);
 const reseeded = ensureSeed(db, data);
 const repo = createRepository(db);
-const app = createApp({ repo, webDist });
+const app = createApp({ repo, webDist: config.webDist });
 
-const server = app.listen(port, host, () => {
+const server = app.listen(config.port, config.host, () => {
   const c = counts(data);
-  console.log(`CS Atlas API → http://${host}:${port}`);
+  console.log(`CS Atlas API → http://${config.host}:${config.port}`);
   console.log(`  数据：${c.entities} 实体 / ${c.relations} 关系 / ${c.instructions} 指令 / ${c.chapters} 章节${reseeded ? '（已重新播种）' : ''}`);
-  console.log(`  静态资源：${webDist}`);
-  console.log(`  数据库：${dbPath}`);
+  console.log(`  静态资源：${config.webDist}`);
+  console.log(`  数据库：${config.dbPath}`);
 });
 
 function shutdown(signal) {

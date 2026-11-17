@@ -1,66 +1,115 @@
-# CS Atlas · 计算机系统图谱
+# CS Atlas · Computer Systems Atlas
 
-> 沿时间拆解计算机：从电子管机柜到 AI 加速器，用时间轴、3D 展品和可计算的模型，理解计算机硬件为什么是今天这个样子。
+> A time-based, explorable atlas of computer hardware: from vacuum-tube cabinets to AI accelerators, explained through a timeline, 3D exhibits, and interactive models.
 
-**Status: early scaffold / M0–M1 WIP.** 当前仓库是项目骨架，尚不是可运行版本。正式内容与实现将在 M1 垂直切片中替换。
+**Status: structural scaffold / M0–M1 WIP.** The frontend/backend layout, API layering, and build pipeline are in place. Business pages and production content will be added during the M1 vertical slice.
 
-## 项目定位
+## Overview
 
-CS Atlas 是一个按历史时间线性展示计算机硬件的全栈学习应用，并回答教材导言中的七个核心问题：
+CS Atlas is a full-stack learning application that presents computer hardware along a historical timeline and answers seven core questions from the course textbook:
 
-1. 高级语言程序如何被翻译成机器语言，硬件如何执行？
-2. 软件与硬件之间的接口是什么？
-3. 什么决定程序性能，程序员如何改进？
-4. 硬件设计者如何提升性能？
-5. 硬件/程序员如何改善能效？
-6. 为什么从串行走向并行，结果如何？
-7. 1951 年以来有哪些伟大思想？
+1. How are programs written in C, Java, and other high-level languages translated into machine code, and how does hardware execute the result?
+2. What is the interface between software and hardware?
+3. What determines program performance, and how can programmers improve it?
+4. What techniques can hardware designers use to improve performance?
+5. How can hardware designers and programmers improve energy efficiency?
+6. Why did serial processing evolve into parallel processing, and what changed as a result?
+7. Which great ideas have shaped modern computing since the first commercial computer in 1951?
 
-## 技术栈
+## Tech stack
 
-- 前端：React 19 + Vite + TypeScript + Three.js
-- 后端：Node.js 22 + Express 5 + SQLite
-- 渲染：程序化几何的“技术插画”3D，不使用外部 GLB
-- 运行形态：本地单机 Web 应用
+- **Frontend:** React 19, Vite, TypeScript, Three.js
+- **Backend:** Node.js 22, Express 5, SQLite
+- **3D:** procedural geometry in a technical-illustration style; no external GLB assets
+- **Runtime:** local, single-user web application
 
-## 当前状态
-
-- [x] 技术栈与产品方向确定
-- [x] 时间轴 + 七个必答问题双轴信息架构
-- [x] 数据模型、API 契约、内容地图、3D 规范
-- [ ] 数据层加固（schema / migrations / seed upsert / 通用批注）
-- [ ] M1：3 个时代、6 台机器、ENIAC/H100 展品、Q1/Q3、GPU 模块、3 个计算器
-
-详细规划与架构文档维护在本地 Obsidian 项目库中，并会在里程碑节点归档。
-
-## 目录（目标）
+## Repository layout
 
 ```text
-data/                 # 内容源与 schema（M1 加入）
-server/src/           # Express API、SQLite、播种
-server/test/          # API / 数据测试
-web/src/              # React SPA、时间轴、问题页、3D 展品
-scripts/              # 数据校验、归档
+CS-Atlas/
+├── web/                       # React SPA
+│   ├── index.html
+│   ├── vite.config.ts
+│   ├── tsconfig.json
+│   └── src/
+│       ├── main.tsx · App.tsx
+│       ├── pages/
+│       ├── components/        # M1
+│       ├── three/             # exhibit and concept scenes (M1)
+│       ├── lib/               # API client, types, utilities (M1)
+│       └── styles/
+├── server/
+│   ├── src/
+│   │   ├── index.js           # entry point
+│   │   ├── app.js             # middleware and route mounting
+│   │   ├── config.js
+│   │   ├── db/
+│   │   │   ├── connection.js
+│   │   │   ├── schema.sql
+│   │   │   └── seed.js
+│   │   ├── repositories/      # entities, content, annotations, meta
+│   │   ├── routes/            # meta, entities, content, annotations
+│   │   ├── lib/http.js
+│   │   ├── validation/seed.js
+│   │   └── seed.js
+│   └── test/
+├── data/
+│   ├── seed.json              # development placeholder, replaced in M1
+│   └── README.md
+├── scripts/check-data.js
+├── dist/                      # build output, gitignored
+├── package.json
+└── README.md
 ```
 
-## 本地运行（M1 目标）
+## Getting started
 
 ```bash
 npm install
+
+# Development: API on :8787, Vite on :5173
+npm run dev
+
+# Production build and local server
 npm run build
 npm start        # http://127.0.0.1:8787
 ```
 
-> 当前脚手架尚未完成，`npm start` 不是最终形态；M1 会补齐可运行链路。
+## Verification
 
-## 规划中的 M1
+```bash
+npm run check:data
+npm test
+npm run typecheck
+npm run build
+```
 
-- 1940s / 1980s / 2020s 三个时代
-- ENIAC、H100 两个机器展品 + `datapath` 概念展品
-- Q1 程序到机器、Q3 程序性能
-- GPU 为什么快
-- CPU 性能、Cache AMAT、Roofline 三个计算器
-- 机器/问题收藏与笔记
+The scaffold currently passes:
+
+- 10 API tests
+- TypeScript type checking
+- Vite production build
+- A basic API/frontend smoke test
+
+## Current status
+
+- [x] Frontend/backend directory structure
+- [x] Vite + React frontend scaffold
+- [x] Express routes, repositories, and database layers
+- [x] Development seed for local startup and tests
+- [x] API tests and production build
+- [ ] Data-layer hardening: migrations, seed upsert, generic annotations
+- [ ] M1: three eras, six machines, ENIAC/H100 exhibits, Q1/Q3, GPU module, three calculators
+
+## Development data
+
+`data/seed.json` is a **development placeholder** (3 entities, 20 instructions, 7 chapters). It exists only to validate the schema, API, and build pipeline. It is not final historical content and will be replaced during M1.
+
+The generated `data/cs-atlas.db` file is local runtime state and is not committed.
+
+## Planning documents
+
+Architecture, data model, API contract, content map, 3D specification, and roadmap are maintained in a local Obsidian vault. The public repository contains the implementation only; the vault is not published as part of this repository.
 
 ## License
 
