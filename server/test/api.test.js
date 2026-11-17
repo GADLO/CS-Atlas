@@ -1,8 +1,10 @@
 import test, { after, before } from 'node:test';
 import assert from 'node:assert/strict';
 import { createApp } from '../src/app.js';
-import { loadSeedData, counts } from '../src/data.js';
-import { openDatabase, seedDatabase, createRepository } from '../src/db.js';
+import { loadSeedData, counts } from '../src/validation/seed.js';
+import { openDatabase } from '../src/db/connection.js';
+import { seedDatabase } from '../src/db/seed.js';
+import { createRepository } from '../src/repositories/index.js';
 
 let server;
 let base;

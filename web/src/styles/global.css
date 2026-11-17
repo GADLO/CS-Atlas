@@ -1,0 +1,152 @@
+:root {
+  color-scheme: dark;
+  --bg: #070d16;
+  --panel: #0e1826;
+  --line: rgba(120, 190, 210, 0.18);
+  --text: #e6f1f7;
+  --muted: #8aa3b8;
+  --cyan: #3ee6c4;
+  --amber: #f5b955;
+  --font: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", system-ui, sans-serif;
+  --mono: "SFMono-Regular", ui-monospace, Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(62, 230, 196, 0.12), transparent 34rem),
+    radial-gradient(circle at 90% 20%, rgba(245, 185, 85, 0.08), transparent 30rem),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(120, 190, 210, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 190, 210, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.shell {
+  position: relative;
+  width: min(980px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 14vh 0 10vh;
+}
+
+.eyebrow {
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 18px 0 20px;
+  font-size: clamp(44px, 8vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+}
+
+h1 span {
+  color: transparent;
+  background: linear-gradient(100deg, var(--cyan), var(--amber));
+  background-clip: text;
+}
+
+.lede {
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 40px 0 16px;
+}
+
+.card,
+.panel {
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(18, 32, 48, 0.9), rgba(10, 18, 30, 0.8));
+  border-radius: 16px;
+}
+
+.card {
+  padding: 18px;
+}
+
+.card span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.card strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.panel {
+  padding: 24px;
+}
+
+.panel h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+.panel ol {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 2;
+}
+
+.hint {
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+code {
+  color: var(--cyan);
+  font-family: var(--mono);
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: calc(100% - 32px);
+    padding-top: 10vh;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

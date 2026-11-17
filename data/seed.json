@@ -1,0 +1,639 @@
+{
+  "meta": {
+    "version": 1,
+    "title": "CS Atlas 开发占位数据",
+    "subtitle": "用于验证项目结构与 API，M1 将替换",
+    "source": "development placeholder"
+  },
+  "entities": [
+    {
+      "slug": "eniac",
+      "type": "hardware",
+      "name": "电子数字积分计算机",
+      "name_en": "ENIAC",
+      "category": "计算",
+      "layer": "系统层",
+      "summary": "第一台通用电子数字计算机之一，使用电子管实现高速运算。",
+      "description": [
+        "ENIAC 使用大量电子管完成弹道计算，运算速度远超前代机电计算机。",
+        "它的程序通过接线与开关设置，而不是存放在存储器中，因此改变任务需要重新配置机器。"
+      ],
+      "specs": [
+        {
+          "label": "电子管",
+          "value": "约 17,468 只"
+        },
+        {
+          "label": "功耗",
+          "value": "约 150 kW"
+        },
+        {
+          "label": "重量",
+          "value": "约 27 吨"
+        }
+      ],
+      "highlights": [
+        "电子开关显著提高计算速度",
+        "程序仍靠接线设置"
+      ],
+      "tags": [
+        "电子管",
+        "ENIAC"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.2",
+        "pages": "p.29–31"
+      },
+      "accent": "#f5b955",
+      "icon": "chip",
+      "scene": "tube-mainframe"
+    },
+    {
+      "slug": "cache",
+      "type": "hardware",
+      "name": "缓存",
+      "name_en": "Cache",
+      "category": "存储",
+      "layer": "微架构层",
+      "summary": "位于处理器与主存之间的小而快存储，是流水线保持供数的关键。",
+      "description": [
+        "缓存利用程序的时间与空间局部性，把最近使用的数据放在更快的存储中。",
+        "命中率、命中时间与缺失代价共同决定平均访问时间，是流水线性能的重要约束。"
+      ],
+      "specs": [
+        {
+          "label": "典型位置",
+          "value": "处理器与主存之间"
+        },
+        {
+          "label": "典型容量",
+          "value": "数 KB 到数十 MB"
+        },
+        {
+          "label": "关键指标",
+          "value": "命中率 / AMAT"
+        }
+      ],
+      "highlights": [
+        "利用局部性缩短平均访问时间",
+        "流水线需要持续供数"
+      ],
+      "tags": [
+        "缓存",
+        "存储层次"
+      ],
+      "book": {
+        "chapter": 5,
+        "section": "5.1",
+        "pages": "p.286–300"
+      },
+      "accent": "#64d8ff",
+      "icon": "cache",
+      "scene": "memory-hierarchy"
+    },
+    {
+      "slug": "cpu-performance",
+      "type": "model",
+      "name": "CPU 性能公式",
+      "name_en": "CPU Performance Equation",
+      "category": "性能模型",
+      "layer": "微架构层",
+      "summary": "用指令数、CPI 与时钟周期解释程序执行时间。",
+      "description": [
+        "CPU 时间可以写成指令数乘以 CPI 再乘以时钟周期。",
+        "三个因子相互牵制，优化其中一个往往会改变另外两个。"
+      ],
+      "specs": [
+        {
+          "label": "公式",
+          "value": "CPU 时间 = IC × CPI × 时钟周期"
+        },
+        {
+          "label": "等价形式",
+          "value": "CPU 时间 = IC × CPI / 频率"
+        },
+        {
+          "label": "适用",
+          "value": "单核程序级性能估算"
+        }
+      ],
+      "highlights": [
+        "性能三因子",
+        "优化需要看整体取舍"
+      ],
+      "tags": [
+        "性能",
+        "CPI"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.6",
+        "pages": "p.43–51"
+      },
+      "accent": "#76e6a8",
+      "icon": "model",
+      "formula": "CPU 时间 = 指令数 × CPI × 时钟周期",
+      "variables": [
+        {
+          "symbol": "IC",
+          "name": "指令数",
+          "unit": "条"
+        },
+        {
+          "symbol": "CPI",
+          "name": "每条指令周期数",
+          "unit": "周期/条"
+        },
+        {
+          "symbol": "T",
+          "name": "时钟周期",
+          "unit": "秒"
+        }
+      ],
+      "calculator": "cpu"
+    }
+  ],
+  "relations": [
+    {
+      "source": "eniac",
+      "target": "cache",
+      "kind": "depends",
+      "label": "依赖"
+    },
+    {
+      "source": "cpu-performance",
+      "target": "eniac",
+      "kind": "measures",
+      "label": "度量"
+    }
+  ],
+  "instructions": [
+    {
+      "mnemonic": "add",
+      "name": "加法",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "000",
+      "funct7": "0000000",
+      "category": "算术",
+      "description": "rd = rs1 + rs2。",
+      "operation": "rd = rs1 + rs2",
+      "example": "add x5, x6, x7"
+    },
+    {
+      "mnemonic": "sub",
+      "name": "减法",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "000",
+      "funct7": "0100000",
+      "category": "算术",
+      "description": "rd = rs1 - rs2。",
+      "operation": "rd = rs1 - rs2",
+      "example": "sub x5, x6, x7"
+    },
+    {
+      "mnemonic": "and",
+      "name": "按位与",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "111",
+      "funct7": "0000000",
+      "category": "逻辑",
+      "description": "rd = rs1 & rs2。",
+      "operation": "rd = rs1 & rs2",
+      "example": "and x5, x6, x7"
+    },
+    {
+      "mnemonic": "or",
+      "name": "按位或",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "110",
+      "funct7": "0000000",
+      "category": "逻辑",
+      "description": "rd = rs1 | rs2。",
+      "operation": "rd = rs1 | rs2",
+      "example": "or x5, x6, x7"
+    },
+    {
+      "mnemonic": "xor",
+      "name": "按位异或",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "100",
+      "funct7": "0000000",
+      "category": "逻辑",
+      "description": "rd = rs1 ^ rs2。",
+      "operation": "rd = rs1 ^ rs2",
+      "example": "xor x5, x6, x7"
+    },
+    {
+      "mnemonic": "sll",
+      "name": "逻辑左移",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "001",
+      "funct7": "0000000",
+      "category": "逻辑",
+      "description": "rd = rs1 << rs2。",
+      "operation": "rd = rs1 << rs2",
+      "example": "sll x5, x6, x7"
+    },
+    {
+      "mnemonic": "srl",
+      "name": "逻辑右移",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "101",
+      "funct7": "0000000",
+      "category": "逻辑",
+      "description": "rd = rs1 >> rs2。",
+      "operation": "rd = rs1 >> rs2",
+      "example": "srl x5, x6, x7"
+    },
+    {
+      "mnemonic": "sra",
+      "name": "算术右移",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "101",
+      "funct7": "0100000",
+      "category": "逻辑",
+      "description": "rd = rs1 >>> rs2。",
+      "operation": "rd = rs1 >>> rs2",
+      "example": "sra x5, x6, x7"
+    },
+    {
+      "mnemonic": "slt",
+      "name": "小于则置位",
+      "format": "R",
+      "opcode": "0110011",
+      "funct3": "010",
+      "funct7": "0000000",
+      "category": "算术",
+      "description": "rd = (rs1 < rs2) ? 1 : 0。",
+      "operation": "rd = (rs1 < rs2) ? 1 : 0",
+      "example": "slt x5, x6, x7"
+    },
+    {
+      "mnemonic": "addi",
+      "name": "立即数加法",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "000",
+      "funct7": null,
+      "category": "立即数",
+      "description": "rd = rs1 + imm。",
+      "operation": "rd = rs1 + imm",
+      "example": "addi x5, x6, 10"
+    },
+    {
+      "mnemonic": "andi",
+      "name": "立即数按位与",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "111",
+      "funct7": null,
+      "category": "立即数",
+      "description": "rd = rs1 & imm。",
+      "operation": "rd = rs1 & imm",
+      "example": "andi x5, x6, 15"
+    },
+    {
+      "mnemonic": "ori",
+      "name": "立即数按位或",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "110",
+      "funct7": null,
+      "category": "立即数",
+      "description": "rd = rs1 | imm。",
+      "operation": "rd = rs1 | imm",
+      "example": "ori x5, x6, 15"
+    },
+    {
+      "mnemonic": "xori",
+      "name": "立即数按位异或",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "100",
+      "funct7": null,
+      "category": "立即数",
+      "description": "rd = rs1 ^ imm。",
+      "operation": "rd = rs1 ^ imm",
+      "example": "xori x5, x6, 15"
+    },
+    {
+      "mnemonic": "slli",
+      "name": "立即数左移",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "001",
+      "funct7": "0000000",
+      "category": "立即数",
+      "description": "rd = rs1 << shamt。",
+      "operation": "rd = rs1 << shamt",
+      "example": "slli x5, x6, 3"
+    },
+    {
+      "mnemonic": "srli",
+      "name": "立即数逻辑右移",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "101",
+      "funct7": "0000000",
+      "category": "立即数",
+      "description": "rd = rs1 >> shamt。",
+      "operation": "rd = rs1 >> shamt",
+      "example": "srli x5, x6, 3"
+    },
+    {
+      "mnemonic": "srai",
+      "name": "立即数算术右移",
+      "format": "I",
+      "opcode": "0010011",
+      "funct3": "101",
+      "funct7": "0100000",
+      "category": "立即数",
+      "description": "rd = rs1 >>> shamt。",
+      "operation": "rd = rs1 >>> shamt",
+      "example": "srai x5, x6, 3"
+    },
+    {
+      "mnemonic": "lw",
+      "name": "加载字",
+      "format": "I",
+      "opcode": "0000011",
+      "funct3": "010",
+      "funct7": null,
+      "category": "访存",
+      "description": "rd = Mem[rs1 + imm]。",
+      "operation": "rd = Mem[rs1 + imm]",
+      "example": "lw x5, 0(x6)"
+    },
+    {
+      "mnemonic": "sw",
+      "name": "存储字",
+      "format": "S",
+      "opcode": "0100011",
+      "funct3": "010",
+      "funct7": null,
+      "category": "访存",
+      "description": "Mem[rs1 + imm] = rs2。",
+      "operation": "Mem[rs1 + imm] = rs2",
+      "example": "sw x5, 0(x6)"
+    },
+    {
+      "mnemonic": "beq",
+      "name": "相等则分支",
+      "format": "B",
+      "opcode": "1100011",
+      "funct3": "000",
+      "funct7": null,
+      "category": "分支",
+      "description": "if (rs1 == rs2) PC += imm。",
+      "operation": "if (rs1 == rs2) PC += imm",
+      "example": "beq x5, x6, label"
+    },
+    {
+      "mnemonic": "bne",
+      "name": "不相等则分支",
+      "format": "B",
+      "opcode": "1100011",
+      "funct3": "001",
+      "funct7": null,
+      "category": "分支",
+      "description": "if (rs1 != rs2) PC += imm。",
+      "operation": "if (rs1 != rs2) PC += imm",
+      "example": "bne x5, x6, label"
+    }
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "第 1 章开发占位",
+      "title_en": "Chapter 1 Placeholder",
+      "pages": "p.30–39",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "1.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "1.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "1.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "第 2 章开发占位",
+      "title_en": "Chapter 2 Placeholder",
+      "pages": "p.40–49",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "2.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "2.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "2.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "第 3 章开发占位",
+      "title_en": "Chapter 3 Placeholder",
+      "pages": "p.50–59",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "3.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "3.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "3.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "第 4 章开发占位",
+      "title_en": "Chapter 4 Placeholder",
+      "pages": "p.60–69",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "4.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "4.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "4.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "第 5 章开发占位",
+      "title_en": "Chapter 5 Placeholder",
+      "pages": "p.70–79",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "5.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "5.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "5.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "第 6 章开发占位",
+      "title_en": "Chapter 6 Placeholder",
+      "pages": "p.80–89",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "6.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "6.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "6.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "第 7 章开发占位",
+      "title_en": "Chapter 7 Placeholder",
+      "pages": "p.90–99",
+      "summary": "开发占位章节，用于验证数据结构与 API；M1 将替换为正式内容。",
+      "sections": [
+        {
+          "id": "7.1",
+          "title": "占位小节 A",
+          "pages": "p.1",
+          "entities": []
+        },
+        {
+          "id": "7.2",
+          "title": "占位小节 B",
+          "pages": "p.2",
+          "entities": []
+        },
+        {
+          "id": "7.3",
+          "title": "占位小节 C",
+          "pages": "p.3",
+          "entities": []
+        }
+      ],
+      "key_ideas": [
+        "占位数据",
+        "用于结构验证",
+        "M1 替换"
+      ]
+    }
+  ]
+}
