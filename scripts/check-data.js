@@ -16,10 +16,12 @@ if (errors.length) {
 const data = loadSeedData(file);
 const c = counts(data);
 console.log('✓ seed.json 校验通过');
-console.log(`  实体 ${c.entities}（硬件 ${c.hardware} / 软件 ${c.software} / 模型 ${c.model}）`);
+console.log(`  实体 ${c.entities}（硬件 ${c.hardware} / 软件 ${c.software} / 模型 ${c.model} / AI ${c.ai}）`);
+console.log(`  时代 ${c.eras} · 事件 ${c.events} · 问题 ${c.questions} · AI 模块 ${c.aiModules}`);
 console.log(`  关系 ${c.relations} · 指令 ${c.instructions} · 章节 ${c.chapters}`);
 const byChapter = new Map();
 for (const entity of data.entities) {
-  byChapter.set(entity.book.chapter, (byChapter.get(entity.book.chapter) || 0) + 1);
+  const chapter = entity.book?.chapter ?? '未标注';
+  byChapter.set(chapter, (byChapter.get(chapter) || 0) + 1);
 }
-console.log('  按章节分布：', [...byChapter.entries()].sort((a, b) => a[0] - b[0]).map(([k, v]) => `${k === 0 ? '附录A' : `第${k}章`}:${v}`).join(' '));
+console.log('  按章节分布：', [...byChapter.entries()].sort((a, b) => String(a[0]).localeCompare(String(b[0]))).map(([k, v]) => `${k === 0 ? '附录A' : `第${k}章`}:${v}`).join(' '));
