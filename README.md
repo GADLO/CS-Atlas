@@ -2,7 +2,7 @@
 
 > A time-based, explorable atlas of computer hardware: from vacuum-tube cabinets to AI accelerators, explained through a timeline, 3D exhibits, and interactive models.
 
-**Status: structural scaffold / M0–M1 WIP.** The frontend/backend layout, API layering, and build pipeline are in place. Business pages and production content will be added during the M1 vertical slice.
+**Status: M1 data foundation / vertical slice WIP.** The frontend/backend layout, database schema, timeline/questions APIs, and build pipeline are in place. UI pages and 3D exhibits are the next step.
 
 ## Overview
 
@@ -47,16 +47,18 @@ CS-Atlas/
 │   │   │   ├── connection.js
 │   │   │   ├── schema.sql
 │   │   │   └── seed.js
-│   │   ├── repositories/      # entities, content, annotations, meta
-│   │   ├── routes/            # meta, entities, content, annotations
+│   │   ├── repositories/      # entities, timeline, questions, AI, annotations
+│   │   ├── routes/            # meta, timeline, entities, questions, AI, models
 │   │   ├── lib/http.js
 │   │   ├── validation/seed.js
 │   │   └── seed.js
 │   └── test/
 ├── data/
-│   ├── seed.json              # development placeholder, replaced in M1
+│   ├── seed.json              # M1 seed (3 eras, 20 entities, 7 questions)
 │   └── README.md
-├── scripts/check-data.js
+├── scripts/
+│   ├── check-data.js
+│   └── check-questions.js
 ├── dist/                      # build output, gitignored
 ├── package.json
 └── README.md
@@ -75,18 +77,26 @@ npm run build
 npm start        # http://127.0.0.1:8787
 ```
 
+If you have a local SQLite file from an older schema, reset it before starting:
+
+```bash
+npm run db:reset
+```
+
 ## Verification
 
 ```bash
 npm run check:data
+npm run check:questions
 npm test
 npm run typecheck
 npm run build
 ```
 
-The scaffold currently passes:
+The current data foundation passes:
 
-- 10 API tests
+- 15 API tests
+- Question coverage checks (2 published questions)
 - TypeScript type checking
 - Vite production build
 - A basic API/frontend smoke test
@@ -96,14 +106,26 @@ The scaffold currently passes:
 - [x] Frontend/backend directory structure
 - [x] Vite + React frontend scaffold
 - [x] Express routes, repositories, and database layers
-- [x] Development seed for local startup and tests
-- [x] API tests and production build
-- [ ] Data-layer hardening: migrations, seed upsert, generic annotations
-- [ ] M1: three eras, six machines, ENIAC/H100 exhibits, Q1/Q3, GPU module, three calculators
+- [x] M1 schema: eras, events, questions, AI modules, generic annotations
+- [x] Seed upsert that preserves annotations
+- [x] Timeline, era, question, AI module, model, and search APIs
+- [ ] Schema migrations
+- [ ] M1 UI: timeline, era pages, machine pages, question pages
+- [ ] 3D: ENIAC/H100 exhibits + datapath concept scene
+- [ ] Three calculators and GPU module UI
 
-## Development data
+## M1 data
 
-`data/seed.json` is a **development placeholder** (3 entities, 20 instructions, 7 chapters). It exists only to validate the schema, API, and build pipeline. It is not final historical content and will be replaced during M1.
+`data/seed.json` currently contains:
+
+- 3 eras: stored-program, PC/RISC, AI/heterogeneous
+- 20 entities: 6 machines, 10 hardware components, 6 software, 3 principle models, 1 AI concept
+- 7 events
+- 7 questions (Q1 and Q3 published; the rest planned)
+- 1 AI module (GPU)
+- 20 RV32I instructions and 7 book chapters
+
+It is a real M1 data foundation, not final V1 content. M2 expands to 9 eras and 18 machines.
 
 The generated `data/cs-atlas.db` file is local runtime state and is not committed.
 
