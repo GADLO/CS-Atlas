@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import { badRequest, notFound } from '../lib/http.js';
 
-const TYPES = new Set(['hardware', 'software', 'model']);
+const TYPES = new Set(['hardware', 'software', 'model', 'ai']);
 
 export function createEntityRouter(repo) {
   const router = Router();
 
   router.get('/entities', (req, res) => {
     const { type, q, category } = req.query;
-    if (type && !TYPES.has(type)) return badRequest(res, 'type 必须是 hardware、software 或 model');
+    if (type && !TYPES.has(type)) return badRequest(res, 'type 必须是 hardware、software、model 或 ai');
     const items = repo.listEntities({
       type,
       q: typeof q === 'string' ? q.trim() : undefined,
@@ -35,7 +35,7 @@ export function createEntityRouter(repo) {
 
   router.get('/search', (req, res) => {
     const q = typeof req.query.q === 'string' ? req.query.q.trim() : '';
-    if (!q) return res.json({ entities: [], instructions: [] });
+    if (!q) return res.json({ entities: [], questions: [], instructions: [] });
     res.json(repo.search(q.slice(0, 80)));
   });
 
