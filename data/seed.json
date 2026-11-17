@@ -1,22 +1,86 @@
 {
   "meta": {
-    "version": 1,
-    "title": "CS Atlas 开发占位数据",
-    "subtitle": "用于验证项目结构与 API，M1 将替换",
-    "source": "development placeholder"
+    "version": 2,
+    "contentVersion": "m1-dev-1",
+    "title": "CS Atlas M1 数据基础",
+    "subtitle": "Q1/Q3 + 三时代骨架",
+    "source": "Patterson & Hennessy + public references"
   },
+  "eras": [
+    {
+      "slug": "stored-program",
+      "name": "存储程序与电子管",
+      "startYear": 1945,
+      "endYear": 1957,
+      "sortOrder": 1,
+      "tagline": "程序和数据住进同一台机器",
+      "keyIdea": "存储程序",
+      "heroMachine": "eniac",
+      "narrative": [
+        "ENIAC 用电子管把计算速度提高了一个数量级，但它的程序仍靠接线与开关设置。",
+        "EDVAC 报告提出存储程序思想：指令和数据以同一种形式存放在可读写存储器中。",
+        "从接线编程到存储程序，计算机从专用计算装置变成通用信息处理机器。"
+      ],
+      "transition": {
+        "title": "从机电到电子",
+        "body": "开关速度进入微秒级，真正的分水岭是程序不再需要重新接线。"
+      },
+      "accent": "#f5b955"
+    },
+    {
+      "slug": "pc-risc",
+      "name": "PC 与 RISC",
+      "startYear": 1981,
+      "endYear": 1990,
+      "sortOrder": 5,
+      "tagline": "计算机走进个人桌面，流水线走进教科书",
+      "keyIdea": "流水线 / RISC",
+      "heroMachine": "ibm-pc-5150",
+      "narrative": [
+        "IBM PC 建立开放兼容生态，个人计算机从爱好者设备变成通用工具。",
+        "Macintosh 把图形界面、鼠标与一体机形态带进主流。",
+        "RISC 与流水线让体系结构研究从大型机走向桌面与工作站。"
+      ],
+      "transition": {
+        "title": "从大型机到个人计算机",
+        "body": "计算从机构机房散到桌面，软件生态与标准化成为新的竞争维度。"
+      },
+      "accent": "#64d8ff"
+    },
+    {
+      "slug": "ai-heterogeneous",
+      "name": "AI 与异构计算",
+      "startYear": 2016,
+      "endYear": 2026,
+      "sortOrder": 8,
+      "tagline": "为神经网络定制的硅，成为新的通用算力",
+      "keyIdea": "领域加速 / 异构",
+      "heroMachine": "nvidia-h100",
+      "narrative": [
+        "Transformer 与大模型把算力、显存带宽和互连推到系统设计的中心。",
+        "GPU、TPU/NPU 与 HBM 组成异构计算栈，CPU 不再是唯一主角。",
+        "Chiplet、先进封装与统一内存继续改变芯片的组织方式。"
+      ],
+      "transition": {
+        "title": "从通用 CPU 到领域加速",
+        "body": "性能增长从单核频率转向并行、专用化与数据搬运效率。"
+      },
+      "accent": "#76e6a8"
+    }
+  ],
   "entities": [
     {
-      "slug": "eniac",
       "type": "hardware",
-      "name": "电子数字积分计算机",
-      "name_en": "ENIAC",
       "category": "计算",
       "layer": "系统层",
-      "summary": "第一台通用电子数字计算机之一，使用电子管实现高速运算。",
+      "year": 1945,
+      "maker": "University of Pennsylvania",
+      "formFactor": "mainframe",
+      "sceneKey": "tube-mainframe",
+      "summary": "第一台通用电子数字计算机之一，用电子管完成弹道计算。",
       "description": [
-        "ENIAC 使用大量电子管完成弹道计算，运算速度远超前代机电计算机。",
-        "它的程序通过接线与开关设置，而不是存放在存储器中，因此改变任务需要重新配置机器。"
+        "ENIAC 使用大量电子管实现高速运算，速度远超前代机电计算机。",
+        "它的程序通过接线板与开关设置，而不是存放在存储器中。"
       ],
       "specs": [
         {
@@ -34,75 +98,908 @@
       ],
       "highlights": [
         "电子开关显著提高计算速度",
-        "程序仍靠接线设置"
+        "程序仍靠接线与开关设置",
+        "功耗与可靠性是电子管时代的核心约束"
       ],
       "tags": [
         "电子管",
         "ENIAC"
+      ],
+      "significance": [
+        "证明电子计算可行",
+        "暴露接线编程的局限"
       ],
       "book": {
         "chapter": 1,
         "section": "1.2",
         "pages": "p.29–31"
       },
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
       "accent": "#f5b955",
       "icon": "chip",
-      "scene": "tube-mainframe"
+      "slug": "eniac",
+      "name": "ENIAC",
+      "name_en": "Electronic Numerical Integrator and Computer",
+      "eraSlug": "stored-program"
     },
     {
-      "slug": "cache",
       "type": "hardware",
-      "name": "缓存",
-      "name_en": "Cache",
-      "category": "存储",
-      "layer": "微架构层",
-      "summary": "位于处理器与主存之间的小而快存储，是流水线保持供数的关键。",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 1951,
+      "maker": "Eckert–Mauchly / Remington Rand",
+      "formFactor": "mainframe",
+      "sceneKey": "tube-mainframe",
+      "summary": "第一台面向商业市场的通用电子计算机之一。",
       "description": [
-        "缓存利用程序的时间与空间局部性，把最近使用的数据放在更快的存储中。",
-        "命中率、命中时间与缺失代价共同决定平均访问时间，是流水线性能的重要约束。"
+        "UNIVAC I 把存储程序与电子计算带入商业数据处理。",
+        "它使用水银延迟线存储器，体现了早期主存的工程约束。"
       ],
       "specs": [
         {
-          "label": "典型位置",
-          "value": "处理器与主存之间"
+          "label": "交付",
+          "value": "1951 年"
         },
         {
-          "label": "典型容量",
-          "value": "数 KB 到数十 MB"
+          "label": "主存",
+          "value": "水银延迟线"
         },
         {
-          "label": "关键指标",
-          "value": "命中率 / AMAT"
+          "label": "定位",
+          "value": "商业与政府数据处理"
         }
       ],
       "highlights": [
-        "利用局部性缩短平均访问时间",
-        "流水线需要持续供数"
+        "存储程序走向商业应用",
+        "主存技术仍处于早期"
       ],
       "tags": [
-        "缓存",
-        "存储层次"
+        "存储程序",
+        "商业计算机"
+      ],
+      "significance": [
+        "把存储程序带入商业市场",
+        "展示早期主存工程约束"
       ],
       "book": {
-        "chapter": 5,
-        "section": "5.1",
-        "pages": "p.286–300"
+        "chapter": 1,
+        "section": "1.2",
+        "pages": "p.29–31"
       },
-      "accent": "#64d8ff",
-      "icon": "cache",
-      "scene": "memory-hierarchy"
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#f5b955",
+      "icon": "chip",
+      "slug": "univac-i",
+      "name": "UNIVAC I",
+      "name_en": "UNIVAC I",
+      "eraSlug": "stored-program"
     },
     {
-      "slug": "cpu-performance",
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 1981,
+      "maker": "IBM",
+      "formFactor": "desktop",
+      "sceneKey": "desktop",
+      "summary": "建立开放兼容生态的个人计算机。",
+      "description": [
+        "IBM PC 采用开放架构与第三方扩展卡，催生了兼容机产业。",
+        "它把微处理器、标准总线与操作系统组合成可复制的个人计算平台。"
+      ],
+      "specs": [
+        {
+          "label": "处理器",
+          "value": "Intel 8088"
+        },
+        {
+          "label": "形态",
+          "value": "桌面主机 + 显示器"
+        },
+        {
+          "label": "生态",
+          "value": "开放扩展与兼容机"
+        }
+      ],
+      "highlights": [
+        "开放生态推动 PC 普及",
+        "标准化总线与操作系统"
+      ],
+      "tags": [
+        "PC",
+        "个人计算机"
+      ],
+      "significance": [
+        "定义 PC 兼容生态",
+        "把计算带进办公室与家庭"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.1",
+        "pages": "p.24–28"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "board",
+      "slug": "ibm-pc-5150",
+      "name": "IBM PC 5150",
+      "name_en": "IBM Personal Computer 5150",
+      "eraSlug": "pc-risc"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 1984,
+      "maker": "Apple",
+      "formFactor": "desktop",
+      "sceneKey": "desktop",
+      "summary": "把图形界面与鼠标带进主流的一体机。",
+      "description": [
+        "Macintosh 128K 采用一体化机身、位图屏幕与鼠标。",
+        "它让图形界面成为个人计算机的默认交互方式之一。"
+      ],
+      "specs": [
+        {
+          "label": "形态",
+          "value": "一体机"
+        },
+        {
+          "label": "交互",
+          "value": "图形界面 + 鼠标"
+        },
+        {
+          "label": "定位",
+          "value": "个人桌面"
+        }
+      ],
+      "highlights": [
+        "图形界面走向大众",
+        "一体化工业设计"
+      ],
+      "tags": [
+        "GUI",
+        "Apple"
+      ],
+      "significance": [
+        "定义图形界面个人计算机",
+        "推动鼠标与 GUI 普及"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.1",
+        "pages": "p.24–28"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "board",
+      "slug": "macintosh-128k",
+      "name": "Macintosh 128K",
+      "name_en": "Macintosh 128K",
+      "eraSlug": "pc-risc"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 2020,
+      "maker": "Apple",
+      "formFactor": "chiplet-package",
+      "sceneKey": "chiplet-package",
+      "summary": "统一内存与 SoC 设计的代表，展示能效优先的异构集成。",
+      "description": [
+        "M1 把 CPU、GPU、神经引擎与统一内存集成在一颗 SoC 中。",
+        "统一内存减少了数据复制，体现了移动与桌面融合的能效设计。"
+      ],
+      "specs": [
+        {
+          "label": "形态",
+          "value": "SoC"
+        },
+        {
+          "label": "内存",
+          "value": "统一内存"
+        },
+        {
+          "label": "特点",
+          "value": "异构集成 / 能效优先"
+        }
+      ],
+      "highlights": [
+        "统一内存降低数据搬运",
+        "异构集成提升能效"
+      ],
+      "tags": [
+        "SoC",
+        "Apple Silicon"
+      ],
+      "significance": [
+        "展示统一内存与 SoC 方向",
+        "能效优先的异构集成"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "apple-m1",
+          "title": "Apple M1",
+          "publisher": "Apple",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "chip",
+      "slug": "apple-m1",
+      "name": "Apple M1",
+      "name_en": "Apple M1",
+      "eraSlug": "ai-heterogeneous"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 2022,
+      "maker": "NVIDIA",
+      "formFactor": "gpu-accelerator",
+      "sceneKey": "gpu-accelerator",
+      "summary": "面向 AI 训练与推理的 GPU 加速器，代表 GPU + HBM + NVLink 的系统形态。",
+      "description": [
+        "H100 通过大量并行执行单元与 Tensor Core 加速矩阵运算。",
+        "HBM 与 NVLink 把显存带宽和卡间互连推到 AI 系统的核心位置。"
+      ],
+      "specs": [
+        {
+          "label": "形态",
+          "value": "GPU 加速卡"
+        },
+        {
+          "label": "显存",
+          "value": "HBM"
+        },
+        {
+          "label": "互连",
+          "value": "NVLink / PCIe"
+        }
+      ],
+      "highlights": [
+        "AI 训练与推理的核心算力",
+        "带宽与互连成为系统瓶颈"
+      ],
+      "tags": [
+        "GPU",
+        "AI 加速器"
+      ],
+      "significance": [
+        "定义 AI 加速器系统形态",
+        "把 HBM 与互连推到核心"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "gpu",
+      "slug": "nvidia-h100",
+      "name": "NVIDIA H100",
+      "name_en": "NVIDIA H100 Tensor Core GPU",
+      "eraSlug": "ai-heterogeneous"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "器件层",
+      "year": 1906,
+      "maker": "Lee de Forest",
+      "formFactor": "component",
+      "sceneKey": null,
+      "summary": "用真空中的电子流实现放大与开关，是早期电子计算机的基本器件。",
+      "description": [
+        "电子管比继电器快得多，但需要高压、灯丝加热并产生大量热量。",
+        "数量一多，功耗、散热与故障率就成为系统级问题。"
+      ],
+      "specs": [
+        {
+          "label": "开关速度",
+          "value": "微秒级"
+        },
+        {
+          "label": "工作电压",
+          "value": "数百伏"
+        },
+        {
+          "label": "寿命",
+          "value": "数千小时"
+        }
+      ],
+      "highlights": [
+        "早期电子计算机的基本开关",
+        "速度远超继电器但功耗高"
+      ],
+      "tags": [
+        "电子管",
+        "器件"
+      ],
+      "significance": [
+        "支撑第一代电子计算机",
+        "暴露功耗与可靠性约束"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.5",
+        "pages": "p.40–43"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#e28b5b",
+      "icon": "chip",
+      "slug": "vacuum-tube",
+      "name": "电子管",
+      "name_en": "Vacuum Tube",
+      "eraSlug": "stored-program"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "器件层",
+      "year": 1971,
+      "maker": "Intel",
+      "formFactor": "component",
+      "sceneKey": null,
+      "summary": "把 CPU 集成到一颗芯片，使个人计算机成为可能。",
+      "description": [
+        "微处理器把运算与控制逻辑集成到单一芯片。",
+        "成本、体积与功耗的下降让计算从机房走向桌面。"
+      ],
+      "specs": [
+        {
+          "label": "集成度",
+          "value": "单芯片 CPU"
+        },
+        {
+          "label": "代表",
+          "value": "Intel 4004 / 8088"
+        },
+        {
+          "label": "影响",
+          "value": "个人计算机基础"
+        }
+      ],
+      "highlights": [
+        "单片 CPU",
+        "推动 PC 产业"
+      ],
+      "tags": [
+        "微处理器",
+        "集成电路"
+      ],
+      "significance": [
+        "让 CPU 成为可复制零件",
+        "推动个人计算机产业"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.5",
+        "pages": "p.40–43"
+      },
+      "sources": [
+        {
+          "id": "intel-4004",
+          "title": "Intel 4004",
+          "publisher": "Intel",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "chip",
+      "slug": "microprocessor",
+      "name": "微处理器",
+      "name_en": "Microprocessor",
+      "eraSlug": "pc-risc"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "微架构层",
+      "year": 1999,
+      "maker": "NVIDIA",
+      "formFactor": "component",
+      "sceneKey": null,
+      "summary": "面向吞吐的并行处理器，从图形管线走向通用计算与 AI。",
+      "description": [
+        "GPU 用大量线程隐藏延迟，以吞吐优先的设计处理并行数据。",
+        "SIMT 与高带宽显存让它成为矩阵运算与 AI 的主力硬件。"
+      ],
+      "specs": [
+        {
+          "label": "执行模型",
+          "value": "SIMT"
+        },
+        {
+          "label": "优化目标",
+          "value": "吞吐"
+        },
+        {
+          "label": "关键资源",
+          "value": "显存带宽"
+        }
+      ],
+      "highlights": [
+        "大量并行线程隐藏延迟",
+        "AI 计算的核心硬件"
+      ],
+      "tags": [
+        "GPU",
+        "SIMT"
+      ],
+      "significance": [
+        "改变并行计算形态",
+        "成为 AI 计算核心硬件"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "gpu",
+      "slug": "gpu",
+      "name": "GPU",
+      "name_en": "Graphics Processing Unit",
+      "eraSlug": "ai-heterogeneous"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "把高级语言翻译成汇编或中间表示。",
+      "description": [
+        "编译器负责词法/语法/语义分析与优化，再生成目标代码。",
+        "优化级别、内联与向量化会影响最终指令数与 CPI。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "C/Java 等高级语言"
+        },
+        {
+          "label": "输出",
+          "value": "汇编 / 中间表示"
+        },
+        {
+          "label": "影响",
+          "value": "指令数、访存、并行"
+        }
+      ],
+      "highlights": [
+        "翻译链的第一环",
+        "优化直接影响性能"
+      ],
+      "tags": [
+        "编译器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "stored-program",
+      "slug": "compiler",
+      "name": "编译器",
+      "name_en": "Compiler"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "把汇编语言翻译成机器码。",
+      "description": [
+        "汇编器把助记符、寄存器与寻址方式编码成 ISA 指令。",
+        "它处理标签、伪指令与重定位信息。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "汇编语言"
+        },
+        {
+          "label": "输出",
+          "value": "目标文件"
+        },
+        {
+          "label": "依赖",
+          "value": "ISA 编码"
+        }
+      ],
+      "highlights": [
+        "助记符到机器码",
+        "ISA 的直接体现"
+      ],
+      "tags": [
+        "汇编器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "stored-program",
+      "slug": "assembler",
+      "name": "汇编器",
+      "name_en": "Assembler"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "合并目标文件与库，生成可执行文件。",
+      "description": [
+        "链接器解析符号、重定位地址并合并代码与数据。",
+        "静态/动态链接决定了程序启动与库共享方式。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "目标文件 / 库"
+        },
+        {
+          "label": "输出",
+          "value": "可执行文件"
+        },
+        {
+          "label": "关键",
+          "value": "符号解析与重定位"
+        }
+      ],
+      "highlights": [
+        "合并多个编译单元",
+        "决定库的链接方式"
+      ],
+      "tags": [
+        "链接器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "stored-program",
+      "slug": "linker",
+      "name": "链接器",
+      "name_en": "Linker"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "把可执行文件装入内存并启动程序。",
+      "description": [
+        "加载器建立进程地址空间、映射动态库并跳转到入口。",
+        "它与操作系统、虚拟内存和 ABI 紧密相关。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "可执行文件"
+        },
+        {
+          "label": "输出",
+          "value": "运行中的进程"
+        },
+        {
+          "label": "依赖",
+          "value": "OS / 虚拟内存"
+        }
+      ],
+      "highlights": [
+        "程序启动的最后一环",
+        "连接 OS 与硬件"
+      ],
+      "tags": [
+        "加载器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "stored-program",
+      "slug": "loader",
+      "name": "加载器",
+      "name_en": "Loader"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1995,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "执行 Java 字节码，并通过 JIT 编译热点代码。",
+      "description": [
+        "javac 把 Java 源码编译成字节码，JVM 负责解释或 JIT 编译。",
+        "字节码不是机器码，JVM 把它映射到目标 ISA。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "字节码"
+        },
+        {
+          "label": "执行",
+          "value": "解释 / JIT"
+        },
+        {
+          "label": "特点",
+          "value": "跨平台运行时"
+        }
+      ],
+      "highlights": [
+        "字节码与机器码的桥梁",
+        "JIT 影响运行时性能"
+      ],
+      "tags": [
+        "Java",
+        "JVM"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "pc-risc",
+      "slug": "java-jvm",
+      "name": "Java 虚拟机",
+      "name_en": "Java Virtual Machine"
+    },
+    {
+      "type": "software",
+      "category": "指令集",
+      "layer": "系统软件层",
+      "year": 2010,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "开放、模块化的指令集体系结构。",
+      "description": [
+        "RISC-V 提供开放的 32/64 位指令集与可选扩展。",
+        "ISA 是软件与硬件之间的契约，不等同于具体微架构。"
+      ],
+      "specs": [
+        {
+          "label": "位宽",
+          "value": "32 / 64 位"
+        },
+        {
+          "label": "特点",
+          "value": "开放、模块化"
+        },
+        {
+          "label": "定位",
+          "value": "软硬件接口"
+        }
+      ],
+      "highlights": [
+        "开放 ISA",
+        "软件与硬件的契约"
+      ],
+      "tags": [
+        "RISC-V",
+        "ISA"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "ai-heterogeneous",
+      "slug": "riscv-isa",
+      "name": "RISC-V 指令集",
+      "name_en": "RISC-V ISA"
+    },
+    {
       "type": "model",
-      "name": "CPU 性能公式",
-      "name_en": "CPU Performance Equation",
       "category": "性能模型",
       "layer": "微架构层",
+      "year": 1980,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
       "summary": "用指令数、CPI 与时钟周期解释程序执行时间。",
       "description": [
-        "CPU 时间可以写成指令数乘以 CPI 再乘以时钟周期。",
-        "三个因子相互牵制，优化其中一个往往会改变另外两个。"
+        "CPU 时间 = 指令数 × CPI × 时钟周期。",
+        "三个因子相互牵制，优化需要看整体取舍。"
       ],
       "specs": [
         {
@@ -115,12 +1012,12 @@
         },
         {
           "label": "适用",
-          "value": "单核程序级性能估算"
+          "value": "单核程序级估算"
         }
       ],
       "highlights": [
         "性能三因子",
-        "优化需要看整体取舍"
+        "优化需要整体视角"
       ],
       "tags": [
         "性能",
@@ -131,8 +1028,21 @@
         "section": "1.6",
         "pages": "p.43–51"
       },
-      "accent": "#76e6a8",
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
       "icon": "model",
+      "slug": "cpu-performance",
+      "name": "CPU 性能公式",
+      "name_en": "CPU Performance Equation",
+      "eraSlug": "pc-risc",
       "formula": "CPU 时间 = 指令数 × CPI × 时钟周期",
       "variables": [
         {
@@ -152,20 +1062,1191 @@
         }
       ],
       "calculator": "cpu"
+    },
+    {
+      "type": "model",
+      "category": "存储模型",
+      "layer": "微架构层",
+      "year": 1985,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "用命中时间、缺失率与缺失代价描述平均访存时间。",
+      "description": [
+        "AMAT = 命中时间 + 缺失率 × 缺失代价。",
+        "提高命中率或降低缺失代价都能改善性能。"
+      ],
+      "specs": [
+        {
+          "label": "公式",
+          "value": "AMAT = hit + missRate × penalty"
+        },
+        {
+          "label": "关键",
+          "value": "局部性"
+        },
+        {
+          "label": "适用",
+          "value": "缓存/存储层次"
+        }
+      ],
+      "highlights": [
+        "缓存性能的核心公式",
+        "局部性决定命中率"
+      ],
+      "tags": [
+        "Cache",
+        "AMAT"
+      ],
+      "book": {
+        "chapter": 5,
+        "section": "5.3",
+        "pages": "p.300–320"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "cache",
+      "slug": "cache-amat",
+      "name": "Cache AMAT",
+      "name_en": "Average Memory Access Time",
+      "eraSlug": "pc-risc",
+      "formula": "AMAT = 命中时间 + 缺失率 × 缺失代价",
+      "variables": [
+        {
+          "symbol": "hit",
+          "name": "命中时间",
+          "unit": "周期"
+        },
+        {
+          "symbol": "missRate",
+          "name": "缺失率",
+          "unit": "比例"
+        },
+        {
+          "symbol": "penalty",
+          "name": "缺失代价",
+          "unit": "周期"
+        }
+      ],
+      "calculator": "amat"
+    },
+    {
+      "type": "model",
+      "category": "性能模型",
+      "layer": "微架构层",
+      "year": 2009,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "用峰值算力与带宽描述程序的性能上限。",
+      "description": [
+        "性能上限为 min(峰值算力, 带宽 × 算术强度)。",
+        "拐点决定程序是算力受限还是带宽受限。"
+      ],
+      "specs": [
+        {
+          "label": "公式",
+          "value": "min(peak, BW × AI)"
+        },
+        {
+          "label": "关键",
+          "value": "算术强度"
+        },
+        {
+          "label": "适用",
+          "value": "AI / 高性能计算"
+        }
+      ],
+      "highlights": [
+        "识别算力/带宽瓶颈",
+        "AI 系统的重要模型"
+      ],
+      "tags": [
+        "Roofline",
+        "AI 系统"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "model",
+      "slug": "roofline",
+      "name": "Roofline",
+      "name_en": "Roofline Model",
+      "eraSlug": "ai-heterogeneous",
+      "formula": "性能 = min(峰值算力, 带宽 × 算术强度)",
+      "variables": [
+        {
+          "symbol": "peak",
+          "name": "峰值算力",
+          "unit": "FLOPS"
+        },
+        {
+          "symbol": "BW",
+          "name": "带宽",
+          "unit": "B/s"
+        },
+        {
+          "symbol": "AI",
+          "name": "算术强度",
+          "unit": "FLOP/B"
+        }
+      ],
+      "calculator": "roofline"
+    },
+    {
+      "type": "ai",
+      "category": "AI 概念",
+      "layer": "应用层",
+      "year": 2007,
+      "maker": "NVIDIA",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "GPU 的线程执行模型：一条指令驱动多个线程。",
+      "description": [
+        "SIMT 让 GPU 用大量线程隐藏访存与指令延迟。",
+        "warp 内的分支分化与内存访问模式会影响效率。"
+      ],
+      "specs": [
+        {
+          "label": "执行单位",
+          "value": "warp"
+        },
+        {
+          "label": "优化目标",
+          "value": "吞吐"
+        },
+        {
+          "label": "关键",
+          "value": "分支分化 / 合并访存"
+        }
+      ],
+      "highlights": [
+        "GPU 吞吐模型的基础",
+        "把并行映射到硬件"
+      ],
+      "tags": [
+        "SIMT",
+        "GPU"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "model",
+      "slug": "simt",
+      "name": "SIMT",
+      "name_en": "Single Instruction, Multiple Threads",
+      "eraSlug": "ai-heterogeneous"
+    },
+    {
+      "slug": "hbm",
+      "type": "hardware",
+      "name": "高带宽内存",
+      "name_en": "High Bandwidth Memory",
+      "category": "存储",
+      "layer": "器件层",
+      "eraSlug": "ai-heterogeneous",
+      "year": 2015,
+      "maker": "JEDEC / industry consortium",
+      "formFactor": "component",
+      "summary": "通过堆叠与宽接口提供高带宽的 DRAM，是 AI 加速器的关键存储。",
+      "description": [
+        "HBM 把多层 DRAM 堆叠并通过硅通孔与宽接口连接到处理器。",
+        "它缓解了 AI 加速器的带宽瓶颈，但成本与封装复杂度更高。"
+      ],
+      "specs": [
+        {
+          "label": "结构",
+          "value": "多层 DRAM 堆叠"
+        },
+        {
+          "label": "接口",
+          "value": "宽接口 / 硅通孔"
+        },
+        {
+          "label": "关键指标",
+          "value": "带宽 / 容量"
+        }
+      ],
+      "highlights": [
+        "缓解 AI 带宽瓶颈",
+        "与先进封装紧密相关"
+      ],
+      "tags": [
+        "HBM",
+        "AI 存储"
+      ],
+      "significance": [
+        "AI 加速器的关键存储",
+        "把封装与带宽推到系统核心"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "memory"
+    }
+  ],
+  "events": [
+    {
+      "slug": "eniac-completed",
+      "year": 1945,
+      "dateLabel": "1945 年",
+      "lane": "hardware",
+      "title": "ENIAC 完成",
+      "summary": "电子管计算机证明高速电子计算可行，但程序仍靠接线设置。",
+      "eraSlug": "stored-program",
+      "importance": 3,
+      "entitySlugs": [
+        "eniac",
+        "vacuum-tube"
+      ],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "univac-i-delivered",
+      "year": 1951,
+      "dateLabel": "1951 年",
+      "lane": "hardware",
+      "title": "UNIVAC I 交付",
+      "summary": "存储程序计算机进入商业数据处理。",
+      "eraSlug": "stored-program",
+      "importance": 2,
+      "entitySlugs": [
+        "univac-i"
+      ],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "fortran-compiler",
+      "year": 1957,
+      "dateLabel": "1957 年",
+      "lane": "software",
+      "title": "FORTRAN 编译器发布",
+      "summary": "高级语言开始通过编译器生成机器码。",
+      "eraSlug": "stored-program",
+      "importance": 2,
+      "entitySlugs": [
+        "compiler",
+        "assembler"
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "ibm-pc-released",
+      "year": 1981,
+      "dateLabel": "1981 年",
+      "lane": "hardware",
+      "title": "IBM PC 发布",
+      "summary": "开放架构与标准化组件催生 PC 兼容机生态。",
+      "eraSlug": "pc-risc",
+      "importance": 3,
+      "entitySlugs": [
+        "ibm-pc-5150",
+        "microprocessor"
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "macintosh-released",
+      "year": 1984,
+      "dateLabel": "1984 年",
+      "lane": "hardware",
+      "title": "Macintosh 发布",
+      "summary": "图形界面与鼠标进入主流个人计算机。",
+      "eraSlug": "pc-risc",
+      "importance": 2,
+      "entitySlugs": [
+        "macintosh-128k"
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "m1-announced",
+      "year": 2020,
+      "dateLabel": "2020 年",
+      "lane": "hardware",
+      "title": "Apple M1 发布",
+      "summary": "统一内存与 SoC 设计展示能效优先的异构集成。",
+      "eraSlug": "ai-heterogeneous",
+      "importance": 2,
+      "entitySlugs": [
+        "apple-m1"
+      ],
+      "sources": [
+        {
+          "id": "apple-m1",
+          "title": "Apple M1",
+          "publisher": "Apple",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "h100-released",
+      "year": 2022,
+      "dateLabel": "2022 年",
+      "lane": "hardware",
+      "title": "NVIDIA H100 发布",
+      "summary": "GPU + HBM + NVLink 成为 AI 系统的核心形态。",
+      "eraSlug": "ai-heterogeneous",
+      "importance": 3,
+      "entitySlugs": [
+        "nvidia-h100",
+        "gpu"
+      ],
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "slug": "program-to-machine",
+      "number": 1,
+      "sortOrder": 1,
+      "title": "程序如何变成机器指令并被执行？",
+      "shortTitle": "程序到机器",
+      "question": "用 C 或 Java 编写的程序如何被翻译成机器语言，硬件如何执行最终的程序？",
+      "oneLineAnswer": "高级语言先经编译/解释变成 ISA 指令，处理器再按取指-译码-执行-访存-写回循环运行。",
+      "summary": "从 C/Java 源码到机器码的翻译路径，以及处理器的执行循环。",
+      "answerSections": [
+        {
+          "heading": "翻译流水线",
+          "body": [
+            "C：预处理→编译→汇编→链接→加载。Java：javac→字节码→JVM 解释/JIT。",
+            "字节码不是机器码，最终仍要落到目标 ISA。"
+          ]
+        },
+        {
+          "heading": "执行循环",
+          "body": [
+            "处理器从 PC 取指，译码后读寄存器、运算、访存并写回。",
+            "指令格式、寄存器约定与 ABI 决定软件如何驱动硬件。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "ISA",
+          "slug": "riscv-isa"
+        },
+        {
+          "name": "编译流水线"
+        },
+        {
+          "name": "取指-译码-执行"
+        }
+      ],
+      "timelineAnchors": [
+        {
+          "eraSlug": "stored-program",
+          "machineSlug": "eniac",
+          "eventSlug": "eniac-completed",
+          "label": "电子管时代"
+        },
+        {
+          "eraSlug": "pc-risc",
+          "machineSlug": "ibm-pc-5150",
+          "eventSlug": "ibm-pc-released",
+          "label": "个人计算机"
+        },
+        {
+          "eraSlug": "ai-heterogeneous",
+          "machineSlug": "nvidia-h100",
+          "label": "加速器时代"
+        }
+      ],
+      "entitySlugs": [
+        "compiler",
+        "assembler",
+        "linker",
+        "loader",
+        "java-jvm",
+        "riscv-isa",
+        "cpu-performance"
+      ],
+      "modelSlugs": [
+        "cpu-performance"
+      ],
+      "aiModuleSlugs": [],
+      "sceneKeys": [
+        "datapath"
+      ],
+      "calculator": null,
+      "interaction": {
+        "type": "compiler-pipeline"
+      },
+      "book": {
+        "chapter": 1,
+        "section": "1.3",
+        "pages": "p.31–33"
+      },
+      "misconceptions": [
+        "字节码就是机器码",
+        "编译器直接完成所有翻译",
+        "ISA 就是微架构"
+      ],
+      "quiz": [
+        {
+          "question": "Java 字节码通常由谁执行或编译？",
+          "options": [
+            "CPU 直接执行",
+            "JVM",
+            "链接器"
+          ],
+          "answer": 1,
+          "explain": "JVM 负责解释或 JIT 编译字节码。"
+        },
+        {
+          "question": "RISC-V 的 add 属于哪类指令？",
+          "options": [
+            "算术/寄存器型",
+            "访存型",
+            "分支型"
+          ],
+          "answer": 0,
+          "explain": "add 从寄存器取值并写回寄存器。"
+        },
+        {
+          "question": "减少指令数一定会缩短执行时间吗？",
+          "options": [
+            "一定",
+            "不一定",
+            "完全无关"
+          ],
+          "answer": 1,
+          "explain": "还取决于 CPI 与时钟周期。"
+        }
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "riscv-spec",
+          "title": "The RISC-V Instruction Set Manual",
+          "publisher": "RISC-V International",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "status": "published"
+    },
+    {
+      "slug": "software-hardware-interface",
+      "number": 2,
+      "sortOrder": 2,
+      "title": "软件和硬件之间的接口是什么？",
+      "shortTitle": "软硬件接口",
+      "question": "软件和硬件之间的接口是什么？软件如何指导硬件执行所需的功能？",
+      "oneLineAnswer": "ISA 是契约，ABI、系统调用、驱动与内存映射 I/O 是软件实际使用硬件的边界。",
+      "summary": "ISA、ABI、OS 与设备接口如何共同构成软硬件边界。",
+      "answerSections": [
+        {
+          "heading": "ISA 契约",
+          "body": [
+            "ISA 定义指令、寄存器、寻址、异常与特权级。",
+            "编译器面向 ISA 生成代码，操作系统通过系统调用管理硬件。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "ISA"
+        },
+        {
+          "name": "ABI"
+        },
+        {
+          "name": "系统调用"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "riscv-isa",
+        "compiler"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 2,
+        "section": "2.1",
+        "pages": "p.66–68"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "program-performance",
+      "number": 3,
+      "sortOrder": 3,
+      "title": "什么决定程序性能，程序员如何改进？",
+      "shortTitle": "程序性能",
+      "question": "什么因素决定了程序的性能，以及程序员如何改进程序性能？",
+      "oneLineAnswer": "性能由算法/数据访问、编译产物与硬件执行效率共同决定；用 CPU 时间公式分解，用测量找瓶颈。",
+      "summary": "用 IC、CPI、时钟、局部性与并行解释性能，并给出程序员可操作的杠杆。",
+      "answerSections": [
+        {
+          "heading": "性能分解",
+          "body": [
+            "CPU 时间 = 指令数 × CPI × 时钟周期。三个因子相互牵制。",
+            "程序员可以改进算法、数据局部性、并行度、精度与编译选项。"
+          ]
+        },
+        {
+          "heading": "测量优先",
+          "body": [
+            "先用 profiling 找到瓶颈，再决定优化方向。",
+            "缓存命中率、分支预测与并行效率往往比单纯提高频率更有效。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "CPI",
+          "slug": "cpu-performance"
+        },
+        {
+          "name": "AMAT",
+          "slug": "cache-amat"
+        },
+        {
+          "name": "Roofline",
+          "slug": "roofline"
+        }
+      ],
+      "timelineAnchors": [
+        {
+          "eraSlug": "pc-risc",
+          "machineSlug": "macintosh-128k",
+          "eventSlug": "macintosh-released",
+          "label": "个人计算机"
+        },
+        {
+          "eraSlug": "ai-heterogeneous",
+          "machineSlug": "nvidia-h100",
+          "eventSlug": "h100-released",
+          "label": "AI 加速器"
+        }
+      ],
+      "entitySlugs": [
+        "cpu-performance",
+        "cache-amat",
+        "roofline",
+        "compiler"
+      ],
+      "modelSlugs": [
+        "cpu-performance",
+        "cache-amat",
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [
+        "datapath",
+        "memory-hierarchy"
+      ],
+      "calculator": "cpu",
+      "interaction": {
+        "type": "performance-levers"
+      },
+      "book": {
+        "chapter": 1,
+        "section": "1.6",
+        "pages": "p.43–51"
+      },
+      "misconceptions": [
+        "频率越高越快",
+        "IPC 越高越好",
+        "并行一定加速"
+      ],
+      "quiz": [
+        {
+          "question": "程序指令数减少 20%，CPI 上升 30%，性能如何变化？",
+          "options": [
+            "一定更快",
+            "不一定",
+            "一定更慢"
+          ],
+          "answer": 1,
+          "explain": "需要结合时钟周期与整体乘积判断。"
+        },
+        {
+          "question": "提高缓存命中率通常改善什么？",
+          "options": [
+            "AMAT",
+            "ISA 位宽",
+            "磁盘容量"
+          ],
+          "answer": 0,
+          "explain": "命中率提高会降低平均访存时间。"
+        },
+        {
+          "question": "Amdahl 定律说明什么？",
+          "options": [
+            "并行加速有上限",
+            "频率无限提升",
+            "缓存一定命中"
+          ],
+          "answer": 0,
+          "explain": "串行部分限制整体加速比。"
+        }
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "riscv-spec",
+          "title": "The RISC-V Instruction Set Manual",
+          "publisher": "RISC-V International",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "status": "published"
+    },
+    {
+      "slug": "hardware-performance",
+      "number": 4,
+      "sortOrder": 4,
+      "title": "硬件设计者如何提升性能？",
+      "shortTitle": "硬件性能",
+      "question": "硬件设计人员可以使用哪些技术来提高性能？",
+      "oneLineAnswer": "通过并行、局部性、预测、专用化与更好的互连提升性能，同时受功耗、面积和复杂度约束。",
+      "summary": "流水线、缓存、预测、多核与加速器的设计取舍。",
+      "answerSections": [
+        {
+          "heading": "技术地图",
+          "body": [
+            "流水线、超标量、乱序、分支预测、缓存、多核、SIMD 与专用加速器。",
+            "每种技术都有功耗、面积、验证复杂度与编程模型的代价。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "流水线"
+        },
+        {
+          "name": "Cache"
+        },
+        {
+          "name": "SIMT"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "gpu",
+        "microprocessor",
+        "cache-amat"
+      ],
+      "modelSlugs": [
+        "cache-amat",
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 4,
+        "section": "4.5",
+        "pages": "p.206–246"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "energy-efficiency",
+      "number": 5,
+      "sortOrder": 5,
+      "title": "硬件和程序员如何改善能效？",
+      "shortTitle": "能效",
+      "question": "硬件设计人员可以使用哪些技术来改善能效？程序员可以做些什么来改变能效？",
+      "oneLineAnswer": "能效 = 完成的工作 / 消耗的能量；降低电压/开关/数据搬运，专用化与低精度都能改善。",
+      "summary": "功耗公式、Dennard 缩放与程序员可操作的能效杠杆。",
+      "answerSections": [
+        {
+          "heading": "功耗与能量",
+          "body": [
+            "动态功耗约与电容、电压平方和频率成正比。",
+            "数据搬运的能量往往高于计算，存储层次与精度选择很关键。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "能效"
+        },
+        {
+          "name": "功耗墙"
+        },
+        {
+          "name": "量化"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "apple-m1",
+        "nvidia-h100",
+        "gpu"
+      ],
+      "modelSlugs": [
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "serial-to-parallel",
+      "number": 6,
+      "sortOrder": 6,
+      "title": "为什么从串行走向并行，结果如何？",
+      "shortTitle": "串行到并行",
+      "question": "串行处理近来发展到并行处理的原因和结果是什么？",
+      "oneLineAnswer": "功耗与 ILP 受限，硬件转向多核、SIMD、GPU 与集群；性能取决于并行度、通信与 Amdahl 定律。",
+      "summary": "从频率提升到并行化的动因、硬件机制与软件后果。",
+      "answerSections": [
+        {
+          "heading": "为什么转向并行",
+          "body": [
+            "Dennard 缩放结束后，继续提频受功耗与散热限制。",
+            "多核、SIMD、GPU 与集群成为继续提升性能的路径。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "多核"
+        },
+        {
+          "name": "SIMD"
+        },
+        {
+          "name": "Amdahl"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "gpu",
+        "apple-m1",
+        "nvidia-h100"
+      ],
+      "modelSlugs": [
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "great-ideas",
+      "number": 7,
+      "sortOrder": 7,
+      "title": "1951 年以来有哪些伟大思想？",
+      "shortTitle": "伟大思想",
+      "question": "自 1951 年第一台商用计算机以来，计算机架构师提出的哪些伟大思想奠定了现代计算技术的基础？",
+      "oneLineAnswer": "八个伟大思想：面向摩尔定律设计、抽象、加速经常性事件、并行、流水线、预测、存储层次、冗余。",
+      "summary": "用八个反复出现的设计思想串起现代计算史。",
+      "answerSections": [
+        {
+          "heading": "八个思想",
+          "body": [
+            "面向摩尔定律设计、用抽象简化设计、加速经常性事件、通过并行提高性能。",
+            "通过流水线提高性能、通过预测提高性能、使用存储层次、通过冗余提高可靠性。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "抽象"
+        },
+        {
+          "name": "并行"
+        },
+        {
+          "name": "存储层次"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "eniac",
+        "ibm-pc-5150",
+        "nvidia-h100"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 1,
+        "section": "1.2",
+        "pages": "p.29–31"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    }
+  ],
+  "aiModules": [
+    {
+      "slug": "gpu-why-fast",
+      "sortOrder": 2,
+      "title": "GPU 为什么快",
+      "level": "入门",
+      "durationMin": 20,
+      "summary": "用 SIMT 与存储层次解释吞吐优先的设计。",
+      "objectives": [
+        "解释 CPU 与 GPU 的设计目标差异",
+        "理解 SIMT/warp 与存储层次",
+        "判断 compute-bound 与 memory-bound"
+      ],
+      "sections": [
+        {
+          "heading": "从 CPU 到 GPU",
+          "type": "text",
+          "body": [
+            "CPU 优化延迟，GPU 用大量线程隐藏延迟。",
+            "矩阵乘等规则并行负载适合吞吐优先的硬件。"
+          ]
+        },
+        {
+          "heading": "存储层次与带宽",
+          "type": "text",
+          "body": [
+            "寄存器、共享内存、L1/L2 与 HBM 构成 GPU 存储层次。",
+            "算术强度决定性能受算力还是带宽限制。"
+          ]
+        }
+      ],
+      "entitySlugs": [
+        "gpu",
+        "nvidia-h100",
+        "simt"
+      ],
+      "calculator": "roofline",
+      "quiz": [
+        {
+          "question": "GPU 的主要优化目标是什么？",
+          "options": [
+            "单线程延迟",
+            "吞吐",
+            "磁盘容量"
+          ],
+          "answer": 1,
+          "explain": "GPU 用并行线程提高吞吐。"
+        },
+        {
+          "question": "SIMT 中一组线程通常称为什么？",
+          "options": [
+            "warp",
+            "page",
+            "sector"
+          ],
+          "answer": 0,
+          "explain": "NVIDIA GPU 以 warp 为执行单位。"
+        },
+        {
+          "question": "算术强度低通常意味着什么？",
+          "options": [
+            "算力受限",
+            "带宽受限",
+            "不受限"
+          ],
+          "answer": 1,
+          "explain": "每字节计算少，更容易受带宽限制。"
+        }
+      ],
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
     }
   ],
   "relations": [
     {
       "source": "eniac",
-      "target": "cache",
+      "target": "vacuum-tube",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "univac-i",
+      "target": "vacuum-tube",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "ibm-pc-5150",
+      "target": "microprocessor",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "macintosh-128k",
+      "target": "microprocessor",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "apple-m1",
+      "target": "gpu",
+      "kind": "contains",
+      "label": "集成"
+    },
+    {
+      "source": "nvidia-h100",
+      "target": "gpu",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "nvidia-h100",
+      "target": "simt",
+      "kind": "implements",
+      "label": "采用"
+    },
+    {
+      "source": "simt",
+      "target": "gpu",
+      "kind": "runs-on",
+      "label": "运行于"
+    },
+    {
+      "source": "compiler",
+      "target": "assembler",
       "kind": "depends",
       "label": "依赖"
+    },
+    {
+      "source": "compiler",
+      "target": "riscv-isa",
+      "kind": "implements",
+      "label": "面向"
+    },
+    {
+      "source": "assembler",
+      "target": "riscv-isa",
+      "kind": "implements",
+      "label": "编码"
+    },
+    {
+      "source": "linker",
+      "target": "assembler",
+      "kind": "depends",
+      "label": "合并"
+    },
+    {
+      "source": "loader",
+      "target": "linker",
+      "kind": "depends",
+      "label": "加载"
+    },
+    {
+      "source": "java-jvm",
+      "target": "riscv-isa",
+      "kind": "implements",
+      "label": "运行于"
     },
     {
       "source": "cpu-performance",
       "target": "eniac",
       "kind": "measures",
       "label": "度量"
+    },
+    {
+      "source": "cache-amat",
+      "target": "apple-m1",
+      "kind": "measures",
+      "label": "度量"
+    },
+    {
+      "source": "roofline",
+      "target": "nvidia-h100",
+      "kind": "measures",
+      "label": "度量"
+    },
+    {
+      "source": "nvidia-h100",
+      "target": "hbm",
+      "kind": "uses",
+      "label": "采用"
     }
   ],
   "instructions": [

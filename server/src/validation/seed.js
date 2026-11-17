@@ -1,11 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export const TYPES = ['hardware', 'software', 'model'];
+export const TYPES = ['hardware', 'software', 'model', 'ai'];
 export const CATEGORIES = {
   hardware: ['计算', '存储', '互连', '输入输出', '供电散热', '封装基板'],
   software: ['指令集', '工具链', '系统软件', '应用与基准'],
   model: ['性能模型', '存储模型', '并行模型', '数据表示'],
+  ai: ['AI 概念', 'AI 硬件', 'AI 系统'],
 };
 export const LAYERS = [
   '应用层',
@@ -21,12 +22,17 @@ export const ICONS = [
   'register', 'alu', 'control', 'pipeline', 'cache', 'isa', 'tool', 'os',
   'app', 'benchmark', 'model', 'network',
 ];
+export const SCENE_KEYS = [
+  'tube-mainframe', 'mainframe', 'supercomputer', 'desktop', 'mobile-soc',
+  'rack-server', 'gpu-accelerator', 'chiplet-package', 'datapath', 'memory-hierarchy',
+];
 export const RELATION_KINDS = [
   'contains', 'uses', 'implements', 'depends', 'measures', 'accelerates',
-  'stores', 'connects', 'runs-on', 'managed-by',
+  'stores', 'connects', 'runs-on', 'managed-by', 'influences',
 ];
 export const INSTRUCTION_FORMATS = ['R', 'I', 'S', 'B', 'U', 'J'];
 export const INSTRUCTION_CATEGORIES = ['算术', '逻辑', '访存', '分支', '跳转', '立即数', '系统'];
+export const QUESTION_STATUS = ['planned', 'drafted', 'reviewed', 'published'];
 
 const HEX = /^#[0-9a-fA-F]{6}$/;
 
@@ -49,10 +55,24 @@ export function validateSeed(data) {
   const errors = [];
   const push = (msg) => errors.push(msg);
   if (!data || typeof data !== 'object') return ['根节点必须是对象'];
-  for (const key of ['entities', 'relations', 'instructions', 'chapters']) {
+  for (const key of ['eras', 'entities', 'events', 'questions', 'aiModules', 'relations', 'instructions', 'chapters']) {
     if (!Array.isArray(data[key])) push(`缺少数组 ${key}`);
   }
   if (errors.length) return errors;
+
+  const eraSlugs = new Map();
+  data.eras.forEach((era, index) => {
+    const at = `eras[${index}]`;
+    for (const field of ['slug', 'name', 'tagline', 'keyIdea', 'accent']) {
+      if (typeof era[field] !== 'string' || !era[field].trim()) push(`${at}.${field} 缺失`);
+    }
+    if (!Number.isInteger(era.startYear) || !Number.isInteger(era.endYear)) push(`${at} 年份必须为整数`);
+    if (era.startYear > era.endYear) push(`${at} 起始年份晚于结束年份`);
+    if (!Array.isArray(era.narrative) || era.narrative.length < 2) push(`${at}.narrative 至少两段`);
+    if (era.accent && !HEX.test(era.accent)) push(`${at}.accent 需为 #RRGGBB`);
+    if (eraSlugs.has(era.slug)) push(`${at}.slug 重复：${era.slug}`);
+    eraSlugs.set(era.slug, era);
+  });
 
   const slugs = new Map();
   data.entities.forEach((entity, index) => {
@@ -70,11 +90,17 @@ export function validateSeed(data) {
     if (entity.layer && !LAYERS.includes(entity.layer)) push(`${at}.layer 非法：${entity.layer}`);
     if (entity.icon && !ICONS.includes(entity.icon)) push(`${at}.icon 非法：${entity.icon}`);
     if (entity.accent && !HEX.test(entity.accent)) push(`${at}.accent 需为 #RRGGBB`);
+    if (entity.eraSlug && !eraSlugs.has(entity.eraSlug)) push(`${at}.eraSlug 不存在：${entity.eraSlug}`);
+    if (entity.sceneKey && !SCENE_KEYS.includes(entity.sceneKey)) push(`${at}.sceneKey 非法：${entity.sceneKey}`);
     if (!Array.isArray(entity.description) || entity.description.length < 2) push(`${at}.description 至少两段`);
     if (!Array.isArray(entity.specs) || entity.specs.length < 3) push(`${at}.specs 至少三条`);
     if (!Array.isArray(entity.highlights) || entity.highlights.length < 2) push(`${at}.highlights 至少两条`);
     if (!Array.isArray(entity.tags) || entity.tags.length < 2) push(`${at}.tags 至少两个`);
     if (!entity.book || typeof entity.book.chapter !== 'number' || !entity.book.pages) push(`${at}.book 不完整`);
+    if (!Array.isArray(entity.sources) || entity.sources.length < 1) push(`${at}.sources 至少一条`);
+    if (entity.type === 'hardware' && (!Array.isArray(entity.significance) || entity.significance.length < 2)) {
+      push(`${at}.significance 至少两条（hardware）`);
+    }
     if (entity.type === 'model') {
       if (!entity.formula) push(`${at}.formula 缺失（model）`);
       if (!Array.isArray(entity.variables) || entity.variables.length < 1) push(`${at}.variables 缺失（model）`);
@@ -99,6 +125,82 @@ export function validateSeed(data) {
   for (const slug of slugs.keys()) {
     if (!touched.has(slug)) push(`实体 ${slug} 没有任何关系`);
   }
+
+  const eventSlugs = new Set();
+  data.events.forEach((event, index) => {
+    const at = `events[${index}]`;
+    for (const field of ['slug', 'lane', 'title', 'summary']) {
+      if (!event[field]) push(`${at}.${field} 缺失`);
+    }
+    if (eventSlugs.has(event.slug)) push(`${at}.slug 重复：${event.slug}`);
+    eventSlugs.add(event.slug);
+    if (!['hardware', 'software', 'ai', 'idea'].includes(event.lane)) push(`${at}.lane 非法`);
+    if (!Number.isInteger(event.year)) push(`${at}.year 必须为整数`);
+    if (event.eraSlug && !eraSlugs.has(event.eraSlug)) push(`${at}.eraSlug 不存在`);
+    for (const slug of event.entitySlugs ?? []) {
+      if (!slugs.has(slug)) push(`${at} 实体不存在：${slug}`);
+    }
+    if (!Array.isArray(event.sources) || event.sources.length < 1) push(`${at}.sources 至少一条`);
+  });
+
+  const aiSlugs = new Set();
+  data.aiModules.forEach((module, index) => {
+    const at = `aiModules[${index}]`;
+    for (const field of ['slug', 'title', 'level', 'summary']) {
+      if (!module[field]) push(`${at}.${field} 缺失`);
+    }
+    if (aiSlugs.has(module.slug)) push(`${at}.slug 重复：${module.slug}`);
+    aiSlugs.add(module.slug);
+    if (!Array.isArray(module.sections) || module.sections.length < 1) push(`${at}.sections 至少一节`);
+    for (const slug of module.entitySlugs ?? []) {
+      if (!slugs.has(slug)) push(`${at} 实体不存在：${slug}`);
+    }
+  });
+
+  const questionNumbers = new Set();
+  const questionSlugs = new Set();
+  data.questions.forEach((question, index) => {
+    const at = `questions[${index}]`;
+    for (const field of ['slug', 'title', 'shortTitle', 'question', 'oneLineAnswer', 'summary', 'status']) {
+      if (!question[field]) push(`${at}.${field} 缺失`);
+    }
+    if (!Number.isInteger(question.number) || question.number < 1 || question.number > 7) {
+      push(`${at}.number 必须为 1–7`);
+    }
+    if (questionNumbers.has(question.number)) push(`${at}.number 重复`);
+    questionNumbers.add(question.number);
+    if (questionSlugs.has(question.slug)) push(`${at}.slug 重复`);
+    questionSlugs.add(question.slug);
+    if (!QUESTION_STATUS.includes(question.status)) push(`${at}.status 非法`);
+    if (!Array.isArray(question.answerSections) || question.answerSections.length < 1) push(`${at}.answerSections 至少一段`);
+    for (const slug of question.entitySlugs ?? []) {
+      if (!slugs.has(slug)) push(`${at} 实体不存在：${slug}`);
+    }
+    for (const slug of question.modelSlugs ?? []) {
+      if (!slugs.has(slug)) push(`${at} 模型不存在：${slug}`);
+    }
+    for (const slug of question.aiModuleSlugs ?? []) {
+      if (!aiSlugs.has(slug)) push(`${at} AI 模块不存在：${slug}`);
+    }
+    for (const anchor of question.timelineAnchors ?? []) {
+      if (anchor.eraSlug && !eraSlugs.has(anchor.eraSlug)) push(`${at} 时代锚点不存在：${anchor.eraSlug}`);
+      if (anchor.machineSlug && !slugs.has(anchor.machineSlug)) push(`${at} 机器锚点不存在：${anchor.machineSlug}`);
+      if (anchor.eventSlug && !eventSlugs.has(anchor.eventSlug)) push(`${at} 事件锚点不存在：${anchor.eventSlug}`);
+    }
+    for (const key of question.sceneKeys ?? []) {
+      if (!SCENE_KEYS.includes(key)) push(`${at} 展品不存在：${key}`);
+    }
+    if (question.status === 'published') {
+      if ((question.answerSections ?? []).length < 2) push(`${at} published 需要至少两段答案`);
+      if ((question.timelineAnchors ?? []).length < 2) push(`${at} published 需要至少两个时间线锚点`);
+      if (!(question.sceneKeys ?? []).length && !question.calculator && !question.interaction) {
+        push(`${at} published 需要 3D/计算器/交互`);
+      }
+      if ((question.quiz ?? []).length < 3) push(`${at} published 需要三道自测`);
+      if ((question.sources ?? []).length < 3) push(`${at} published 需要三条来源`);
+    }
+  });
+  if (data.questions.length !== 7) push('questions 必须正好 7 条');
 
   const mnemonics = new Set();
   data.instructions.forEach((instruction, index) => {
@@ -138,7 +240,12 @@ export function counts(data) {
     hardware: data.entities.filter((e) => e.type === 'hardware').length,
     software: data.entities.filter((e) => e.type === 'software').length,
     model: data.entities.filter((e) => e.type === 'model').length,
+    ai: data.entities.filter((e) => e.type === 'ai').length,
     relations: data.relations.length,
+    eras: data.eras.length,
+    events: data.events.length,
+    questions: data.questions.length,
+    aiModules: data.aiModules.length,
     instructions: data.instructions.length,
     chapters: data.chapters.length,
   };

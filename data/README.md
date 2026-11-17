@@ -1,15 +1,17 @@
 # data
 
-M1 之前的数据目录。
+M1 data foundation.
 
-- `seed.json`：**开发占位数据**，只用于验证 schema、API 与页面骨架；不是最终历史内容，M1 会整体替换。
+- `seed.json`：M1 垂直切片的数据源。目前包含 3 个时代、20 个实体、7 个事件、7 个必答问题（2 个 published）、1 个 AI 模块；不是完整 V1，M2 继续扩展。
 - `cs-atlas.db`：运行时生成的 SQLite 文件，不提交。
 
 ## 命令
 
 ```bash
 npm run check:data
+npm run check:questions
 npm run seed
+npm run db:reset   # 删除本地 SQLite（schema 变化时）
 ```
 
-正式内容将遵循 Obsidian 项目库中的「数据模型与 ERD」「时间线内容地图」。
+正式内容遵循 Obsidian 项目库中的「数据模型与 ERD」「时间线内容地图」。
