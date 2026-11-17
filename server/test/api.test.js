@@ -10,6 +10,7 @@ let server;
 let base;
 let db;
 let data;
+let repo;
 
 const get = async (pathname) => {
   const response = await fetch(base + pathname);
@@ -31,7 +32,7 @@ before(async () => {
   data = loadSeedData();
   db = openDatabase(':memory:');
   seedDatabase(db, data);
-  const repo = createRepository(db);
+  repo = createRepository(db);
   const app = createApp({ repo, webDist: '/nonexistent-web-dist' });
   await new Promise((resolve) => {
     server = app.listen(0, '127.0.0.1', resolve);
@@ -60,6 +61,10 @@ test('GET /api/stats reflects seeded counts', async () => {
   assert.equal(body.software, c.software);
   assert.equal(body.model, c.model);
   assert.equal(body.relations, c.relations);
+  assert.equal(body.eras, c.eras);
+  assert.equal(body.events, c.events);
+  assert.equal(body.questions, c.questions);
+  assert.equal(body.aiModules, c.aiModules);
   assert.equal(body.instructions, c.instructions);
   assert.equal(body.chapters, c.chapters);
 });
@@ -72,6 +77,9 @@ test('GET /api/entities filters and validates type', async () => {
   const hardware = await get('/api/entities?type=hardware');
   assert.equal(hardware.body.items.length, counts(data).hardware);
   assert.ok(hardware.body.items.every((item) => item.type === 'hardware'));
+
+  const ai = await get('/api/entities?type=ai');
+  assert.equal(ai.body.items.length, counts(data).ai);
 
   const invalid = await get('/api/entities?type=banana');
   assert.equal(invalid.status, 400);
@@ -91,24 +99,88 @@ test('GET /api/entities/:slug returns detail with relations', async () => {
   assert.ok(body.relations.length > 0);
   assert.ok(body.description.length >= 2);
   assert.ok(body.specs.length >= 3);
+  assert.ok(body.sceneKey);
 
   const missing = await get('/api/entities/no-such-entity');
   assert.equal(missing.status, 404);
 });
 
-test('GET /api/graph is consistent', async () => {
+test('GET /api/timeline returns eras with machines and events', async () => {
+  const { status, body } = await get('/api/timeline');
+  assert.equal(status, 200);
+  assert.equal(body.eras.length, counts(data).eras);
+  for (const era of body.eras) {
+    assert.ok(era.heroMachine);
+    assert.ok(era.machines.length >= 2);
+    assert.ok(era.events.length >= 1);
+    assert.ok(era.narrative.length >= 2);
+  }
+  const hardwareOnly = await get('/api/timeline?lane=hardware');
+  assert.ok(hardwareOnly.body.eras.every((era) => era.events.every((event) => event.lane === 'hardware')));
+});
+
+test('GET /api/eras/:slug returns prev/next and details', async () => {
+  const { status, body } = await get('/api/eras/pc-risc');
+  assert.equal(status, 200);
+  assert.equal(body.slug, 'pc-risc');
+  assert.ok(body.prev);
+  assert.ok(body.next);
+  assert.ok(body.machines.length >= 2);
+});
+
+test('GET /api/questions and detail', async () => {
+  const list = await get('/api/questions');
+  assert.equal(list.status, 200);
+  assert.equal(list.body.items.length, 7);
+  assert.ok(list.body.items.some((question) => question.status === 'published'));
+
+  const published = await get('/api/questions?status=published');
+  assert.equal(published.body.items.length, 2);
+
+  const detail = await get('/api/questions/program-to-machine');
+  assert.equal(detail.status, 200);
+  assert.equal(detail.body.number, 1);
+  assert.ok(detail.body.answerSections.length >= 2);
+  assert.ok(detail.body.sceneKeys.includes('datapath'));
+  assert.ok(detail.body.timelineAnchors.length >= 2);
+  assert.ok(detail.body.entities.length > 0);
+  assert.ok(detail.body.models.length > 0);
+  assert.ok(detail.body.timelineAnchors[0].era);
+
+  const missing = await get('/api/questions/no-such-question');
+  assert.equal(missing.status, 404);
+});
+
+test('GET /api/ai/modules and detail', async () => {
+  const list = await get('/api/ai/modules');
+  assert.equal(list.status, 200);
+  assert.equal(list.body.items.length, 1);
+  const detail = await get('/api/ai/modules/gpu-why-fast');
+  assert.equal(detail.status, 200);
+  assert.equal(detail.body.calculator, 'roofline');
+  assert.ok(detail.body.entities.length >= 2);
+});
+
+test('GET /api/models returns principle models', async () => {
+  const { status, body } = await get('/api/models');
+  assert.equal(status, 200);
+  assert.equal(body.total, counts(data).model);
+  assert.ok(body.items.every((item) => item.type === 'model'));
+});
+
+test('GET /api/graph includes entities and questions', async () => {
   const { status, body } = await get('/api/graph');
   assert.equal(status, 200);
-  assert.equal(body.nodes.length, counts(data).entities);
-  assert.equal(body.links.length, counts(data).relations);
+  assert.equal(body.nodes.length, counts(data).entities + counts(data).questions);
   const slugs = new Set(body.nodes.map((node) => node.slug));
   for (const link of body.links) {
     assert.ok(slugs.has(link.source), `missing source ${link.source}`);
     assert.ok(slugs.has(link.target), `missing target ${link.target}`);
   }
+  assert.equal(body.nodes.filter((node) => node.kind === 'question').length, counts(data).questions);
 });
 
-test('GET /api/instructions and detail', async () => {
+test('GET /api/instructions and chapters', async () => {
   const list = await get('/api/instructions');
   assert.equal(list.status, 200);
   assert.equal(list.body.items.length, counts(data).instructions);
@@ -123,45 +195,83 @@ test('GET /api/instructions and detail', async () => {
   assert.equal(add.body.funct3, '000');
   assert.equal(add.body.funct7, '0000000');
 
-  const missing = await get('/api/instructions/nope');
-  assert.equal(missing.status, 404);
+  const chapters = await get('/api/chapters');
+  assert.equal(chapters.status, 200);
+  assert.equal(chapters.body.items.length, counts(data).chapters);
 });
 
-test('GET /api/search finds entities and instructions', async () => {
-  const { status, body } = await get('/api/search?q=' + encodeURIComponent('流水线'));
+test('GET /api/search includes entities, questions and instructions', async () => {
+  const { status, body } = await get('/api/search?q=' + encodeURIComponent('性能'));
   assert.equal(status, 200);
   assert.ok(body.entities.length > 0);
+  assert.ok(body.questions.length > 0);
+  const add = await get('/api/search?q=add');
+  assert.ok(add.body.instructions.length > 0);
   const empty = await get('/api/search?q=');
-  assert.deepEqual(empty.body, { entities: [], instructions: [] });
+  assert.deepEqual(empty.body, { entities: [], questions: [], instructions: [] });
 });
 
-test('GET /api/chapters returns chapter tree', async () => {
-  const { status, body } = await get('/api/chapters');
-  assert.equal(status, 200);
-  assert.equal(body.items.length, counts(data).chapters);
-  assert.ok(body.items[0].sections.length >= 3);
-});
+test('annotations lifecycle for entity and question targets', async () => {
+  const entityFavorite = await send('/api/annotations', 'POST', {
+    targetType: 'entity',
+    targetSlug: 'eniac',
+    kind: 'favorite',
+  });
+  assert.equal(entityFavorite.status, 201);
+  assert.equal(entityFavorite.body.targetLabel, 'ENIAC');
 
-test('annotations lifecycle (favorite + note)', async () => {
-  const slug = data.entities[0].slug;
-  const favorite = await send('/api/annotations', 'POST', { entitySlug: slug, kind: 'favorite' });
-  assert.equal(favorite.status, 201);
-  const duplicate = await send('/api/annotations', 'POST', { entitySlug: slug, kind: 'favorite' });
+  const duplicate = await send('/api/annotations', 'POST', {
+    targetType: 'entity',
+    targetSlug: 'eniac',
+    kind: 'favorite',
+  });
   assert.equal(duplicate.status, 201);
 
-  const note = await send('/api/annotations', 'POST', { entitySlug: slug, kind: 'note', content: '流水线的关键在冒险处理。' });
-  assert.equal(note.status, 201);
+  const entityNote = await send('/api/annotations', 'POST', {
+    targetType: 'entity',
+    targetSlug: 'eniac',
+    kind: 'note',
+    content: '电子管时代的代表。',
+  });
+  assert.equal(entityNote.status, 201);
 
-  const invalid = await send('/api/annotations', 'POST', { entitySlug: 'nope', kind: 'note', content: 'x' });
+  const questionFavorite = await send('/api/annotations', 'POST', {
+    targetType: 'question',
+    targetSlug: 'program-to-machine',
+    kind: 'favorite',
+  });
+  assert.equal(questionFavorite.status, 201);
+  assert.equal(questionFavorite.body.targetLabel, '程序到机器');
+
+  const questionNote = await send('/api/annotations', 'POST', {
+    targetType: 'question',
+    targetSlug: 'program-to-machine',
+    kind: 'note',
+    content: '翻译链需要单独讲。',
+  });
+  assert.equal(questionNote.status, 201);
+
+  const invalid = await send('/api/annotations', 'POST', {
+    targetType: 'entity',
+    targetSlug: 'nope',
+    kind: 'note',
+    content: 'x',
+  });
   assert.equal(invalid.status, 400);
-  const emptyNote = await send('/api/annotations', 'POST', { entitySlug: slug, kind: 'note', content: '   ' });
+
+  const emptyNote = await send('/api/annotations', 'POST', {
+    targetType: 'entity',
+    targetSlug: 'eniac',
+    kind: 'note',
+    content: '   ',
+  });
   assert.equal(emptyNote.status, 400);
 
   const list = await get('/api/annotations');
   assert.equal(list.status, 200);
-  assert.equal(list.body.items.length, 2);
-  const favorites = list.body.items.filter((item) => item.kind === 'favorite');
-  assert.equal(favorites.length, 1);
+  assert.equal(list.body.items.length, 4);
+  const questionList = await get('/api/annotations?targetType=question&targetSlug=program-to-machine');
+  assert.equal(questionList.body.items.length, 2);
 
   for (const item of list.body.items) {
     const removed = await fetch(`${base}/api/annotations/${item.id}`, { method: 'DELETE' });
@@ -169,6 +279,24 @@ test('annotations lifecycle (favorite + note)', async () => {
   }
   const afterDelete = await get('/api/annotations');
   assert.equal(afterDelete.body.items.length, 0);
+});
+
+test('reseed preserves annotations', () => {
+  const local = openDatabase(':memory:');
+  seedDatabase(local, data);
+  const localRepo = createRepository(local);
+  localRepo.addAnnotation({
+    targetType: 'entity',
+    targetSlug: 'eniac',
+    targetLabel: 'ENIAC',
+    kind: 'note',
+    content: '重播种后应该保留。',
+  });
+  seedDatabase(local, data);
+  const annotations = localRepo.listAnnotations();
+  assert.equal(annotations.length, 1);
+  assert.equal(annotations[0].content, '重播种后应该保留。');
+  local.close();
 });
 
 test('unknown API returns JSON 404', async () => {
