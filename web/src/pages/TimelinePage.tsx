@@ -120,7 +120,7 @@ export default function TimelinePage() {
         </div>
         <div className="time-hero__stats">
           <div><strong>{data?.periods.length ?? 4}</strong><span>时期</span></div>
-          <div><strong>{data?.periods.reduce((total, item) => total + item.nodes.length, 0) ?? 73}</strong><span>节点</span></div>
+          <div><strong>{data?.periods.reduce((total, item) => total + item.nodes.length, 0) ?? 78}</strong><span>节点</span></div>
           <div><strong>{lensData?.items.length ?? 10}</strong><span>章节镜头</span></div>
           <div><strong>7</strong><span>问题</span></div>
         </div>
