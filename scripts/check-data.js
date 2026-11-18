@@ -17,7 +17,8 @@ const data = loadSeedData(file);
 const c = counts(data);
 console.log('✓ seed.json 校验通过');
 console.log(`  实体 ${c.entities}（硬件 ${c.hardware} / 软件 ${c.software} / 模型 ${c.model} / AI ${c.ai}）`);
-console.log(`  时代 ${c.eras} · 事件 ${c.events} · 问题 ${c.questions} · AI 模块 ${c.aiModules}`);
+console.log(`  时期 ${c.eras} · 时间节点 ${c.timelineNodes} · 章节镜头 ${c.lenses}`);
+console.log(`  事件 ${c.events} · 问题 ${c.questions} · AI 模块 ${c.aiModules}`);
 console.log(`  关系 ${c.relations} · 指令 ${c.instructions} · 章节 ${c.chapters}`);
 const byChapter = new Map();
 for (const entity of data.entities) {

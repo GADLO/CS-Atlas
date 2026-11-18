@@ -19,6 +19,8 @@ export function createMetaRepository(db) {
         model: byType.model || 0,
         relations: db.prepare('SELECT COUNT(*) AS n FROM relations').get().n,
         eras: db.prepare('SELECT COUNT(*) AS n FROM eras').get().n,
+        timelineNodes: db.prepare('SELECT COUNT(*) AS n FROM timeline_nodes').get().n,
+        lenses: db.prepare('SELECT COUNT(*) AS n FROM lenses').get().n,
         events: db.prepare('SELECT COUNT(*) AS n FROM events').get().n,
         questions: db.prepare('SELECT COUNT(*) AS n FROM questions').get().n,
         aiModules: db.prepare('SELECT COUNT(*) AS n FROM ai_modules').get().n,

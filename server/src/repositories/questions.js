@@ -1,4 +1,4 @@
-import { rowToQuestion } from './mappers.js';
+import { rowToQuestion, rowToTimelineNode } from './mappers.js';
 
 function entitySummaries(db, slugs) {
   if (!slugs.length) return [];
@@ -81,7 +81,41 @@ export function createQuestionRepository(db) {
         event: event ? { slug: event.slug, title: event.title, year: event.year } : null,
       };
     });
-    return { ...question, entities, models, aiModules, timelineAnchors };
+    const timelineNodes = db
+      .prepare(
+        `SELECT n.*, p.name AS period_name, p.start_year AS period_start, p.end_year AS period_end,
+                e.slug AS entity_slug, e.name AS entity_name, e.name_en AS entity_name_en,
+                e.type AS entity_type, e.category AS entity_category, e.scene_key AS entity_scene_key,
+                e.accent AS entity_accent, e.icon AS entity_icon, e.summary AS entity_summary
+         FROM question_nodes qn
+         JOIN timeline_nodes n ON n.slug = qn.node_slug
+         JOIN eras p ON p.slug = n.period_slug
+         LEFT JOIN entities e ON e.slug = n.entity_slug
+         WHERE qn.question_slug = ?
+         ORDER BY n.year, n.sort_order`,
+      )
+      .all(slug)
+      .map((row) => {
+        const questionSlugs = db
+          .prepare('SELECT question_slug FROM question_nodes WHERE node_slug = ? ORDER BY question_slug')
+          .all(row.slug)
+          .map((item) => item.question_slug);
+        const lensSlugs = db
+          .prepare('SELECT lens_slug FROM lens_nodes WHERE node_slug = ? ORDER BY lens_slug')
+          .all(row.slug)
+          .map((item) => item.lens_slug);
+        const timelineNode = rowToTimelineNode(row, { questionSlugs, lensSlugs });
+        return {
+          ...timelineNode,
+          period: {
+            slug: row.period_slug,
+            name: row.period_name,
+            startYear: row.period_start,
+            endYear: row.period_end,
+          },
+        };
+      });
+    return { ...question, entities, models, aiModules, timelineAnchors, timelineNodes };
   }
 
   return {

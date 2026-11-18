@@ -62,6 +62,8 @@ test('GET /api/stats reflects seeded counts', async () => {
   assert.equal(body.model, c.model);
   assert.equal(body.relations, c.relations);
   assert.equal(body.eras, c.eras);
+  assert.equal(body.timelineNodes, c.timelineNodes);
+  assert.equal(body.lenses, c.lenses);
   assert.equal(body.events, c.events);
   assert.equal(body.questions, c.questions);
   assert.equal(body.aiModules, c.aiModules);
@@ -105,27 +107,74 @@ test('GET /api/entities/:slug returns detail with relations', async () => {
   assert.equal(missing.status, 404);
 });
 
-test('GET /api/timeline returns eras with machines and events', async () => {
+test('GET /api/timeline returns four periods with three lanes', async () => {
   const { status, body } = await get('/api/timeline');
   assert.equal(status, 200);
-  assert.equal(body.eras.length, counts(data).eras);
-  for (const era of body.eras) {
-    assert.ok(era.heroMachine);
-    assert.ok(era.machines.length >= 2);
-    assert.ok(era.events.length >= 1);
-    assert.ok(era.narrative.length >= 2);
+  assert.equal(body.periods.length, 4);
+  const c = counts(data);
+  assert.equal(body.periods.reduce((total, period) => total + period.nodes.length, 0), c.timelineNodes);
+  for (const period of body.periods) {
+    assert.ok(period.narrative.length >= 2);
+    assert.ok(period.nodes.length > 0);
+    assert.ok(period.lanes.hardware.length > 0);
+    assert.ok(period.lanes.software.length > 0);
+    assert.ok(period.lanes.algorithm.length > 0);
+    assert.ok(period.events.length >= 1);
   }
-  const hardwareOnly = await get('/api/timeline?lane=hardware');
-  assert.ok(hardwareOnly.body.eras.every((era) => era.events.every((event) => event.lane === 'hardware')));
+  const p0 = body.periods.find((period) => period.slug === 'mechanical');
+  assert.equal(p0.heroMachine, null);
+  const p3 = body.periods.find((period) => period.slug === 'heterogeneous');
+  assert.equal(p3.frontier.length, 3);
+  assert.ok(p3.frontier.every((node) => node.frontier));
 });
 
-test('GET /api/eras/:slug returns prev/next and details', async () => {
-  const { status, body } = await get('/api/eras/pc-risc');
+test('GET /api/periods/:slug and /api/eras alias return details', async () => {
+  const { status, body } = await get('/api/periods/pc-web');
   assert.equal(status, 200);
-  assert.equal(body.slug, 'pc-risc');
+  assert.equal(body.slug, 'pc-web');
   assert.ok(body.prev);
   assert.ok(body.next);
+  assert.ok(body.lanes.hardware.length > 0);
   assert.ok(body.machines.length >= 2);
+  const alias = await get('/api/eras/pc-web');
+  assert.equal(alias.status, 200);
+  assert.equal(alias.body.slug, 'pc-web');
+});
+
+test('GET /api/nodes/:slug returns a node with period and entity', async () => {
+  const { status, body } = await get('/api/nodes/eniac');
+  assert.equal(status, 200);
+  assert.equal(body.slug, 'eniac');
+  assert.equal(body.periodSlug, 'electronic-early');
+  assert.equal(body.entity.slug, 'eniac');
+  assert.ok(body.lensSlugs.includes('cpu'));
+  assert.ok(body.questionSlugs.includes('program-to-machine'));
+  const babbage = await get('/api/nodes/analytical-engine');
+  assert.equal(babbage.status, 200);
+  assert.equal(babbage.body.sceneKey, 'mechanical-analytical-engine');
+  assert.ok(babbage.body.lensSlugs.includes('io'));
+
+  const missing = await get('/api/nodes/no-such-node');
+  assert.equal(missing.status, 404);
+});
+
+test('GET /api/lenses returns ten lenses and derived nodes', async () => {
+  const list = await get('/api/lenses');
+  assert.equal(list.status, 200);
+  assert.equal(list.body.items.length, 10);
+  assert.equal(list.body.items.filter((lens) => lens.group === 'classic').length, 7);
+  assert.equal(list.body.items.filter((lens) => lens.group === 'frontier').length, 3);
+  assert.ok(list.body.items.every((lens) => lens.nodeCount > 0));
+
+  const memory = await get('/api/lenses/memory');
+  assert.equal(memory.status, 200);
+  assert.ok(memory.body.nodes.length >= 4);
+  assert.ok(memory.body.nodes.every((node) => node.period));
+  assert.ok(memory.body.nodes.every((node) => node.lensSlugs.includes('memory')));
+
+  const quantum = await get('/api/lenses/quantum');
+  assert.equal(quantum.status, 200);
+  assert.ok(quantum.body.nodes.every((node) => node.frontier));
 });
 
 test('GET /api/questions and detail', async () => {
@@ -146,6 +195,8 @@ test('GET /api/questions and detail', async () => {
   assert.ok(detail.body.entities.length > 0);
   assert.ok(detail.body.models.length > 0);
   assert.ok(detail.body.timelineAnchors[0].era);
+  assert.ok(detail.body.timelineNodes.length > 0);
+  assert.ok(detail.body.timelineNodes.every((node) => node.period));
 
   const missing = await get('/api/questions/no-such-question');
   assert.equal(missing.status, 404);

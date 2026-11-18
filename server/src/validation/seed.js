@@ -25,6 +25,7 @@ export const ICONS = [
 export const SCENE_KEYS = [
   'tube-mainframe', 'mainframe', 'supercomputer', 'desktop', 'mobile-soc',
   'rack-server', 'gpu-accelerator', 'chiplet-package', 'datapath', 'memory-hierarchy',
+  'mechanical-analytical-engine', 'mechanical-pascal', 'mechanical-leibniz', 'mechanical-jacquard', 'mechanical-hollerith',
 ];
 export const RELATION_KINDS = [
   'contains', 'uses', 'implements', 'depends', 'measures', 'accelerates',
@@ -55,7 +56,7 @@ export function validateSeed(data) {
   const errors = [];
   const push = (msg) => errors.push(msg);
   if (!data || typeof data !== 'object') return ['根节点必须是对象'];
-  for (const key of ['eras', 'entities', 'events', 'questions', 'aiModules', 'relations', 'instructions', 'chapters']) {
+  for (const key of ['eras', 'entities', 'events', 'questions', 'aiModules', 'lenses', 'timelineNodes', 'relations', 'instructions', 'chapters']) {
     if (!Array.isArray(data[key])) push(`缺少数组 ${key}`);
   }
   if (errors.length) return errors;
@@ -73,6 +74,22 @@ export function validateSeed(data) {
     if (eraSlugs.has(era.slug)) push(`${at}.slug 重复：${era.slug}`);
     eraSlugs.set(era.slug, era);
   });
+
+  if (data.eras.length !== 4) push('eras 必须正好 4 条（四个时期）');
+
+  const lensSlugs = new Map();
+  data.lenses.forEach((lens, index) => {
+    const at = `lenses[${index}]`;
+    for (const field of ['slug', 'title', 'titleEn', 'group', 'coreQuestion', 'summary', 'accent']) {
+      if (typeof lens[field] !== 'string' || !lens[field].trim()) push(`${at}.${field} 缺失`);
+    }
+    if (!Number.isInteger(lens.number) || lens.number < 1 || lens.number > 10) push(`${at}.number 必须为 1–10`);
+    if (!['classic', 'frontier'].includes(lens.group)) push(`${at}.group 非法`);
+    if (lens.accent && !HEX.test(lens.accent)) push(`${at}.accent 需为 #RRGGBB`);
+    if (lensSlugs.has(lens.slug)) push(`${at}.slug 重复：${lens.slug}`);
+    lensSlugs.set(lens.slug, lens);
+  });
+  if (data.lenses.length !== 10) push('lenses 必须正好 10 条');
 
   const slugs = new Map();
   data.entities.forEach((entity, index) => {
@@ -202,6 +219,41 @@ export function validateSeed(data) {
   });
   if (data.questions.length !== 7) push('questions 必须正好 7 条');
 
+  const nodeSlugs = new Set();
+  data.timelineNodes.forEach((node, index) => {
+    const at = `timelineNodes[${index}]`;
+    for (const field of ['slug', 'periodSlug', 'lane', 'title', 'summary', 'body']) {
+      if (typeof node[field] !== 'string' || !node[field].trim()) push(`${at}.${field} 缺失`);
+    }
+    if (nodeSlugs.has(node.slug)) push(`${at}.slug 重复：${node.slug}`);
+    nodeSlugs.add(node.slug);
+    if (!eraSlugs.has(node.periodSlug)) push(`${at}.periodSlug 不存在：${node.periodSlug}`);
+    if (!['hardware', 'software', 'algorithm'].includes(node.lane)) push(`${at}.lane 非法`);
+    if (!Number.isInteger(node.year)) push(`${at}.year 必须为整数`);
+    if (!Number.isInteger(node.generation) || node.generation < 0 || node.generation > 4) push(`${at}.generation 必须为 0–4`);
+    if (node.entitySlug && !slugs.has(node.entitySlug)) push(`${at}.entitySlug 不存在：${node.entitySlug}`);
+    if (node.sceneKey && !SCENE_KEYS.includes(node.sceneKey)) push(`${at}.sceneKey 非法：${node.sceneKey}`);
+    for (const lensSlug of node.lensSlugs ?? []) {
+      if (!lensSlugs.has(lensSlug)) push(`${at}.lensSlugs 不存在：${lensSlug}`);
+    }
+    for (const questionSlug of node.questionSlugs ?? []) {
+      if (!questionSlugs.has(questionSlug)) push(`${at}.questionSlugs 不存在：${questionSlug}`);
+    }
+    for (const modelSlug of node.modelSlugs ?? []) {
+      if (!slugs.has(modelSlug)) push(`${at}.modelSlugs 不存在：${modelSlug}`);
+    }
+    for (const moduleSlug of node.aiModuleSlugs ?? []) {
+      if (!aiSlugs.has(moduleSlug)) push(`${at}.aiModuleSlugs 不存在：${moduleSlug}`);
+    }
+    if (!Array.isArray(node.sources) || node.sources.length < 1) push(`${at}.sources 至少一条`);
+    if (typeof node.frontier !== 'boolean') push(`${at}.frontier 必须为布尔值`);
+  });
+  for (const lens of data.lenses) {
+    if (!data.timelineNodes.some((node) => (node.lensSlugs ?? []).includes(lens.slug))) {
+      push(`lens ${lens.slug} 没有任何节点`);
+    }
+  }
+
   const mnemonics = new Set();
   data.instructions.forEach((instruction, index) => {
     const at = `instructions[${index}]`;
@@ -243,6 +295,8 @@ export function counts(data) {
     ai: data.entities.filter((e) => e.type === 'ai').length,
     relations: data.relations.length,
     eras: data.eras.length,
+    timelineNodes: data.timelineNodes.length,
+    lenses: data.lenses.length,
     events: data.events.length,
     questions: data.questions.length,
     aiModules: data.aiModules.length,

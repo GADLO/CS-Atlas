@@ -155,3 +155,55 @@ export function rowToAnnotation(row) {
     createdAt: row.created_at,
   };
 }
+
+export function rowToTimelineNode(row, { questionSlugs = [], lensSlugs = [] } = {}) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    slug: row.slug,
+    periodSlug: row.period_slug,
+    lane: row.lane,
+    year: row.year,
+    title: row.title,
+    summary: row.summary,
+    body: row.body,
+    generation: row.generation,
+    frontier: Boolean(row.frontier),
+    entitySlug: row.entity_slug || null,
+    sceneKey: row.scene_key || null,
+    modelSlugs: row.model_slugs ? JSON.parse(row.model_slugs) : [],
+    aiModuleSlugs: row.ai_module_slugs ? JSON.parse(row.ai_module_slugs) : [],
+    sources: row.sources ? JSON.parse(row.sources) : [],
+    questionSlugs,
+    lensSlugs,
+    entity: row.entity_slug
+      ? {
+          slug: row.entity_slug,
+          name: row.entity_name,
+          nameEn: row.entity_name_en,
+          type: row.entity_type,
+          category: row.entity_category,
+          sceneKey: row.entity_scene_key || null,
+          accent: row.entity_accent,
+          icon: row.entity_icon,
+          summary: row.entity_summary,
+        }
+      : null,
+  };
+}
+
+export function rowToLens(row) {
+  if (!row) return null;
+  return {
+    id: row.id,
+    number: row.number,
+    slug: row.slug,
+    title: row.title,
+    titleEn: row.title_en,
+    group: row.lens_group,
+    coreQuestion: row.core_question,
+    summary: row.summary,
+    accent: row.accent,
+    sortOrder: row.sort_order,
+  };
+}

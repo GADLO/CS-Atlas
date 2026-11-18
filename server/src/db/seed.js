@@ -37,13 +37,15 @@ export function seedDatabase(db, data) {
   const insertRelation = db.prepare(
     'INSERT INTO relations (source_slug, target_slug, kind, label) VALUES (?, ?, ?, ?)',
   );
+  const insertLensNode = db.prepare('INSERT OR IGNORE INTO lens_nodes (lens_slug, node_slug) VALUES (?, ?)');
+  const insertQuestionNode = db.prepare('INSERT OR IGNORE INTO question_nodes (question_slug, node_slug) VALUES (?, ?)');
   const upsertMeta = db.prepare(
     'INSERT INTO meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value',
   );
 
   db.exec('BEGIN');
   try {
-    db.exec('DELETE FROM relations;');
+    db.exec('DELETE FROM relations; DELETE FROM lens_nodes; DELETE FROM question_nodes;');
 
     for (const [index, era] of data.eras.entries()) {
       upsert(
@@ -201,11 +203,72 @@ export function seedDatabase(db, data) {
       );
     }
 
+    for (const lens of data.lenses) {
+      upsert(
+        db,
+        'lenses',
+        'slug',
+        ['number', 'slug', 'title', 'title_en', 'lens_group', 'core_question', 'summary', 'accent', 'sort_order'],
+        [
+          lens.number,
+          lens.slug,
+          lens.title,
+          lens.titleEn,
+          lens.group,
+          lens.coreQuestion,
+          lens.summary,
+          lens.accent,
+          lens.sortOrder ?? lens.number,
+        ],
+      );
+    }
+
+    for (const timelineNode of data.timelineNodes) {
+      upsert(
+        db,
+        'timeline_nodes',
+        'slug',
+        [
+          'slug', 'period_slug', 'lane', 'year', 'title', 'summary', 'body',
+          'generation', 'frontier', 'entity_slug', 'scene_key', 'model_slugs', 'ai_module_slugs',
+          'sources', 'sort_order',
+        ],
+        [
+          timelineNode.slug,
+          timelineNode.periodSlug,
+          timelineNode.lane,
+          timelineNode.year,
+          timelineNode.title,
+          timelineNode.summary,
+          timelineNode.body,
+          timelineNode.generation ?? 0,
+          timelineNode.frontier ? 1 : 0,
+          timelineNode.entitySlug ?? null,
+          timelineNode.sceneKey ?? null,
+          json(timelineNode.modelSlugs ?? []),
+          json(timelineNode.aiModuleSlugs ?? []),
+          json(timelineNode.sources ?? []),
+          timelineNode.sortOrder ?? 0,
+        ],
+      );
+    }
+
     pruneBySlug(db, 'questions', data.questions.map((question) => question.slug));
     pruneBySlug(db, 'ai_modules', data.aiModules.map((module) => module.slug));
     pruneBySlug(db, 'events', data.events.map((event) => event.slug));
     pruneBySlug(db, 'entities', data.entities.map((entity) => entity.slug));
+    pruneBySlug(db, 'timeline_nodes', data.timelineNodes.map((node) => node.slug));
+    pruneBySlug(db, 'lenses', data.lenses.map((lens) => lens.slug));
     pruneBySlug(db, 'eras', data.eras.map((era) => era.slug));
+
+    for (const timelineNode of data.timelineNodes) {
+      for (const lensSlug of timelineNode.lensSlugs ?? []) {
+        insertLensNode.run(lensSlug, timelineNode.slug);
+      }
+      for (const questionSlug of timelineNode.questionSlugs ?? []) {
+        insertQuestionNode.run(questionSlug, timelineNode.slug);
+      }
+    }
 
     db.exec('DELETE FROM instructions; DELETE FROM chapters;');
     for (const instruction of data.instructions) {

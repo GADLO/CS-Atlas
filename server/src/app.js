@@ -6,6 +6,7 @@ import { createAnnotationRouter } from './routes/annotations.js';
 import { createAiRouter } from './routes/ai.js';
 import { createContentRouter } from './routes/content.js';
 import { createEntityRouter } from './routes/entities.js';
+import { createLensRouter } from './routes/lenses.js';
 import { createMetaRouter } from './routes/meta.js';
 import { createModelRouter } from './routes/models.js';
 import { createQuestionRouter } from './routes/questions.js';
@@ -27,6 +28,7 @@ export function createApp({ repo, webDist = path.resolve('dist/web') } = {}) {
   const api = express.Router();
   api.use(createMetaRouter(repo));
   api.use(createTimelineRouter(repo));
+  api.use(createLensRouter(repo));
   api.use(createQuestionRouter(repo));
   api.use(createAiRouter(repo));
   api.use(createModelRouter(repo));
