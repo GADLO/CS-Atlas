@@ -3,9 +3,14 @@ import path from 'node:path';
 import express from 'express';
 import { badRequest, notFound } from './lib/http.js';
 import { createAnnotationRouter } from './routes/annotations.js';
+import { createAiRouter } from './routes/ai.js';
 import { createContentRouter } from './routes/content.js';
 import { createEntityRouter } from './routes/entities.js';
+import { createLensRouter } from './routes/lenses.js';
 import { createMetaRouter } from './routes/meta.js';
+import { createModelRouter } from './routes/models.js';
+import { createQuestionRouter } from './routes/questions.js';
+import { createTimelineRouter } from './routes/timeline.js';
 
 export function createApp({ repo, webDist = path.resolve('dist/web') } = {}) {
   if (!repo) throw new Error('createApp 需要 repo');
@@ -22,6 +27,11 @@ export function createApp({ repo, webDist = path.resolve('dist/web') } = {}) {
 
   const api = express.Router();
   api.use(createMetaRouter(repo));
+  api.use(createTimelineRouter(repo));
+  api.use(createLensRouter(repo));
+  api.use(createQuestionRouter(repo));
+  api.use(createAiRouter(repo));
+  api.use(createModelRouter(repo));
   api.use(createEntityRouter(repo));
   api.use(createContentRouter(repo));
   api.use(createAnnotationRouter(repo));

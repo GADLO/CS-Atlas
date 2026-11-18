@@ -1,27 +1,131 @@
 {
   "meta": {
-    "version": 1,
-    "title": "CS Atlas 开发占位数据",
-    "subtitle": "用于验证项目结构与 API，M1 将替换",
-    "source": "development placeholder"
+    "version": 10,
+    "contentVersion": "time-first-history-aligned-2",
+    "title": "CS Atlas M1 数据基础",
+    "subtitle": "Q1/Q3 + 三时代骨架",
+    "source": "Patterson & Hennessy + public references"
   },
+  "eras": [
+    {
+      "slug": "mechanical",
+      "name": "奠基：机械计算",
+      "startYear": 1642,
+      "endYear": 1936,
+      "sortOrder": 0,
+      "tagline": "机器可以按预定步骤执行",
+      "keyIdea": "机械计算 / 可编程",
+      "heroMachine": null,
+      "narrative": [
+        "在电子计算机出现之前，计算自动化主要依赖机械装置。1642 年帕斯卡把自动进位做进齿轮，1673 年莱布尼茨把乘除分解为可重复的机械步骤。",
+        "1801 年杰卡德用穿孔卡片控制织布图案。卡片把“程序”从机器结构中抽出来，成为可更换、可复制的指令载体。",
+        "巴贝奇在 1830 年代设计的分析机，已经包含输入、存储、处理、控制和输出五个部件，并借鉴穿孔卡控制运算流程。受制造工艺限制，它没有完整建成，但逻辑构想指向通用计算机。",
+        "1847 年布尔用 0/1 逻辑表达命题运算。布尔代数后来成为二进制逻辑电路的数学基础。",
+        "到 1936 年，图灵把“可计算”变成可定义的机器模型。计算不再只是机械装置，也开始成为一门关于算法与语言的理论。",
+        "1936 年，继电器开关逻辑与图灵机在同一年出现：布尔代数进入电路，机械计算开始向机电计算过渡。"
+      ],
+      "transition": {
+        "title": "从机械到电子",
+        "body": "器件从齿轮、继电器走向电子管；程序从物理配置变成可存储的指令。"
+      },
+      "accent": "#c9a45c"
+    },
+    {
+      "slug": "electronic-early",
+      "name": "电子计算机的诞生",
+      "startYear": 1936,
+      "endYear": 1971,
+      "sortOrder": 1,
+      "tagline": "从可计算性到集成电路",
+      "keyIdea": "存储程序 / 三代器件",
+      "heroMachine": "eniac",
+      "narrative": [
+        "1936 年图灵提出可计算性模型；1938–1944 年，Z1/Z3、ABC、Mark I 与 Colossus 把继电器和电子管推入计算。1946 年 ENIAC 用约 18,000 只电子管与 1,500 个继电器实现每秒约 5,000 次加法，程序仍靠接线与开关设置。",
+        "1945 年 EDVAC 报告提出存储程序结构，1946 年 IAS 机把它工程化：指令与数据放进同一种可读写存储器，计算机开始自动、连续地执行程序。",
+        "1951 年 UNIVAC I 进入商业数据处理，IBM 701/704 把计算机带进科研机构；1959 年的 IBM 7090 用晶体管取代电子管，速度与可靠性同时提升。中国在 1958 年推出 103 机，1965 年推出第一台晶体管机 DJS-5。",
+        "1958 年基尔比与诺伊斯把多个元件集成到同一块半导体材料上。集成电路继续小型化，IBM System/360、CDC 6600 与 PDP-8 分别把指令集契约、并行功能单元与小型机推向市场。",
+        "软件在这一时期成形：Fortran、编译器、操作系统雏形与 AI 研究同时出现。硬件与软件开始分成两个相互约束的领域。"
+      ],
+      "transition": {
+        "title": "从机房到个人",
+        "body": "微处理器把 CPU 变成标准商品，计算从机构机房走向个人桌面。"
+      },
+      "accent": "#f5b955"
+    },
+    {
+      "slug": "pc-web",
+      "name": "微处理器、PC 与互联网",
+      "startYear": 1971,
+      "endYear": 2005,
+      "sortOrder": 2,
+      "tagline": "计算走向个人与网络",
+      "keyIdea": "微处理器 / 网络",
+      "heroMachine": "ibm-pc-5150",
+      "narrative": [
+        "1971 年 Intel 4004 把 CPU 集成到单芯片，约 2,300 个晶体管；1974 年 8080 与 1977 年 Apple II 把微处理器变成可购买的个人计算产品。",
+        "1981 年 IBM PC 用开放扩展与兼容机生态把个人计算机变成产业；1984 年 Macintosh 把图形界面、鼠标与一体机带进主流。",
+        "1976 年 Cray-1 用向量寄存器与并行流水线定义超级计算机；1997 年 Deep Blue 用专用评估芯片与大规模搜索击败国际象棋世界冠军，1999 年神威-I 把超算推向国家基础设施。中国在 1970 年代形成 150/DJS-130/220/182 系列，1983 年银河-I 与 1997 年银河-III 进入巨型机路线。",
+        "软件层快速分化：Unix 与 C、图形界面、关系数据库、Web 浏览器相继出现。TCP/IP 与 WWW 把单机计算连接成网络。2000 年前后，Pentium 4、Itanium 与龙芯分别代表高主频、EPIC 与自主处理器的不同路线。",
+        "1999 年 GPU 把大量并行执行单元带进消费级硬件；PageRank 等算法说明网络规模本身成为新的计算对象。性能问题从单机扩展到数据中心与互联网。"
+      ],
+      "transition": {
+        "title": "从 PC 到移动与云",
+        "body": "手机 SoC、云计算与 GPU 集群把计算从一台机器扩展到一整套基础设施。"
+      },
+      "accent": "#64d8ff"
+    },
+    {
+      "slug": "heterogeneous",
+      "name": "移动、云与异构 AI",
+      "startYear": 2005,
+      "endYear": 2026,
+      "sortOrder": 3,
+      "tagline": "从单芯片到集群",
+      "keyIdea": "移动 / 异构 / AI",
+      "heroMachine": "nvidia-h100",
+      "narrative": [
+        "2007 年 iPhone 把移动 SoC、触摸交互与应用生态组合成新的计算平台。计算从桌面扩散到随身设备与云端。",
+        "GPU 从图形处理器变成通用加速器；CUDA、深度学习框架与大规模数据把并行计算推向 AI 训练与推理。",
+        "2012 年深度学习在图像识别上取得突破；2017 年 Transformer 改变序列建模；大语言模型把算力、显存带宽与互连推到系统中心。",
+        "Apple M1 用 SoC 与统一内存展示能效优先的异构集成；NVIDIA H100 用 GPU、HBM 与 NVLink 组成 AI 加速系统。",
+        "生物、光与量子计算仍是前沿分支，尚未成为主流历史时期，但它们提出了不同于 CMOS 的计算模型。"
+      ],
+      "transition": {
+        "title": "向前沿",
+        "body": "经典 CMOS 之外，生物、光与量子计算仍在实验与工程化之间探索。"
+      },
+      "accent": "#76e6a8"
+    }
+  ],
   "entities": [
     {
-      "slug": "eniac",
       "type": "hardware",
-      "name": "电子数字积分计算机",
-      "name_en": "ENIAC",
       "category": "计算",
       "layer": "系统层",
-      "summary": "第一台通用电子数字计算机之一，使用电子管实现高速运算。",
+      "year": 1946,
+      "maker": "University of Pennsylvania",
+      "formFactor": "mainframe",
+      "sceneKey": "tube-mainframe",
+      "summary": "第一台通用电子数字计算机之一，用电子管完成弹道计算。",
       "description": [
-        "ENIAC 使用大量电子管完成弹道计算，运算速度远超前代机电计算机。",
-        "它的程序通过接线与开关设置，而不是存放在存储器中，因此改变任务需要重新配置机器。"
+        "ENIAC 是二战期间为弹道计算而建造的通用电子计算机。它用电子管实现开关逻辑，运算速度远超前代机电计算机。",
+        "它使用约 18,000 只电子管（常引 17,468 只）与约 1,500 个继电器，每秒可完成约 5,000 次加法。功耗、散热与可靠性都是巨大的工程挑战。",
+        "它的“程序”并不存放在存储器里，而是通过接线板、开关和插线来设置。换一道题，往往意味着重新配置机器。",
+        "从体系结构角度看，ENIAC 还不是“存储程序计算机”。但它让研究者和工程师看到：只要把程序变成可存储、可修改的数据，计算机就能变成通用机器。",
+        "今天回看 ENIAC，重要的不只是它算得多快，而是它把“计算”从机械运动变成了电子开关，并为存储程序思想提供了现实起点。"
       ],
       "specs": [
         {
           "label": "电子管",
-          "value": "约 17,468 只"
+          "value": "约 18,000 只（常引 17,468）"
+        },
+        {
+          "label": "继电器",
+          "value": "约 1,500 个"
+        },
+        {
+          "label": "加法速度",
+          "value": "约 5,000 次/秒"
         },
         {
           "label": "功耗",
@@ -34,75 +138,936 @@
       ],
       "highlights": [
         "电子开关显著提高计算速度",
-        "程序仍靠接线设置"
+        "约 18,000 只电子管与 1,500 个继电器",
+        "程序仍靠接线与开关设置",
+        "功耗与可靠性是电子管时代的核心约束"
       ],
       "tags": [
         "电子管",
         "ENIAC"
+      ],
+      "significance": [
+        "证明电子计算可行",
+        "暴露接线编程的局限"
       ],
       "book": {
         "chapter": 1,
         "section": "1.2",
         "pages": "p.29–31"
       },
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
       "accent": "#f5b955",
       "icon": "chip",
-      "scene": "tube-mainframe"
+      "slug": "eniac",
+      "name": "ENIAC",
+      "name_en": "Electronic Numerical Integrator and Computer",
+      "eraSlug": "electronic-early"
     },
     {
-      "slug": "cache",
       "type": "hardware",
-      "name": "缓存",
-      "name_en": "Cache",
-      "category": "存储",
-      "layer": "微架构层",
-      "summary": "位于处理器与主存之间的小而快存储，是流水线保持供数的关键。",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 1951,
+      "maker": "Eckert–Mauchly / Remington Rand",
+      "formFactor": "mainframe",
+      "sceneKey": "tube-mainframe",
+      "summary": "第一台面向商业市场的通用电子计算机之一。",
       "description": [
-        "缓存利用程序的时间与空间局部性，把最近使用的数据放在更快的存储中。",
-        "命中率、命中时间与缺失代价共同决定平均访问时间，是流水线性能的重要约束。"
+        "UNIVAC I 是早期面向商业与政府数据处理的通用电子计算机之一。它把存储程序思想带出了实验室。",
+        "它使用水银延迟线作为主存，数据以声波在汞管中传播的形式保存。这种存储器的容量、延迟与工程复杂度，定义了早期计算机的形态。",
+        "与 ENIAC 的接线编程不同，UNIVAC I 的程序可以存放在存储器中，机器可以更灵活地切换任务。",
+        "它被用于人口统计、商业数据处理等场景，标志着计算机开始进入组织日常运作，而不只是科学计算的专用工具。"
       ],
       "specs": [
         {
-          "label": "典型位置",
-          "value": "处理器与主存之间"
+          "label": "交付",
+          "value": "1951 年"
         },
         {
-          "label": "典型容量",
-          "value": "数 KB 到数十 MB"
+          "label": "主存",
+          "value": "水银延迟线"
         },
         {
-          "label": "关键指标",
-          "value": "命中率 / AMAT"
+          "label": "定位",
+          "value": "商业与政府数据处理"
         }
       ],
       "highlights": [
-        "利用局部性缩短平均访问时间",
-        "流水线需要持续供数"
+        "存储程序走向商业应用",
+        "主存技术仍处于早期"
       ],
       "tags": [
-        "缓存",
-        "存储层次"
+        "存储程序",
+        "商业计算机"
+      ],
+      "significance": [
+        "把存储程序带入商业市场",
+        "展示早期主存工程约束"
       ],
       "book": {
-        "chapter": 5,
-        "section": "5.1",
-        "pages": "p.286–300"
+        "chapter": 1,
+        "section": "1.2",
+        "pages": "p.29–31"
       },
-      "accent": "#64d8ff",
-      "icon": "cache",
-      "scene": "memory-hierarchy"
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#f5b955",
+      "icon": "chip",
+      "slug": "univac-i",
+      "name": "UNIVAC I",
+      "name_en": "UNIVAC I",
+      "eraSlug": "electronic-early"
     },
     {
-      "slug": "cpu-performance",
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 1981,
+      "maker": "IBM",
+      "formFactor": "desktop",
+      "sceneKey": "desktop",
+      "summary": "建立开放兼容生态的个人计算机。",
+      "description": [
+        "IBM PC 5150 于 1981 年推出。它采用开放扩展架构、标准总线与第三方软件，迅速形成兼容机产业。",
+        "它使用 Intel 8088 处理器，配合 IBM 的命名与生态。真正的影响不在某一项规格，而在于“可复制的平台”这一模式。",
+        "开放架构降低了整机与外设的进入门槛，也让软件兼容性成为用户选择的关键。PC 从此从单一系列变成一整个产业。",
+        "对体系结构学习来说，IBM PC 是一个分水岭：计算从大型机机房走向办公室与家庭，微处理器、总线、操作系统与应用软件开始共同定义用户体验。"
+      ],
+      "specs": [
+        {
+          "label": "处理器",
+          "value": "Intel 8088"
+        },
+        {
+          "label": "形态",
+          "value": "桌面主机 + 显示器"
+        },
+        {
+          "label": "生态",
+          "value": "开放扩展与兼容机"
+        }
+      ],
+      "highlights": [
+        "开放生态推动 PC 普及",
+        "标准化总线与操作系统"
+      ],
+      "tags": [
+        "PC",
+        "个人计算机"
+      ],
+      "significance": [
+        "定义 PC 兼容生态",
+        "把计算带进办公室与家庭"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.1",
+        "pages": "p.24–28"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "board",
+      "slug": "ibm-pc-5150",
+      "name": "IBM PC 5150",
+      "name_en": "IBM Personal Computer 5150",
+      "eraSlug": "pc-web"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 1984,
+      "maker": "Apple",
+      "formFactor": "desktop",
+      "sceneKey": "desktop",
+      "summary": "把图形界面与鼠标带进主流的一体机。",
+      "description": [
+        "Macintosh 128K 于 1984 年推出，把图形界面、鼠标与一体机形态带进主流个人计算机。",
+        "它把屏幕、主机与系统软件打包成一台“开箱即用”的机器，用户不再需要面对命令行与复杂的硬件配置。",
+        "图形界面并不是 Apple 一家发明的，但 Macintosh 让位图屏幕、窗口、图标与鼠标成为大众可接触的交互方式。",
+        "从系统角度看，Macintosh 展示了“硬件—操作系统—交互”一体化的设计取舍：封闭带来体验一致性，也限制了开放扩展。"
+      ],
+      "specs": [
+        {
+          "label": "形态",
+          "value": "一体机"
+        },
+        {
+          "label": "交互",
+          "value": "图形界面 + 鼠标"
+        },
+        {
+          "label": "定位",
+          "value": "个人桌面"
+        }
+      ],
+      "highlights": [
+        "图形界面走向大众",
+        "一体化工业设计"
+      ],
+      "tags": [
+        "GUI",
+        "Apple"
+      ],
+      "significance": [
+        "定义图形界面个人计算机",
+        "推动鼠标与 GUI 普及"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.1",
+        "pages": "p.24–28"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "board",
+      "slug": "macintosh-128k",
+      "name": "Macintosh 128K",
+      "name_en": "Macintosh 128K",
+      "eraSlug": "pc-web"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 2020,
+      "maker": "Apple",
+      "formFactor": "chiplet-package",
+      "sceneKey": "chiplet-package",
+      "summary": "统一内存与 SoC 设计的代表，展示能效优先的异构集成。",
+      "description": [
+        "Apple M1 于 2020 年推出，把 CPU、GPU、神经引擎与统一内存集成在一颗 SoC 中。",
+        "统一内存让 CPU 与 GPU 共享同一份数据，减少了复制与同步开销；这也是移动与桌面融合的典型设计。",
+        "M1 的重点不是单一核心跑分，而是性能与功耗的比值。它用异构集成与先进封装，把“能效优先”变成产品策略。",
+        "代价是内存与扩展性被封装在 SoC 内，升级空间有限。它代表了 AI 时代另一种系统组织方式：不是更大的 GPU，而是更紧密的集成。"
+      ],
+      "specs": [
+        {
+          "label": "形态",
+          "value": "SoC"
+        },
+        {
+          "label": "内存",
+          "value": "统一内存"
+        },
+        {
+          "label": "特点",
+          "value": "异构集成 / 能效优先"
+        }
+      ],
+      "highlights": [
+        "统一内存降低数据搬运",
+        "异构集成提升能效"
+      ],
+      "tags": [
+        "SoC",
+        "Apple Silicon"
+      ],
+      "significance": [
+        "展示统一内存与 SoC 方向",
+        "能效优先的异构集成"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "apple-m1",
+          "title": "Apple M1",
+          "publisher": "Apple",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "chip",
+      "slug": "apple-m1",
+      "name": "Apple M1",
+      "name_en": "Apple M1",
+      "eraSlug": "heterogeneous"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "系统层",
+      "year": 2022,
+      "maker": "NVIDIA",
+      "formFactor": "gpu-accelerator",
+      "sceneKey": "gpu-accelerator",
+      "summary": "面向 AI 训练与推理的 GPU 加速器，代表 GPU + HBM + NVLink 的系统形态。",
+      "description": [
+        "NVIDIA H100 是面向 AI 训练与推理的 GPU 加速器，基于 Hopper 架构。它把大量并行执行单元、Tensor Core 与高带宽显存放在同一张卡上。",
+        "GPU 的设计目标是吞吐：用大量线程隐藏访存与指令延迟。矩阵乘、卷积与注意力机制都可以拆成大量规则并行任务。",
+        "H100 的系统形态不只是一颗芯片：HBM 提供显存带宽，NVLink 负责卡间互连，主机通过 PCIe 连接。训练大模型时，瓶颈常常在数据搬运与通信，而不只是算力。",
+        "它让“加速器”成为数据中心的中心。理解 H100，需要同时看芯片、存储层次、互连与软件栈，而不是只看 FLOPS 数字。"
+      ],
+      "specs": [
+        {
+          "label": "形态",
+          "value": "GPU 加速卡"
+        },
+        {
+          "label": "显存",
+          "value": "HBM"
+        },
+        {
+          "label": "互连",
+          "value": "NVLink / PCIe"
+        }
+      ],
+      "highlights": [
+        "AI 训练与推理的核心算力",
+        "带宽与互连成为系统瓶颈"
+      ],
+      "tags": [
+        "GPU",
+        "AI 加速器"
+      ],
+      "significance": [
+        "定义 AI 加速器系统形态",
+        "把 HBM 与互连推到核心"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "gpu",
+      "slug": "nvidia-h100",
+      "name": "NVIDIA H100",
+      "name_en": "NVIDIA H100 Tensor Core GPU",
+      "eraSlug": "heterogeneous"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "器件层",
+      "year": 1906,
+      "maker": "Lee de Forest",
+      "formFactor": "component",
+      "sceneKey": null,
+      "summary": "用真空中的电子流实现放大与开关，是早期电子计算机的基本器件。",
+      "description": [
+        "电子管利用真空中电子流的可控性实现放大与开关。在晶体管之前，它是电子计算机最基本的逻辑器件。",
+        "电子管的速度远高于继电器，但需要高压、灯丝加热，并产生大量热量。数量一多，功耗、散热与故障率就成为系统级问题。",
+        "ENIAC 用大量电子管换来微秒级开关速度，也把“可靠性”变成计算机设计的第一批核心约束之一。",
+        "晶体管取代电子管后，器件仍在回答同一个问题：怎样用更少的能量、更小的尺寸完成更可靠的开关。"
+      ],
+      "specs": [
+        {
+          "label": "开关速度",
+          "value": "微秒级"
+        },
+        {
+          "label": "工作电压",
+          "value": "数百伏"
+        },
+        {
+          "label": "寿命",
+          "value": "数千小时"
+        }
+      ],
+      "highlights": [
+        "早期电子计算机的基本开关",
+        "速度远超继电器但功耗高"
+      ],
+      "tags": [
+        "电子管",
+        "器件"
+      ],
+      "significance": [
+        "支撑第一代电子计算机",
+        "暴露功耗与可靠性约束"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.5",
+        "pages": "p.40–43"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#e28b5b",
+      "icon": "chip",
+      "slug": "vacuum-tube",
+      "name": "电子管",
+      "name_en": "Vacuum Tube",
+      "eraSlug": "electronic-early"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "器件层",
+      "year": 1971,
+      "maker": "Intel",
+      "formFactor": "component",
+      "sceneKey": null,
+      "summary": "把 CPU 集成到一颗芯片，使个人计算机成为可能。",
+      "description": [
+        "微处理器把 CPU 的运算、控制与寄存器集成到一颗芯片。Intel 4004 在 1971 年展示了这种可能性。",
+        "它让计算机的核心部件变成可大规模复制的零件，成本、体积与功耗同时下降。个人计算机、嵌入式和移动设备都建立在这一基础之上。",
+        "微处理器并没有改变 ISA 的基本问题，但把微架构、工艺与封装推到了产业竞争的中心。",
+        "从系统角度看，微处理器是“通用计算”得以普及的关键：一颗芯片可以运行不同程序，而不再是一台机器只做一件事。"
+      ],
+      "specs": [
+        {
+          "label": "集成度",
+          "value": "单芯片 CPU"
+        },
+        {
+          "label": "代表",
+          "value": "Intel 4004 / 8088"
+        },
+        {
+          "label": "影响",
+          "value": "个人计算机基础"
+        }
+      ],
+      "highlights": [
+        "单片 CPU",
+        "推动 PC 产业"
+      ],
+      "tags": [
+        "微处理器",
+        "集成电路"
+      ],
+      "significance": [
+        "让 CPU 成为可复制零件",
+        "推动个人计算机产业"
+      ],
+      "book": {
+        "chapter": 1,
+        "section": "1.5",
+        "pages": "p.40–43"
+      },
+      "sources": [
+        {
+          "id": "intel-4004",
+          "title": "Intel 4004",
+          "publisher": "Intel",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "chip",
+      "slug": "microprocessor",
+      "name": "微处理器",
+      "name_en": "Microprocessor",
+      "eraSlug": "pc-web"
+    },
+    {
+      "type": "hardware",
+      "category": "计算",
+      "layer": "微架构层",
+      "year": 1999,
+      "maker": "NVIDIA",
+      "formFactor": "component",
+      "sceneKey": null,
+      "summary": "面向吞吐的并行处理器，从图形管线走向通用计算与 AI。",
+      "description": [
+        "GPU 最初为图形管线设计：大量像素与顶点可以并行处理，硬件因此选择吞吐优先的结构。",
+        "当可编程着色器与通用计算出现后，GPU 开始执行矩阵运算、物理模拟与机器学习。SIMT 执行模型让一条指令驱动大量线程。",
+        "GPU 的优势来自并行度与高带宽显存，代价是分支分化、访存不合并与编程复杂度。它擅长规则、密集、可并行的负载。",
+        "今天 GPU 是 AI 系统的核心硬件之一。理解 GPU，不能只看核心数量，还要看 warp、存储层次与数据复用。"
+      ],
+      "specs": [
+        {
+          "label": "执行模型",
+          "value": "SIMT"
+        },
+        {
+          "label": "优化目标",
+          "value": "吞吐"
+        },
+        {
+          "label": "关键资源",
+          "value": "显存带宽"
+        }
+      ],
+      "highlights": [
+        "大量并行线程隐藏延迟",
+        "AI 计算的核心硬件"
+      ],
+      "tags": [
+        "GPU",
+        "SIMT"
+      ],
+      "significance": [
+        "改变并行计算形态",
+        "成为 AI 计算核心硬件"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "gpu",
+      "slug": "gpu",
+      "name": "GPU",
+      "name_en": "Graphics Processing Unit",
+      "eraSlug": "pc-web"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "把高级语言翻译成汇编或中间表示。",
+      "description": [
+        "编译器把 C、Java 等高级语言翻译成汇编或中间表示。它要完成词法/语法分析、语义检查、优化与代码生成。",
+        "优化级别、内联、向量化与寄存器分配都会影响最终指令数、CPI 与访存行为。编译器不是“翻译完就结束”，它在做性能取舍。",
+        "编译器面向的是 ISA，而不是某一颗具体芯片的微架构。它生成的代码必须符合 ABI、调用约定与目标平台约束。",
+        "理解编译链，有助于解释一个常见误解：高级语言并不是“直接运行”的，它最终仍要落到机器指令。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "C/Java 等高级语言"
+        },
+        {
+          "label": "输出",
+          "value": "汇编 / 中间表示"
+        },
+        {
+          "label": "影响",
+          "value": "指令数、访存、并行"
+        }
+      ],
+      "highlights": [
+        "翻译链的第一环",
+        "优化直接影响性能"
+      ],
+      "tags": [
+        "编译器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "electronic-early",
+      "slug": "compiler",
+      "name": "编译器",
+      "name_en": "Compiler"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "把汇编语言翻译成机器码。",
+      "description": [
+        "汇编器把助记符、寄存器名与寻址方式编码成机器指令。它是 ISA 最直接的软件体现。",
+        "除了指令编码，汇编器还要处理标签、伪指令、段与重定位信息，输出可被链接的目标文件。",
+        "汇编语言与机器码几乎一一对应，但它仍然不是“硬件本身”：同一段汇编可以在不同微架构上运行，性能却可能不同。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "汇编语言"
+        },
+        {
+          "label": "输出",
+          "value": "目标文件"
+        },
+        {
+          "label": "依赖",
+          "value": "ISA 编码"
+        }
+      ],
+      "highlights": [
+        "助记符到机器码",
+        "ISA 的直接体现"
+      ],
+      "tags": [
+        "汇编器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "electronic-early",
+      "slug": "assembler",
+      "name": "汇编器",
+      "name_en": "Assembler"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "合并目标文件与库，生成可执行文件。",
+      "description": [
+        "链接器把多个目标文件与库合并成可执行文件。它要解析符号、完成重定位，并决定代码与数据在地址空间中的布局。",
+        "静态链接把库代码复制进可执行文件；动态链接在加载或运行时解析共享库，节省空间但增加启动与依赖管理成本。",
+        "链接错误常常不是语法问题，而是符号可见性、ABI 或库版本问题。它提醒我们：程序是一个由多个编译单元组成的系统。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "目标文件 / 库"
+        },
+        {
+          "label": "输出",
+          "value": "可执行文件"
+        },
+        {
+          "label": "关键",
+          "value": "符号解析与重定位"
+        }
+      ],
+      "highlights": [
+        "合并多个编译单元",
+        "决定库的链接方式"
+      ],
+      "tags": [
+        "链接器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "electronic-early",
+      "slug": "linker",
+      "name": "链接器",
+      "name_en": "Linker"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1950,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "把可执行文件装入内存并启动程序。",
+      "description": [
+        "加载器把可执行文件装入内存，建立进程地址空间，映射动态库，然后跳转到入口点。",
+        "它与操作系统、虚拟内存和 ABI 紧密相关：程序看到的地址是虚拟地址，硬件与 OS 共同完成翻译与保护。",
+        "从源文件到程序运行，加载器是最后一环。它把“文件”变成“进程”，也把软件契约交给硬件执行。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "可执行文件"
+        },
+        {
+          "label": "输出",
+          "value": "运行中的进程"
+        },
+        {
+          "label": "依赖",
+          "value": "OS / 虚拟内存"
+        }
+      ],
+      "highlights": [
+        "程序启动的最后一环",
+        "连接 OS 与硬件"
+      ],
+      "tags": [
+        "加载器",
+        "工具链"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "electronic-early",
+      "slug": "loader",
+      "name": "加载器",
+      "name_en": "Loader"
+    },
+    {
+      "type": "software",
+      "category": "工具链",
+      "layer": "系统软件层",
+      "year": 1995,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "执行 Java 字节码，并通过 JIT 编译热点代码。",
+      "description": [
+        "Java 源码先由 javac 编译成字节码，再由 JVM 解释或 JIT 编译成目标机器码。字节码不是机器码，它是面向虚拟机的中间表示。",
+        "JIT 会根据运行时热点做优化，因此 Java 程序的性能与启动阶段、预热时间密切相关。",
+        "JVM 提供了跨平台抽象，但也增加了运行时开销与复杂性。它是“ISA 之上再加一层抽象”的典型例子。",
+        "理解 JVM 有助于回答 Q1：高级语言到机器码的路径不只有一条，编译与解释可以在不同阶段发生。"
+      ],
+      "specs": [
+        {
+          "label": "输入",
+          "value": "字节码"
+        },
+        {
+          "label": "执行",
+          "value": "解释 / JIT"
+        },
+        {
+          "label": "特点",
+          "value": "跨平台运行时"
+        }
+      ],
+      "highlights": [
+        "字节码与机器码的桥梁",
+        "JIT 影响运行时性能"
+      ],
+      "tags": [
+        "Java",
+        "JVM"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "pc-web",
+      "slug": "java-jvm",
+      "name": "Java 虚拟机",
+      "name_en": "Java Virtual Machine"
+    },
+    {
+      "type": "software",
+      "category": "指令集",
+      "layer": "系统软件层",
+      "year": 2010,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "开放、模块化的指令集体系结构。",
+      "description": [
+        "RISC-V 是一个开放、模块化的指令集体系结构。它定义指令、寄存器、寻址与特权级，但不规定具体微架构。",
+        "开放意味着任何人都可以实现兼容处理器；模块化意味着基础整数指令集可以按需扩展。",
+        "ISA 是软件与硬件之间的契约。同一份 RISC-V 程序可以在不同实现上运行，但性能取决于流水线、缓存与工艺。",
+        "学习 RISC-V 的价值在于把“指令格式、寄存器、寻址、异常”这些抽象落到可编码的规则上。"
+      ],
+      "specs": [
+        {
+          "label": "位宽",
+          "value": "32 / 64 位"
+        },
+        {
+          "label": "特点",
+          "value": "开放、模块化"
+        },
+        {
+          "label": "定位",
+          "value": "软硬件接口"
+        }
+      ],
+      "highlights": [
+        "开放 ISA",
+        "软件与硬件的契约"
+      ],
+      "tags": [
+        "RISC-V",
+        "ISA"
+      ],
+      "book": {
+        "chapter": 2,
+        "section": "2.12",
+        "pages": "p.110–116"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#9b8cff",
+      "icon": "tool",
+      "eraSlug": "heterogeneous",
+      "slug": "riscv-isa",
+      "name": "RISC-V 指令集",
+      "name_en": "RISC-V ISA"
+    },
+    {
       "type": "model",
-      "name": "CPU 性能公式",
-      "name_en": "CPU Performance Equation",
       "category": "性能模型",
       "layer": "微架构层",
+      "year": 1980,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
       "summary": "用指令数、CPI 与时钟周期解释程序执行时间。",
       "description": [
-        "CPU 时间可以写成指令数乘以 CPI 再乘以时钟周期。",
-        "三个因子相互牵制，优化其中一个往往会改变另外两个。"
+        "CPU 性能公式把程序执行时间拆成三个因子：指令数、每条指令周期数（CPI）与时钟周期。",
+        "三个因子并不独立：更复杂的指令可能减少指令数，却提高 CPI；更高频率可能增加功耗并限制并行。",
+        "公式的价值不是算出一个漂亮数字，而是帮助定位瓶颈：是算法指令太多、微架构 CPI 太高，还是频率/并行度不足。",
+        "真实程序还要考虑访存、分支、I/O 与操作系统噪声。公式是起点，测量才是终点。"
       ],
       "specs": [
         {
@@ -115,12 +1080,12 @@
         },
         {
           "label": "适用",
-          "value": "单核程序级性能估算"
+          "value": "单核程序级估算"
         }
       ],
       "highlights": [
         "性能三因子",
-        "优化需要看整体取舍"
+        "优化需要整体视角"
       ],
       "tags": [
         "性能",
@@ -131,8 +1096,21 @@
         "section": "1.6",
         "pages": "p.43–51"
       },
-      "accent": "#76e6a8",
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
       "icon": "model",
+      "slug": "cpu-performance",
+      "name": "CPU 性能公式",
+      "name_en": "CPU Performance Equation",
+      "eraSlug": "pc-web",
       "formula": "CPU 时间 = 指令数 × CPI × 时钟周期",
       "variables": [
         {
@@ -152,20 +1130,1403 @@
         }
       ],
       "calculator": "cpu"
+    },
+    {
+      "type": "model",
+      "category": "存储模型",
+      "layer": "微架构层",
+      "year": 1985,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "用命中时间、缺失率与缺失代价描述平均访存时间。",
+      "description": [
+        "Cache 利用时间局部性与空间局部性，把最近使用的数据放在更快的存储层次中。",
+        "AMAT 用命中时间、缺失率与缺失代价描述平均访存时间。提高命中率或降低缺失代价都能改善性能。",
+        "多级 Cache 让“命中”本身也分层：L1 命中很快，L2/L3 命中较慢，缺失则访问 DRAM。",
+        "AMAT 解释了为什么数据布局、循环顺序与分块会影响性能，也解释了为什么“更多缓存”不一定更快。"
+      ],
+      "specs": [
+        {
+          "label": "公式",
+          "value": "AMAT = hit + missRate × penalty"
+        },
+        {
+          "label": "关键",
+          "value": "局部性"
+        },
+        {
+          "label": "适用",
+          "value": "缓存/存储层次"
+        }
+      ],
+      "highlights": [
+        "缓存性能的核心公式",
+        "局部性决定命中率"
+      ],
+      "tags": [
+        "Cache",
+        "AMAT"
+      ],
+      "book": {
+        "chapter": 5,
+        "section": "5.3",
+        "pages": "p.300–320"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#64d8ff",
+      "icon": "cache",
+      "slug": "cache-amat",
+      "name": "Cache AMAT",
+      "name_en": "Average Memory Access Time",
+      "eraSlug": "pc-web",
+      "formula": "AMAT = 命中时间 + 缺失率 × 缺失代价",
+      "variables": [
+        {
+          "symbol": "hit",
+          "name": "命中时间",
+          "unit": "周期"
+        },
+        {
+          "symbol": "missRate",
+          "name": "缺失率",
+          "unit": "比例"
+        },
+        {
+          "symbol": "penalty",
+          "name": "缺失代价",
+          "unit": "周期"
+        }
+      ],
+      "calculator": "amat"
+    },
+    {
+      "type": "model",
+      "category": "性能模型",
+      "layer": "微架构层",
+      "year": 2009,
+      "maker": "",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "用峰值算力与带宽描述程序的性能上限。",
+      "description": [
+        "Roofline 用峰值算力与带宽画出性能上限：性能 = min(峰值算力, 带宽 × 算术强度)。",
+        "算术强度是每字节数据完成的计算量。强度低时受带宽限制，强度高时才可能接近算力上限。",
+        "模型帮助我们判断一个 AI 负载是 compute-bound 还是 memory-bound，也解释了为什么 HBM 与数据复用如此重要。",
+        "Roofline 是上界模型，不考虑延迟、并行效率与通信开销；它适合用来找方向，不适合替代真实测量。"
+      ],
+      "specs": [
+        {
+          "label": "公式",
+          "value": "min(peak, BW × AI)"
+        },
+        {
+          "label": "关键",
+          "value": "算术强度"
+        },
+        {
+          "label": "适用",
+          "value": "AI / 高性能计算"
+        }
+      ],
+      "highlights": [
+        "识别算力/带宽瓶颈",
+        "AI 系统的重要模型"
+      ],
+      "tags": [
+        "Roofline",
+        "AI 系统"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "model",
+      "slug": "roofline",
+      "name": "Roofline",
+      "name_en": "Roofline Model",
+      "eraSlug": "heterogeneous",
+      "formula": "性能 = min(峰值算力, 带宽 × 算术强度)",
+      "variables": [
+        {
+          "symbol": "peak",
+          "name": "峰值算力",
+          "unit": "FLOPS"
+        },
+        {
+          "symbol": "BW",
+          "name": "带宽",
+          "unit": "B/s"
+        },
+        {
+          "symbol": "AI",
+          "name": "算术强度",
+          "unit": "FLOP/B"
+        }
+      ],
+      "calculator": "roofline"
+    },
+    {
+      "type": "ai",
+      "category": "AI 概念",
+      "layer": "应用层",
+      "year": 2007,
+      "maker": "NVIDIA",
+      "formFactor": null,
+      "sceneKey": null,
+      "summary": "GPU 的线程执行模型：一条指令驱动多个线程。",
+      "description": [
+        "SIMT 是 GPU 的线程执行模型：一条指令驱动多个线程，硬件以 warp 为单位调度。",
+        "当 warp 内线程走不同分支时会发生分化，部分线程被屏蔽；当访存不连续时，合并访存失效，带宽利用率下降。",
+        "SIMT 用大量线程隐藏延迟，因此 GPU 优化常常是“让更多线程有活干”，而不是减少单线程指令数。",
+        "理解 SIMT，是理解 GPU 为什么快、以及为什么某些程序在 GPU 上并不快的关键。"
+      ],
+      "specs": [
+        {
+          "label": "执行单位",
+          "value": "warp"
+        },
+        {
+          "label": "优化目标",
+          "value": "吞吐"
+        },
+        {
+          "label": "关键",
+          "value": "分支分化 / 合并访存"
+        }
+      ],
+      "highlights": [
+        "GPU 吞吐模型的基础",
+        "把并行映射到硬件"
+      ],
+      "tags": [
+        "SIMT",
+        "GPU"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "model",
+      "slug": "simt",
+      "name": "SIMT",
+      "name_en": "Single Instruction, Multiple Threads",
+      "eraSlug": "heterogeneous"
+    },
+    {
+      "slug": "hbm",
+      "type": "hardware",
+      "name": "高带宽内存",
+      "name_en": "High Bandwidth Memory",
+      "category": "存储",
+      "layer": "器件层",
+      "eraSlug": "heterogeneous",
+      "year": 2015,
+      "maker": "JEDEC / industry consortium",
+      "formFactor": "component",
+      "summary": "通过堆叠与宽接口提供高带宽的 DRAM，是 AI 加速器的关键存储。",
+      "description": [
+        "HBM 通过多层 DRAM 堆叠与硅通孔，把宽接口放在处理器附近，用更高带宽替代传统显存颗粒的窄总线。",
+        "它的核心指标是带宽与容量，代价是封装复杂度与成本。HBM 让 GPU 能在单位时间内搬运更多数据。",
+        "在 AI 负载中，矩阵乘需要反复读取权重与激活值。当算力增长快于带宽时，HBM 就成为系统设计的关键。",
+        "HBM 不是“更快的内存”这么简单，它把存储、封装与互连捆绑在一起，是异构计算系统的一部分。"
+      ],
+      "specs": [
+        {
+          "label": "结构",
+          "value": "多层 DRAM 堆叠"
+        },
+        {
+          "label": "接口",
+          "value": "宽接口 / 硅通孔"
+        },
+        {
+          "label": "关键指标",
+          "value": "带宽 / 容量"
+        }
+      ],
+      "highlights": [
+        "缓解 AI 带宽瓶颈",
+        "与先进封装紧密相关"
+      ],
+      "tags": [
+        "HBM",
+        "AI 存储"
+      ],
+      "significance": [
+        "AI 加速器的关键存储",
+        "把封装与带宽推到系统核心"
+      ],
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "accent": "#76e6a8",
+      "icon": "memory"
+    }
+  ],
+  "events": [
+    {
+      "slug": "pascal-adder-1642",
+      "year": 1642,
+      "dateLabel": "1642 年",
+      "lane": "hardware",
+      "title": "帕斯卡加法器",
+      "summary": "用齿轮与自动进位完成加法，机械计算开始拥有可复用的运算机构。",
+      "eraSlug": "mechanical",
+      "importance": 2,
+      "entitySlugs": [],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "leibniz-reckoner-1673",
+      "year": 1673,
+      "dateLabel": "1673 年",
+      "lane": "hardware",
+      "title": "莱布尼茨计算器",
+      "summary": "把乘除分解为可重复的机械步骤，扩展了自动计算的范围。",
+      "eraSlug": "mechanical",
+      "importance": 2,
+      "entitySlugs": [],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "jacquard-loom-1801",
+      "year": 1801,
+      "dateLabel": "1801 年",
+      "lane": "idea",
+      "title": "杰卡德穿孔卡片织布机",
+      "summary": "穿孔卡把程序与机器动作分离，为后来的输入与可编程性提供原型。",
+      "eraSlug": "mechanical",
+      "importance": 3,
+      "entitySlugs": [],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "analytical-engine-1837",
+      "year": 1837,
+      "dateLabel": "1830s",
+      "lane": "idea",
+      "title": "巴贝奇分析机设计",
+      "summary": "输入、存储、处理、控制、输出五个部件已经出现，逻辑上指向通用计算机。",
+      "eraSlug": "mechanical",
+      "importance": 3,
+      "entitySlugs": [],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "boolean-algebra-1847",
+      "year": 1847,
+      "dateLabel": "1847 年",
+      "lane": "idea",
+      "title": "布尔代数",
+      "summary": "用 0/1 逻辑表达命题运算，为二进制逻辑电路提供数学基础。",
+      "eraSlug": "mechanical",
+      "importance": 2,
+      "entitySlugs": [],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "eniac-completed",
+      "year": 1946,
+      "dateLabel": "1946 年 2 月",
+      "lane": "hardware",
+      "title": "ENIAC 通过验收",
+      "summary": "电子管计算机证明高速电子计算可行，但程序仍靠接线设置。",
+      "eraSlug": "electronic-early",
+      "importance": 3,
+      "entitySlugs": [
+        "eniac",
+        "vacuum-tube"
+      ],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "univac-i-delivered",
+      "year": 1951,
+      "dateLabel": "1951 年",
+      "lane": "hardware",
+      "title": "UNIVAC I 交付",
+      "summary": "存储程序计算机进入商业数据处理。",
+      "eraSlug": "electronic-early",
+      "importance": 2,
+      "entitySlugs": [
+        "univac-i"
+      ],
+      "sources": [
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "fortran-compiler",
+      "year": 1957,
+      "dateLabel": "1957 年",
+      "lane": "software",
+      "title": "FORTRAN 编译器发布",
+      "summary": "高级语言开始通过编译器生成机器码。",
+      "eraSlug": "electronic-early",
+      "importance": 2,
+      "entitySlugs": [
+        "compiler",
+        "assembler"
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "ibm-pc-released",
+      "year": 1981,
+      "dateLabel": "1981 年",
+      "lane": "hardware",
+      "title": "IBM PC 发布",
+      "summary": "开放架构与标准化组件催生 PC 兼容机生态。",
+      "eraSlug": "pc-web",
+      "importance": 3,
+      "entitySlugs": [
+        "ibm-pc-5150",
+        "microprocessor"
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "macintosh-released",
+      "year": 1984,
+      "dateLabel": "1984 年",
+      "lane": "hardware",
+      "title": "Macintosh 发布",
+      "summary": "图形界面与鼠标进入主流个人计算机。",
+      "eraSlug": "pc-web",
+      "importance": 2,
+      "entitySlugs": [
+        "macintosh-128k"
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "m1-announced",
+      "year": 2020,
+      "dateLabel": "2020 年",
+      "lane": "hardware",
+      "title": "Apple M1 发布",
+      "summary": "统一内存与 SoC 设计展示能效优先的异构集成。",
+      "eraSlug": "heterogeneous",
+      "importance": 2,
+      "entitySlugs": [
+        "apple-m1"
+      ],
+      "sources": [
+        {
+          "id": "apple-m1",
+          "title": "Apple M1",
+          "publisher": "Apple",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    },
+    {
+      "slug": "h100-released",
+      "year": 2022,
+      "dateLabel": "2022 年",
+      "lane": "hardware",
+      "title": "NVIDIA H100 发布",
+      "summary": "GPU + HBM + NVLink 成为 AI 系统的核心形态。",
+      "eraSlug": "heterogeneous",
+      "importance": 3,
+      "entitySlugs": [
+        "nvidia-h100",
+        "gpu"
+      ],
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "slug": "program-to-machine",
+      "number": 1,
+      "sortOrder": 1,
+      "title": "程序如何变成机器指令并被执行？",
+      "shortTitle": "程序到机器",
+      "question": "用 C 或 Java 编写的程序如何被翻译成机器语言，硬件如何执行最终的程序？",
+      "oneLineAnswer": "高级语言先经编译/解释变成 ISA 指令，处理器再按取指-译码-执行-访存-写回循环运行。",
+      "summary": "从 C/Java 源码到机器码的翻译路径，以及处理器的执行循环。",
+      "answerSections": [
+        {
+          "heading": "先给结论：一条多层翻译链",
+          "body": [
+            "C 程序通常经过预处理、编译、汇编、链接与加载，最终变成处理器可执行的机器指令；Java 程序先编译成字节码，再由 JVM 解释或 JIT 编译。",
+            "“程序在运行”并不是源代码被硬件直接读懂，而是某个软件层已经把高级语言翻译成了 ISA 指令，处理器再按指令周期执行。"
+          ]
+        },
+        {
+          "heading": "C 的路径：从源文件到进程",
+          "body": [
+            "编译器把 .c 文件翻译成汇编，汇编器把汇编编码成目标文件，链接器合并库与符号，加载器建立进程地址空间并跳转到入口。",
+            "目标文件里不只有机器码，还有符号表、重定位信息、段与调试信息。链接与加载是“程序变成进程”的关键步骤。",
+            "编译器可以做内联、循环变换、向量化与寄存器分配；这些优化会改变指令数与 CPI，因此性能问题不能只归因于硬件。"
+          ]
+        },
+        {
+          "heading": "Java 的路径：字节码与运行时",
+          "body": [
+            "javac 把 Java 源码编译成 JVM 字节码。字节码不是任何真实 CPU 的机器码，它由 JVM 解释执行，或由 JIT 在运行时编译成目标机器码。",
+            "JIT 会根据热点做投机优化，因此 Java 程序存在预热阶段；启动性能与峰值性能可能由不同机制决定。",
+            "这也说明 ISA 之上可以再加一层虚拟 ISA：跨平台抽象并不是免费的，它把部分翻译工作推迟到了运行时。"
+          ]
+        },
+        {
+          "heading": "硬件如何执行：取指—译码—执行—访存—写回",
+          "body": [
+            "处理器用 PC 指向下一条指令，取指后译码，读寄存器、执行运算、访问存储器，最后把结果写回寄存器。",
+            "指令格式、寄存器约定、寻址方式与异常/特权级共同构成 ISA；微架构则决定这些指令如何被流水线、乱序或并行执行。",
+            "现代处理器还会预测分支、预取数据、重命名寄存器。程序员看到的“顺序执行”，是硬件在背后维持的抽象。"
+          ]
+        },
+        {
+          "heading": "这条链对程序员意味着什么",
+          "body": [
+            "理解翻译链，才能解释 ABI 不兼容、动态库缺失、JIT 预热、内联失败与性能分析中的符号缺失。",
+            "优化程序时，算法与数据布局决定指令数与访存；编译选项与硬件决定 CPI 与并行效率。只盯着其中一层，往往会误判瓶颈。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "ISA",
+          "slug": "riscv-isa"
+        },
+        {
+          "name": "编译流水线"
+        },
+        {
+          "name": "取指-译码-执行"
+        }
+      ],
+      "timelineAnchors": [
+        {
+          "eraSlug": "electronic-early",
+          "machineSlug": "eniac",
+          "eventSlug": "eniac-completed",
+          "label": "电子管时代"
+        },
+        {
+          "eraSlug": "pc-web",
+          "machineSlug": "ibm-pc-5150",
+          "eventSlug": "ibm-pc-released",
+          "label": "个人计算机"
+        },
+        {
+          "eraSlug": "heterogeneous",
+          "machineSlug": "nvidia-h100",
+          "label": "加速器时代"
+        }
+      ],
+      "entitySlugs": [
+        "compiler",
+        "assembler",
+        "linker",
+        "loader",
+        "java-jvm",
+        "riscv-isa",
+        "cpu-performance"
+      ],
+      "modelSlugs": [
+        "cpu-performance"
+      ],
+      "aiModuleSlugs": [],
+      "sceneKeys": [
+        "datapath"
+      ],
+      "calculator": null,
+      "interaction": {
+        "type": "compiler-pipeline"
+      },
+      "book": {
+        "chapter": 1,
+        "section": "1.3",
+        "pages": "p.31–33"
+      },
+      "misconceptions": [
+        "字节码就是机器码",
+        "编译器一步完成所有翻译",
+        "ISA 就是微架构",
+        "理解了源码就等于理解了执行"
+      ],
+      "quiz": [
+        {
+          "question": "Java 字节码通常由谁执行或编译？",
+          "options": [
+            "CPU 直接执行",
+            "JVM",
+            "链接器"
+          ],
+          "answer": 1,
+          "explain": "JVM 负责解释或 JIT 编译字节码。"
+        },
+        {
+          "question": "RISC-V 的 add 属于哪类指令？",
+          "options": [
+            "算术/寄存器型",
+            "访存型",
+            "分支型"
+          ],
+          "answer": 0,
+          "explain": "add 从寄存器取值并写回寄存器。"
+        },
+        {
+          "question": "减少指令数一定会缩短执行时间吗？",
+          "options": [
+            "一定",
+            "不一定",
+            "完全无关"
+          ],
+          "answer": 1,
+          "explain": "还取决于 CPI 与时钟周期。"
+        }
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "riscv-spec",
+          "title": "The RISC-V Instruction Set Manual",
+          "publisher": "RISC-V International",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "chm-eniac",
+          "title": "ENIAC",
+          "publisher": "Computer History Museum",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "status": "published"
+    },
+    {
+      "slug": "software-hardware-interface",
+      "number": 2,
+      "sortOrder": 2,
+      "title": "软件和硬件之间的接口是什么？",
+      "shortTitle": "软硬件接口",
+      "question": "软件和硬件之间的接口是什么？软件如何指导硬件执行所需的功能？",
+      "oneLineAnswer": "ISA 是契约，ABI、系统调用、驱动与内存映射 I/O 是软件实际使用硬件的边界。",
+      "summary": "ISA、ABI、OS 与设备接口如何共同构成软硬件边界。",
+      "answerSections": [
+        {
+          "heading": "ISA 是契约，不是实现",
+          "body": [
+            "ISA 定义指令、寄存器、寻址、异常与特权级；编译器面向 ISA 生成代码，硬件实现负责执行。",
+            "同一份 ISA 程序可以在不同微架构上运行，但性能、功耗与扩展能力取决于实现。ISA 稳定，微架构可以快速迭代。"
+          ]
+        },
+        {
+          "heading": "ABI、操作系统与驱动",
+          "body": [
+            "ABI 规定调用约定、寄存器使用、数据布局与系统调用接口；操作系统通过页表、中断与驱动管理硬件。",
+            "内存映射 I/O、DMA 与设备寄存器让软件可以控制外设；系统调用则是用户态进入内核态的受控入口。",
+            "因此，软硬件接口不只是一条指令，而是一组从 ISA 到 OS 再到驱动的分层契约。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "ISA"
+        },
+        {
+          "name": "ABI"
+        },
+        {
+          "name": "系统调用"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "riscv-isa",
+        "compiler"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 2,
+        "section": "2.1",
+        "pages": "p.66–68"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "program-performance",
+      "number": 3,
+      "sortOrder": 3,
+      "title": "什么决定程序性能，程序员如何改进？",
+      "shortTitle": "程序性能",
+      "question": "什么因素决定了程序的性能，以及程序员如何改进程序性能？",
+      "oneLineAnswer": "性能由算法/数据访问、编译产物与硬件执行效率共同决定；用 CPU 时间公式分解，用测量找瓶颈。",
+      "summary": "用 IC、CPI、时钟、局部性与并行解释性能，并给出程序员可操作的杠杆。",
+      "answerSections": [
+        {
+          "heading": "性能到底是什么",
+          "body": [
+            "性能可以从响应时间与吞吐率两个角度看：前者关心一次任务多快完成，后者关心单位时间能完成多少任务。",
+            "讨论性能前必须先确定基准、输入规模与测量方法。不同基准会给出不同结论，脱离工作负载谈“更快”没有意义。"
+          ]
+        },
+        {
+          "heading": "CPU 时间的三因子",
+          "body": [
+            "CPU 时间 = 指令数 × CPI × 时钟周期。减少指令数、降低 CPI、提高频率都可能缩短时间，但三者常常相互牵制。",
+            "例如，更复杂的指令可能减少指令数，却提高 CPI；更高的频率可能增加功耗，限制并行度。优化必须看乘积，而不是单个指标。",
+            "真实程序还要加上访存、I/O、操作系统与同步开销。CPU 时间公式是分解工具，不是完整模型。"
+          ]
+        },
+        {
+          "heading": "存储层次与并行",
+          "body": [
+            "Cache 用局部性把频繁访问的数据放在更快的层次。AMAT = 命中时间 + 缺失率 × 缺失代价，数据布局与循环顺序会直接改变它。",
+            "并行并不是免费的午餐。Amdahl 定律说明串行部分限制整体加速比；通信、同步与负载不均会吃掉多核收益。",
+            "Roofline 进一步提醒我们：当算术强度低时，性能受带宽限制；此时增加算力并不能解决问题。"
+          ]
+        },
+        {
+          "heading": "程序员可操作的杠杆",
+          "body": [
+            "第一层是算法与数据结构：减少工作量通常比微调指令更有效。第二层是数据局部性：分块、合并访问、减少指针追逐。",
+            "第三层是编译与运行时：优化级别、内联、向量化、JIT 预热与运行时参数都会影响结果。第四层是并行与精度：线程、SIMD、GPU 与低精度格式各有适用边界。",
+            "最重要的是测量：先用 profiler 找到真实瓶颈，再决定优化方向。凭直觉猜瓶颈，往往会优化错地方。"
+          ]
+        },
+        {
+          "heading": "常见误区",
+          "body": [
+            "“频率越高越快”忽略了 CPI、并行与功耗；“IPC 越高越好”忽略了指令数与工作负载；“并行一定加速”忽略了 Amdahl 与通信开销。",
+            "基准测试也有陷阱：缓存热、输入太小、编译器把计算优化掉，都会让数字失真。好的性能结论必须可复现。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "CPI",
+          "slug": "cpu-performance"
+        },
+        {
+          "name": "AMAT",
+          "slug": "cache-amat"
+        },
+        {
+          "name": "Roofline",
+          "slug": "roofline"
+        }
+      ],
+      "timelineAnchors": [
+        {
+          "eraSlug": "pc-web",
+          "machineSlug": "macintosh-128k",
+          "eventSlug": "macintosh-released",
+          "label": "个人计算机"
+        },
+        {
+          "eraSlug": "heterogeneous",
+          "machineSlug": "nvidia-h100",
+          "eventSlug": "h100-released",
+          "label": "AI 加速器"
+        }
+      ],
+      "entitySlugs": [
+        "cpu-performance",
+        "cache-amat",
+        "roofline",
+        "compiler"
+      ],
+      "modelSlugs": [
+        "cpu-performance",
+        "cache-amat",
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [
+        "datapath",
+        "memory-hierarchy"
+      ],
+      "calculator": "cpu",
+      "interaction": {
+        "type": "performance-levers"
+      },
+      "book": {
+        "chapter": 1,
+        "section": "1.6",
+        "pages": "p.43–51"
+      },
+      "misconceptions": [
+        "频率越高越快",
+        "IPC 越高越好",
+        "并行一定加速",
+        "缓存越大越好"
+      ],
+      "quiz": [
+        {
+          "question": "程序指令数减少 20%，CPI 上升 30%，性能如何变化？",
+          "options": [
+            "一定更快",
+            "不一定",
+            "一定更慢"
+          ],
+          "answer": 1,
+          "explain": "需要结合时钟周期与整体乘积判断。"
+        },
+        {
+          "question": "提高缓存命中率通常改善什么？",
+          "options": [
+            "AMAT",
+            "ISA 位宽",
+            "磁盘容量"
+          ],
+          "answer": 0,
+          "explain": "命中率提高会降低平均访存时间。"
+        },
+        {
+          "question": "Amdahl 定律说明什么？",
+          "options": [
+            "并行加速有上限",
+            "频率无限提升",
+            "缓存一定命中"
+          ],
+          "answer": 0,
+          "explain": "串行部分限制整体加速比。"
+        }
+      ],
+      "sources": [
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "riscv-spec",
+          "title": "The RISC-V Instruction Set Manual",
+          "publisher": "RISC-V International",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        }
+      ],
+      "status": "published"
+    },
+    {
+      "slug": "hardware-performance",
+      "number": 4,
+      "sortOrder": 4,
+      "title": "硬件设计者如何提升性能？",
+      "shortTitle": "硬件性能",
+      "question": "硬件设计人员可以使用哪些技术来提高性能？",
+      "oneLineAnswer": "通过并行、局部性、预测、专用化与更好的互连提升性能，同时受功耗、面积和复杂度约束。",
+      "summary": "流水线、缓存、预测、多核与加速器的设计取舍。",
+      "answerSections": [
+        {
+          "heading": "并行与流水线",
+          "body": [
+            "流水线把一条指令拆成多个阶段，让不同指令重叠执行；超标量与乱序进一步利用指令级并行。",
+            "分支预测、寄存器重命名与推测执行用来减少停顿，但也会带来功耗与安全代价（如侧信道）。"
+          ]
+        },
+        {
+          "heading": "存储、预测与专用化",
+          "body": [
+            "多级 Cache、预取与一致性协议让多核共享数据；SIMD 与 GPU 用数据并行提高吞吐。",
+            "加速器把特定负载做成专用硬件，换取能效与性能，但要求软件栈与编程模型配合。硬件设计永远是取舍。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "流水线"
+        },
+        {
+          "name": "Cache"
+        },
+        {
+          "name": "SIMT"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "gpu",
+        "microprocessor",
+        "cache-amat"
+      ],
+      "modelSlugs": [
+        "cache-amat",
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 4,
+        "section": "4.5",
+        "pages": "p.206–246"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "energy-efficiency",
+      "number": 5,
+      "sortOrder": 5,
+      "title": "硬件和程序员如何改善能效？",
+      "shortTitle": "能效",
+      "question": "硬件设计人员可以使用哪些技术来改善能效？程序员可以做些什么来改变能效？",
+      "oneLineAnswer": "能效 = 完成的工作 / 消耗的能量；降低电压/开关/数据搬运，专用化与低精度都能改善。",
+      "summary": "功耗公式、Dennard 缩放与程序员可操作的能效杠杆。",
+      "answerSections": [
+        {
+          "heading": "功耗从哪里来",
+          "body": [
+            "动态功耗大致与电容、电压平方和频率成正比；静态功耗来自漏电。降低电压与开关活动通常比单纯提频更有效。",
+            "数据搬运也消耗能量：从 DRAM 取一个数往往比一次算术运算更贵。存储层次与数据复用因此也是能效问题。"
+          ]
+        },
+        {
+          "heading": "程序员能做什么",
+          "body": [
+            "选择合适精度、减少冗余数据搬运、提高局部性、利用专用单元与并行，都能改善能效。",
+            "能效不是单一数字，而是“完成多少有用工作 / 消耗多少能量”。脱离工作负载谈每瓦性能同样会误导。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "能效"
+        },
+        {
+          "name": "功耗墙"
+        },
+        {
+          "name": "量化"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "apple-m1",
+        "nvidia-h100",
+        "gpu"
+      ],
+      "modelSlugs": [
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "serial-to-parallel",
+      "number": 6,
+      "sortOrder": 6,
+      "title": "为什么从串行走向并行，结果如何？",
+      "shortTitle": "串行到并行",
+      "question": "串行处理近来发展到并行处理的原因和结果是什么？",
+      "oneLineAnswer": "功耗与 ILP 受限，硬件转向多核、SIMD、GPU 与集群；性能取决于并行度、通信与 Amdahl 定律。",
+      "summary": "从频率提升到并行化的动因、硬件机制与软件后果。",
+      "answerSections": [
+        {
+          "heading": "为什么转向并行",
+          "body": [
+            "Dennard 缩放结束后，继续提高频率带来的功耗与散热代价越来越大；单核指令级并行也遇到收益递减。",
+            "多核、SIMD、GPU 与集群成为继续提升性能的路径。硬件从“更快的单线程”转向“更多的并行执行单元”。"
+          ]
+        },
+        {
+          "heading": "结果与代价",
+          "body": [
+            "并行提高了峰值吞吐，但把问题推给了软件：数据划分、同步、通信与负载均衡决定实际加速比。",
+            "Amdahl 定律与 Roofline 提醒我们：串行部分、带宽与通信可能成为新瓶颈。并行不是自动加速。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "多核"
+        },
+        {
+          "name": "SIMD"
+        },
+        {
+          "name": "Amdahl"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "gpu",
+        "apple-m1",
+        "nvidia-h100"
+      ],
+      "modelSlugs": [
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 6,
+        "section": "6.1",
+        "pages": "p.354–370"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    },
+    {
+      "slug": "great-ideas",
+      "number": 7,
+      "sortOrder": 7,
+      "title": "1951 年以来有哪些伟大思想？",
+      "shortTitle": "伟大思想",
+      "question": "自 1951 年第一台商用计算机以来，计算机架构师提出的哪些伟大思想奠定了现代计算技术的基础？",
+      "oneLineAnswer": "八个伟大思想：面向摩尔定律设计、抽象、加速经常性事件、并行、流水线、预测、存储层次、冗余。",
+      "summary": "用八个反复出现的设计思想串起现代计算史。",
+      "answerSections": [
+        {
+          "heading": "八个伟大思想",
+          "body": [
+            "面向摩尔定律设计、用抽象简化设计、加速经常性事件、通过并行提高性能、通过流水线提高性能、通过预测提高性能、使用存储层次、通过冗余提高可靠性。",
+            "这些思想不是历史陈列，而是今天设计 CPU、GPU 与系统的常用工具。遇到新问题时，先问它属于哪一类取舍。"
+          ]
+        },
+        {
+          "heading": "如何用它们读历史",
+          "body": [
+            "ENIAC 的电子管是器件层突破；存储程序是抽象；Cache 是存储层次；GPU 是并行与专用化；RAID/ECC 是冗余。",
+            "把机器放回思想框架，历史就不再是年份列表，而是一组反复出现的设计选择。"
+          ]
+        }
+      ],
+      "keyConcepts": [
+        {
+          "name": "抽象"
+        },
+        {
+          "name": "并行"
+        },
+        {
+          "name": "存储层次"
+        }
+      ],
+      "timelineAnchors": [],
+      "entitySlugs": [
+        "eniac",
+        "ibm-pc-5150",
+        "nvidia-h100"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "sceneKeys": [],
+      "calculator": null,
+      "interaction": null,
+      "book": {
+        "chapter": 1,
+        "section": "1.2",
+        "pages": "p.29–31"
+      },
+      "misconceptions": [],
+      "quiz": [],
+      "sources": [],
+      "status": "planned"
+    }
+  ],
+  "aiModules": [
+    {
+      "slug": "gpu-why-fast",
+      "sortOrder": 2,
+      "title": "GPU 为什么快",
+      "level": "入门",
+      "durationMin": 20,
+      "summary": "用 CPU/GPU 的设计取舍、SIMT、HBM 与 Roofline 解释吞吐优先的硬件，以及 AI 系统的真实瓶颈。",
+      "objectives": [
+        "解释 CPU 与 GPU 的设计目标差异",
+        "理解 SIMT / warp 与线程分化",
+        "说明 HBM 与存储层次对性能的影响",
+        "用 Roofline 判断 compute-bound 与 memory-bound",
+        "把 GPU 放回 AI 系统的软硬件栈"
+      ],
+      "sections": [
+        {
+          "heading": "CPU 与 GPU：延迟优先 vs 吞吐优先",
+          "type": "text",
+          "body": [
+            "CPU 把大量晶体管用于分支预测、乱序执行与大容量缓存，目标是让单线程尽快完成。GPU 则把更多资源投向并行执行单元，用大量线程隐藏延迟。",
+            "这解释了一个常见现象：GPU 的单线程性能不一定强，但在矩阵乘、卷积与注意力这类规则并行负载上，吞吐可以高出一个数量级。"
+          ]
+        },
+        {
+          "heading": "SIMT 与 warp",
+          "type": "text",
+          "body": [
+            "GPU 以 warp 为单位调度线程，一条指令驱动多个线程。线程走不同分支时会发生分化，部分线程被屏蔽；访存不连续时，合并访存失效。",
+            "因此，GPU 优化常常是“让更多线程有活干、让访存更连续”，而不是减少单线程指令数。"
+          ]
+        },
+        {
+          "heading": "存储层次与 HBM",
+          "type": "text",
+          "body": [
+            "GPU 的存储层次包括寄存器、共享内存、L1/L2 与 HBM。寄存器与共享内存容量小但快，HBM 容量大但延迟高。",
+            "矩阵乘需要反复读取权重与激活值。当算力增长快于带宽时，HBM 带宽与数据复用就成为系统瓶颈。"
+          ]
+        },
+        {
+          "heading": "Roofline 与系统视角",
+          "type": "text",
+          "body": [
+            "Roofline 用峰值算力与带宽画出性能上限。算术强度低时受带宽限制，强度高时才可能接近算力上限。",
+            "H100 不只是 GPU 芯片：HBM、NVLink、PCIe 与集群软件共同决定训练效率。把加速器放回系统，才能解释真实性能。"
+          ]
+        }
+      ],
+      "entitySlugs": [
+        "gpu",
+        "nvidia-h100",
+        "simt"
+      ],
+      "calculator": "roofline",
+      "quiz": [
+        {
+          "question": "GPU 的主要优化目标是什么？",
+          "options": [
+            "单线程延迟",
+            "吞吐",
+            "磁盘容量"
+          ],
+          "answer": 1,
+          "explain": "GPU 用并行线程提高吞吐。"
+        },
+        {
+          "question": "SIMT 中一组线程通常称为什么？",
+          "options": [
+            "warp",
+            "page",
+            "sector"
+          ],
+          "answer": 0,
+          "explain": "NVIDIA GPU 以 warp 为执行单位。"
+        },
+        {
+          "question": "算术强度低通常意味着什么？",
+          "options": [
+            "算力受限",
+            "带宽受限",
+            "不受限"
+          ],
+          "answer": 1,
+          "explain": "每字节计算少，更容易受带宽限制。"
+        }
+      ],
+      "sources": [
+        {
+          "id": "nvidia-h100",
+          "title": "NVIDIA H100 Tensor Core GPU",
+          "publisher": "NVIDIA",
+          "tier": "primary",
+          "accessed": "2026-11-17"
+        },
+        {
+          "id": "book-cod-riscv",
+          "title": "Computer Organization and Design: RISC-V Edition",
+          "publisher": "Patterson & Hennessy",
+          "tier": "secondary",
+          "accessed": "2026-11-17"
+        }
+      ]
     }
   ],
   "relations": [
     {
       "source": "eniac",
-      "target": "cache",
+      "target": "vacuum-tube",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "univac-i",
+      "target": "vacuum-tube",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "ibm-pc-5150",
+      "target": "microprocessor",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "macintosh-128k",
+      "target": "microprocessor",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "apple-m1",
+      "target": "gpu",
+      "kind": "contains",
+      "label": "集成"
+    },
+    {
+      "source": "nvidia-h100",
+      "target": "gpu",
+      "kind": "uses",
+      "label": "采用"
+    },
+    {
+      "source": "nvidia-h100",
+      "target": "simt",
+      "kind": "implements",
+      "label": "采用"
+    },
+    {
+      "source": "simt",
+      "target": "gpu",
+      "kind": "runs-on",
+      "label": "运行于"
+    },
+    {
+      "source": "compiler",
+      "target": "assembler",
       "kind": "depends",
       "label": "依赖"
+    },
+    {
+      "source": "compiler",
+      "target": "riscv-isa",
+      "kind": "implements",
+      "label": "面向"
+    },
+    {
+      "source": "assembler",
+      "target": "riscv-isa",
+      "kind": "implements",
+      "label": "编码"
+    },
+    {
+      "source": "linker",
+      "target": "assembler",
+      "kind": "depends",
+      "label": "合并"
+    },
+    {
+      "source": "loader",
+      "target": "linker",
+      "kind": "depends",
+      "label": "加载"
+    },
+    {
+      "source": "java-jvm",
+      "target": "riscv-isa",
+      "kind": "implements",
+      "label": "运行于"
     },
     {
       "source": "cpu-performance",
       "target": "eniac",
       "kind": "measures",
       "label": "度量"
+    },
+    {
+      "source": "cache-amat",
+      "target": "apple-m1",
+      "kind": "measures",
+      "label": "度量"
+    },
+    {
+      "source": "roofline",
+      "target": "nvidia-h100",
+      "kind": "measures",
+      "label": "度量"
+    },
+    {
+      "source": "nvidia-h100",
+      "target": "hbm",
+      "kind": "uses",
+      "label": "采用"
     }
   ],
   "instructions": [
@@ -634,6 +2995,2467 @@
         "用于结构验证",
         "M1 替换"
       ]
+    }
+  ],
+  "timelineNodes": [
+    {
+      "slug": "pascal-adder",
+      "periodSlug": "mechanical",
+      "lane": "hardware",
+      "year": 1642,
+      "title": "帕斯卡加法器",
+      "summary": "用齿轮与自动进位完成加法。",
+      "body": "帕斯卡把进位机构做进齿轮，第一次让“自动进位”成为可操作的机械装置。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 0,
+      "sceneKey": "mechanical-pascal"
+    },
+    {
+      "slug": "leibniz-reckoner",
+      "periodSlug": "mechanical",
+      "lane": "hardware",
+      "year": 1673,
+      "title": "莱布尼茨计算器",
+      "summary": "用步进鼓把乘除分解为可重复的加减。",
+      "body": "莱布尼茨在帕斯卡加法器的基础上扩展乘除。步进鼓通过不同高度的齿阶，把“乘以某一位”变成可重复的机械动作。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": "mechanical-leibniz",
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 1
+    },
+    {
+      "slug": "jacquard-loom",
+      "periodSlug": "mechanical",
+      "lane": "hardware",
+      "year": 1801,
+      "title": "杰卡德穿孔卡片织布机",
+      "summary": "用穿孔卡控制织布图案。",
+      "body": "穿孔卡把图案指令从机器结构中抽出来，成为可更换、可复制的程序载体。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 1,
+      "sceneKey": "mechanical-jacquard"
+    },
+    {
+      "slug": "analytical-engine",
+      "periodSlug": "mechanical",
+      "lane": "hardware",
+      "year": 1830,
+      "title": "巴贝奇分析机",
+      "summary": "包含输入、存储、处理、控制、输出的机械通用计算机。",
+      "body": "分析机借鉴穿孔卡控制运算流程，逻辑上已经指向通用计算机；受制造工艺限制未完整建成。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "great-ideas"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 2,
+      "sceneKey": "mechanical-analytical-engine"
+    },
+    {
+      "slug": "hollerith-tabulator",
+      "periodSlug": "mechanical",
+      "lane": "hardware",
+      "year": 1890,
+      "title": "霍列瑞斯制表机",
+      "summary": "用穿孔卡处理人口统计数据。",
+      "body": "制表机把穿孔卡从织布控制扩展到数据记录与批量处理，成为早期数据处理的原型。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 3,
+      "sceneKey": "mechanical-hollerith"
+    },
+    {
+      "slug": "punched-card-program",
+      "periodSlug": "mechanical",
+      "lane": "software",
+      "year": 1801,
+      "title": "穿孔卡：程序成为配置",
+      "summary": "程序从机器结构中分离出来。",
+      "body": "卡片可以更换、复制和组合，机器动作由卡片序列决定，这是“程序作为输入”的早期形态。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 4,
+      "sceneKey": null
+    },
+    {
+      "slug": "ada-first-program",
+      "periodSlug": "mechanical",
+      "lane": "software",
+      "year": 1843,
+      "title": "艾达的第一个程序",
+      "summary": "为分析机写下计算步骤。",
+      "body": "艾达为分析机设计了计算伯努利数的步骤，并讨论机器能做什么、不能做什么。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 5,
+      "sceneKey": null
+    },
+    {
+      "slug": "babbage-control",
+      "periodSlug": "mechanical",
+      "lane": "software",
+      "year": 1830,
+      "title": "指令 barrel 与机器配置",
+      "summary": "用 barrel 控制运算流程。",
+      "body": "分析机的指令 barrel 把操作序列变成可更换的控制结构，接近后来的程序计数器与控制存储。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 6,
+      "sceneKey": null
+    },
+    {
+      "slug": "numerical-methods",
+      "periodSlug": "mechanical",
+      "lane": "algorithm",
+      "year": 1700,
+      "title": "数值方法",
+      "summary": "用有限步骤逼近数学问题的解。",
+      "body": "插值、差分、迭代等数值方法把连续数学问题转成可执行的有限步骤。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 7,
+      "sceneKey": null
+    },
+    {
+      "slug": "boolean-algebra",
+      "periodSlug": "mechanical",
+      "lane": "algorithm",
+      "year": 1847,
+      "title": "布尔代数",
+      "summary": "用 0/1 逻辑表达命题运算。",
+      "body": "布尔代数后来成为二进制逻辑电路的数学基础，把“真/假”映射为“开/关”。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 8,
+      "sceneKey": null
+    },
+    {
+      "slug": "turing-machine",
+      "periodSlug": "electronic-early",
+      "lane": "algorithm",
+      "year": 1936,
+      "title": "图灵机与可计算性",
+      "summary": "把“可计算”定义成机器模型。",
+      "body": "图灵用纸带、读写头与状态转移定义可计算性，为通用计算机提供了理论边界。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 9,
+      "sceneKey": null
+    },
+    {
+      "slug": "eniac",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1946,
+      "title": "ENIAC",
+      "summary": "第一台通用电子计算机之一。",
+      "body": "ENIAC 1945 年完成，1946 年 2 月正式公布；它用约 18,000 只电子管与 1,500 个继电器实现每秒约 5,000 次加法，程序仍靠接线与开关设置。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": "eniac",
+      "questionSlugs": [
+        "great-ideas",
+        "program-performance",
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "data",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 10,
+      "sceneKey": null
+    },
+    {
+      "slug": "transistor",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1947,
+      "title": "晶体管",
+      "summary": "固态器件取代电子管。",
+      "body": "贝尔实验室的点接触型锗晶体管体积更小、功耗更低、寿命更长，计算机可靠性显著提升。",
+      "generation": 2,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "hardware-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 11,
+      "sceneKey": null
+    },
+    {
+      "slug": "integrated-circuit",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1958,
+      "title": "集成电路",
+      "summary": "把多个元件集成在同一块半导体上。",
+      "body": "基尔比与诺伊斯的集成电路减少了分立元件与连线，让计算机继续小型化。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "hardware-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 12,
+      "sceneKey": null
+    },
+    {
+      "slug": "system-360",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1964,
+      "title": "IBM System/360",
+      "summary": "用产品家族把 ISA 变成契约。",
+      "body": "System/360 让不同性能档次的机器运行同一套软件，软件兼容性成为硬件演进的约束。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "great-ideas",
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "isa",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 13,
+      "sceneKey": null
+    },
+    {
+      "slug": "fortran",
+      "periodSlug": "electronic-early",
+      "lane": "software",
+      "year": 1957,
+      "title": "Fortran 编译器",
+      "summary": "高级语言开始生成机器码。",
+      "body": "Fortran 让科学家用接近数学的语法写程序，再由编译器翻译成机器指令。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": "compiler",
+      "questionSlugs": [
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "isa",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 14,
+      "sceneKey": null
+    },
+    {
+      "slug": "early-os",
+      "periodSlug": "electronic-early",
+      "lane": "software",
+      "year": 1960,
+      "title": "操作系统雏形",
+      "summary": "批处理与资源管理出现。",
+      "body": "操作系统开始管理作业、内存与外设，软件从单段程序变成系统。",
+      "generation": 2,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 15,
+      "sceneKey": null
+    },
+    {
+      "slug": "system-360-isa",
+      "periodSlug": "electronic-early",
+      "lane": "software",
+      "year": 1964,
+      "title": "System/360 的 ISA 契约",
+      "summary": "同一指令集覆盖不同实现。",
+      "body": "ISA 与微架构分离：软件面向指令集，硬件可以在同一契约下用不同性能实现。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 16,
+      "sceneKey": null
+    },
+    {
+      "slug": "unix-prelude",
+      "periodSlug": "electronic-early",
+      "lane": "software",
+      "year": 1969,
+      "title": "Unix 前夜",
+      "summary": "可移植操作系统开始成形。",
+      "body": "Unix 用 C 重写，把操作系统从特定硬件中解耦出来，为后来的开源与跨平台生态埋下种子。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 17,
+      "sceneKey": null
+    },
+    {
+      "slug": "ai-birth",
+      "periodSlug": "electronic-early",
+      "lane": "algorithm",
+      "year": 1956,
+      "title": "AI 诞生",
+      "summary": "达特茅斯会议提出人工智能。",
+      "body": "符号主义、搜索与早期学习研究把“智能”变成可编程问题。",
+      "generation": 2,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 18,
+      "sceneKey": null
+    },
+    {
+      "slug": "basic-algorithms",
+      "periodSlug": "electronic-early",
+      "lane": "algorithm",
+      "year": 1960,
+      "title": "基础算法成形",
+      "summary": "排序、搜索、图与动态规划。",
+      "body": "算法分析开始用渐进复杂度描述规模，软件性能不再只取决于硬件。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 19,
+      "sceneKey": null
+    },
+    {
+      "slug": "intel-4004",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1971,
+      "title": "Intel 4004",
+      "summary": "第一款商用微处理器。",
+      "body": "4004 把 CPU 集成到单芯片，约 2,300 个晶体管，计算核心成为可大规模生产的标准商品。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": "microprocessor",
+      "questionSlugs": [
+        "energy-efficiency",
+        "hardware-performance",
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 20,
+      "sceneKey": null
+    },
+    {
+      "slug": "ibm-pc",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1981,
+      "title": "IBM PC",
+      "summary": "开放架构与兼容机生态。",
+      "body": "IBM PC 用标准总线与第三方软件把个人计算机变成产业，软件兼容性成为用户选择的关键。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": "ibm-pc-5150",
+      "questionSlugs": [
+        "great-ideas",
+        "program-performance",
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 21,
+      "sceneKey": null
+    },
+    {
+      "slug": "macintosh",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1984,
+      "title": "Macintosh 128K",
+      "summary": "图形界面与鼠标进入主流。",
+      "body": "一体机把屏幕、主机与系统软件打包，图形界面成为大众可接触的交互方式。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": "macintosh-128k",
+      "questionSlugs": [
+        "program-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 22,
+      "sceneKey": null
+    },
+    {
+      "slug": "gpu-1999",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1999,
+      "title": "GPU 可编程化",
+      "summary": "图形管线走向通用计算。",
+      "body": "GPU 用大量并行执行单元与高带宽显存处理像素和矩阵，吞吐优先的设计开始外溢到通用计算。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": "gpu",
+      "questionSlugs": [
+        "hardware-performance",
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 23,
+      "sceneKey": null
+    },
+    {
+      "slug": "unix-c",
+      "periodSlug": "pc-web",
+      "lane": "software",
+      "year": 1972,
+      "title": "Unix 与 C",
+      "summary": "操作系统与系统编程语言结合。",
+      "body": "C 让操作系统可以跨平台重写，Unix 的工具链与进程模型影响了后来的软件工程。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "isa",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 24,
+      "sceneKey": null
+    },
+    {
+      "slug": "gui",
+      "periodSlug": "pc-web",
+      "lane": "software",
+      "year": 1984,
+      "title": "图形用户界面",
+      "summary": "窗口、图标与鼠标。",
+      "body": "GUI 把计算机从命令行工具变成可视化工作环境，也推高了内存与图形硬件需求。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 25,
+      "sceneKey": null
+    },
+    {
+      "slug": "database",
+      "periodSlug": "pc-web",
+      "lane": "software",
+      "year": 1990,
+      "title": "关系数据库",
+      "summary": "把数据从程序中分离。",
+      "body": "关系模型、SQL 与事务让数据成为独立的基础设施，支撑企业软件与 Web 应用。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "io",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 26,
+      "sceneKey": null
+    },
+    {
+      "slug": "web",
+      "periodSlug": "pc-web",
+      "lane": "software",
+      "year": 1991,
+      "title": "World Wide Web",
+      "summary": "超文本把文档连成网络。",
+      "body": "浏览器、HTTP 与超链接把互联网变成可浏览的信息空间，Web 应用开始取代桌面软件。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 27,
+      "sceneKey": null
+    },
+    {
+      "slug": "public-key",
+      "periodSlug": "pc-web",
+      "lane": "algorithm",
+      "year": 1977,
+      "title": "公钥密码",
+      "summary": "用一对密钥解决密钥分发。",
+      "body": "RSA 等公钥体制让开放网络上的安全通信成为可能，算法直接进入协议与产品。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 28,
+      "sceneKey": null
+    },
+    {
+      "slug": "tcp-ip",
+      "periodSlug": "pc-web",
+      "lane": "algorithm",
+      "year": 1983,
+      "title": "TCP/IP",
+      "summary": "把异构网络连成互联网。",
+      "body": "TCP/IP 用分层协议与尽力而为的包交换连接不同网络，成为互联网的基础。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 29,
+      "sceneKey": null
+    },
+    {
+      "slug": "pagerank",
+      "periodSlug": "pc-web",
+      "lane": "algorithm",
+      "year": 1998,
+      "title": "PageRank",
+      "summary": "用链接结构给网页排序。",
+      "body": "PageRank 把整个 Web 当成图，用链接投票与随机游走评估节点重要性。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 30,
+      "sceneKey": null
+    },
+    {
+      "slug": "mobile-soc",
+      "periodSlug": "heterogeneous",
+      "lane": "hardware",
+      "year": 2007,
+      "title": "移动 SoC",
+      "summary": "把 CPU、GPU、基带与传感器放进手机。",
+      "body": "移动 SoC 用异构集成与低功耗设计把计算装进口袋，交互从键鼠变成触摸与传感器。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 31,
+      "sceneKey": null
+    },
+    {
+      "slug": "apple-m1",
+      "periodSlug": "heterogeneous",
+      "lane": "hardware",
+      "year": 2020,
+      "title": "Apple M1",
+      "summary": "统一内存与异构 SoC。",
+      "body": "M1 把 CPU、GPU、神经引擎与统一内存集成在一颗 SoC 中，以能效优先的方式组织计算。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": "apple-m1",
+      "questionSlugs": [
+        "energy-efficiency",
+        "hardware-performance",
+        "program-performance",
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [
+        "cache-amat"
+      ],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 32,
+      "sceneKey": null
+    },
+    {
+      "slug": "nvidia-h100",
+      "periodSlug": "heterogeneous",
+      "lane": "hardware",
+      "year": 2022,
+      "title": "NVIDIA H100",
+      "summary": "GPU + HBM + NVLink 的 AI 加速系统。",
+      "body": "H100 用大量并行执行单元、Tensor Core、HBM 与 NVLink 把 AI 训练与推理做成系统级平台。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": "nvidia-h100",
+      "questionSlugs": [
+        "energy-efficiency",
+        "great-ideas",
+        "hardware-performance",
+        "program-performance",
+        "program-to-machine",
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [
+        "roofline"
+      ],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 33,
+      "sceneKey": null
+    },
+    {
+      "slug": "gpu-cluster",
+      "periodSlug": "heterogeneous",
+      "lane": "hardware",
+      "year": 2020,
+      "title": "GPU 集群",
+      "summary": "从单卡到数据中心。",
+      "body": "多卡通过 NVLink/InfiniBand 互连，训练任务被切分到集群；通信拓扑与调度成为性能的一部分。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "energy-efficiency",
+        "serial-to-parallel",
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "parallel",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 34,
+      "sceneKey": null
+    },
+    {
+      "slug": "mobile-os",
+      "periodSlug": "heterogeneous",
+      "lane": "software",
+      "year": 2008,
+      "title": "移动 OS 与应用生态",
+      "summary": "触摸优先的操作系统。",
+      "body": "移动 OS 把应用商店、沙箱、传感器与电源管理打包成平台，软件分发方式随之改变。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 35,
+      "sceneKey": null
+    },
+    {
+      "slug": "cloud-open-source",
+      "periodSlug": "heterogeneous",
+      "lane": "software",
+      "year": 2010,
+      "title": "云与开源栈",
+      "summary": "计算变成可按需租用的服务。",
+      "body": "虚拟化、容器与开源基础设施把资源抽象成服务，软件部署从机器转向平台。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "io",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 36,
+      "sceneKey": null
+    },
+    {
+      "slug": "ai-frameworks",
+      "periodSlug": "heterogeneous",
+      "lane": "software",
+      "year": 2015,
+      "title": "AI 框架",
+      "summary": "把张量计算映射到 GPU/加速器。",
+      "body": "深度学习框架用计算图、自动微分与内核库把模型描述连接到硬件执行。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [
+        "gpu-why-fast"
+      ],
+      "lensSlugs": [
+        "overview",
+        "isa",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 37,
+      "sceneKey": null
+    },
+    {
+      "slug": "deep-learning",
+      "periodSlug": "heterogeneous",
+      "lane": "algorithm",
+      "year": 2012,
+      "title": "深度学习突破",
+      "summary": "多层神经网络在图像识别上取得突破。",
+      "body": "大规模数据、GPU 与反向传播结合，让表示学习从研究走向工程。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "great-ideas"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 38,
+      "sceneKey": null
+    },
+    {
+      "slug": "transformer",
+      "periodSlug": "heterogeneous",
+      "lane": "algorithm",
+      "year": 2017,
+      "title": "Transformer",
+      "summary": "用注意力替代循环结构。",
+      "body": "自注意力让序列建模高度并行，成为大语言模型与多模态模型的基础架构。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 39,
+      "sceneKey": null
+    },
+    {
+      "slug": "llm",
+      "periodSlug": "heterogeneous",
+      "lane": "algorithm",
+      "year": 2022,
+      "title": "大语言模型",
+      "summary": "参数、数据与算力共同扩展。",
+      "body": "大语言模型把预训练、规模扩展与对齐推到系统中心，显存带宽与互连成为关键瓶颈。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "questionSlugs": [
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 40,
+      "sceneKey": null
+    },
+    {
+      "slug": "bio-computing",
+      "periodSlug": "heterogeneous",
+      "lane": "algorithm",
+      "year": 2026,
+      "title": "生物计算（前沿）",
+      "summary": "用生物分子与细胞实现计算。",
+      "body": "基因开关、DNA 链置换、神经形态与细胞自动机仍在实验与工程化之间探索。",
+      "generation": 4,
+      "frontier": true,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "bio",
+        "overview"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 41,
+      "sceneKey": null
+    },
+    {
+      "slug": "optical-computing",
+      "periodSlug": "heterogeneous",
+      "lane": "algorithm",
+      "year": 2026,
+      "title": "光计算（前沿）",
+      "summary": "用光子完成计算与通信。",
+      "body": "数字光计算、光学傅里叶变换与光互连提供了不同于 CMOS 的能效与带宽路径。",
+      "generation": 4,
+      "frontier": true,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "optical",
+        "overview"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 42,
+      "sceneKey": null
+    },
+    {
+      "slug": "quantum-computing",
+      "periodSlug": "heterogeneous",
+      "lane": "algorithm",
+      "year": 2026,
+      "title": "量子计算（前沿）",
+      "summary": "用叠加与纠缠实现量子算法。",
+      "body": "量子位、量子门、Shor/Grover 与量子纠错仍在早期工程阶段，尚不构成主流历史时期。",
+      "generation": 4,
+      "frontier": true,
+      "entitySlug": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "quantum",
+        "overview"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 43,
+      "sceneKey": null
+    },
+    {
+      "slug": "relay-logic",
+      "periodSlug": "mechanical",
+      "lane": "hardware",
+      "year": 1936,
+      "title": "继电器开关逻辑",
+      "summary": "继电器把布尔逻辑变成可级联的开关网络。",
+      "body": "继电器用电磁开关实现 AND / OR / NOT。布尔代数由此进入电路，机械计算开始向机电计算过渡。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "data",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 44
+    },
+    {
+      "slug": "zuse-z1",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1938,
+      "title": "Zuse Z1",
+      "summary": "第一台可编程二进制机械计算机。",
+      "body": "Z1 用继电器与机械存储实现二进制浮点；程序从穿孔带读入。机械精度限制了可靠性，但它把“程序”放进了机器。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "program-to-machine",
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "isa",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 45
+    },
+    {
+      "slug": "zuse-z3",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1941,
+      "title": "Zuse Z3",
+      "summary": "第一台可编程全自动数字计算机。",
+      "body": "Z3 用继电器实现二进制浮点与程序控制；程序存储在穿孔带上。它已经具备现代计算机的若干关键特征。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 46
+    },
+    {
+      "slug": "abc",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1942,
+      "title": "ABC 电子计算机",
+      "summary": "第一台电子数字专用计算机。",
+      "body": "Atanasoff-Berry 用电子管与再生电容存储求解线性方程；它是专用机，却验证了电子数字计算。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 47
+    },
+    {
+      "slug": "mark-i",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1944,
+      "title": "Harvard Mark I",
+      "summary": "机电式通用自动计算机。",
+      "body": "Mark I 用继电器、十进制轮与纸带输入；它把大型计算流程自动化，但速度受继电器开关限制。",
+      "generation": 0,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 48
+    },
+    {
+      "slug": "colossus",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1944,
+      "title": "Colossus",
+      "summary": "最早的电子数字计算机之一，用于密码分析。",
+      "body": "Colossus 用电子管做高速计数与逻辑，专门破解 Lorenz 密码；它不是通用计算机，却证明电子逻辑的速度。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 49
+    },
+    {
+      "slug": "edvac",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1945,
+      "title": "EDVAC 方案",
+      "summary": "存储程序通用电子计算机方案。",
+      "body": "EDVAC 报告把指令与数据放入同一存储器，系统提出二进制存储程序结构；它从“接线编程”转向“存储程序”。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "program-to-machine",
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 50
+    },
+    {
+      "slug": "ias",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1946,
+      "title": "IAS 计算机",
+      "summary": "冯·诺依曼结构的工程原型。",
+      "body": "IAS 机把运算器、控制器、存储器、输入与输出组织成存储程序机器，成为后续通用计算机的结构模板。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "program-to-machine"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 51
+    },
+    {
+      "slug": "univac-i",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1951,
+      "title": "UNIVAC I",
+      "summary": "第一台美国商用电子计算机。",
+      "body": "UNIVAC I 用电子管与水银延迟线存储，进入人口统计与商业数据处理；计算机开始成为可购买的产品。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": "univac-i",
+      "sceneKey": null,
+      "questionSlugs": [
+        "great-ideas"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 52
+    },
+    {
+      "slug": "ibm-701",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1953,
+      "title": "IBM 701",
+      "summary": "IBM 首台科学计算机。",
+      "body": "IBM 701 用威廉姆斯管存储，面向科学计算；它把计算机带入大型企业与研究机构。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 53
+    },
+    {
+      "slug": "ibm-704",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1956,
+      "title": "IBM 704",
+      "summary": "磁芯存储与浮点运算的代表机。",
+      "body": "IBM 704 用磁芯主存并加入浮点硬件，成为科学计算与早期 AI 程序的重要平台。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 54
+    },
+    {
+      "slug": "ibm-7090",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1959,
+      "title": "IBM 7090",
+      "summary": "晶体管化的科学计算机。",
+      "body": "IBM 7090 用晶体管取代电子管，速度与可靠性提升；它是第二代计算机的代表机型之一。",
+      "generation": 2,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 55
+    },
+    {
+      "slug": "ibm-7094",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1962,
+      "title": "IBM 7094",
+      "summary": "第二代科学计算的高端机型。",
+      "body": "IBM 7094 在 7090 基础上扩展存储与浮点能力，广泛用于科学与工程计算。",
+      "generation": 2,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 56
+    },
+    {
+      "slug": "cdc-6600",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1964,
+      "title": "CDC 6600",
+      "summary": "第一台真正意义上的超级计算机。",
+      "body": "CDC 6600 用多个功能单元与记分牌并行调度，把“并行”做进处理器内部；它也是 RISC 思想的先声。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "serial-to-parallel",
+        "hardware-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 57
+    },
+    {
+      "slug": "pdp-8",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1964,
+      "title": "PDP-8",
+      "summary": "把计算机带进实验室与小型机构的小型机。",
+      "body": "PDP-8 用更小的规模与更低的价格打开小型机市场；计算机从大型机房走向更多组织。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 58
+    },
+    {
+      "slug": "intel-8080",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1974,
+      "title": "Intel 8080",
+      "summary": "8 位微处理器推动个人计算机浪潮。",
+      "body": "8080 把完整的 8 位 CPU 放进单芯片，成为 Altair 8800 与 CP/M 生态的核心；微处理器开始形成产业。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 59
+    },
+    {
+      "slug": "apple-ii",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1977,
+      "title": "Apple II",
+      "summary": "最早量产并广泛销售的个人计算机之一。",
+      "body": "Apple II 把键盘、显示、磁盘与扩展槽整合成可开箱使用的个人计算机，推动 PC 进入家庭与学校。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "software-hardware-interface"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 60
+    },
+    {
+      "slug": "cray-1",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1976,
+      "title": "Cray-1",
+      "summary": "向量超级计算机的象征。",
+      "body": "Cray-1 用向量寄存器与高速并行流水线处理科学计算；它的外形与性能共同定义了超级计算机时代。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "serial-to-parallel",
+        "hardware-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 61
+    },
+    {
+      "slug": "deep-blue",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1997,
+      "title": "Deep Blue",
+      "summary": "第一台在标准棋赛制下击败国际象棋世界冠军的计算机。",
+      "body": "Deep Blue 用专用评估芯片与大规模并行搜索击败 Kasparov；它把“专用加速 + 搜索算法”推到公众视野。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "serial-to-parallel",
+        "hardware-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 62
+    },
+    {
+      "slug": "shenwei-i",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1999,
+      "title": "神威-I",
+      "summary": "中国高性能计算机的重要里程碑。",
+      "body": "神威-I 让中国成为具备高性能计算机研制能力的国家之一；它标志着超算从实验室走向国家基础设施。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 63
+    },
+    {
+      "slug": "pentium-4",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 2000,
+      "title": "Pentium 4",
+      "summary": "32 位桌面处理器的高主频阶段。",
+      "body": "Pentium 4 用深度流水线与高主频追求桌面性能，也暴露了功耗与频率墙的代价。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "hardware-performance"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 64
+    },
+    {
+      "slug": "itanium",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 2001,
+      "title": "Itanium",
+      "summary": "64 位 EPIC 架构的尝试。",
+      "body": "Itanium 依赖编译器显式调度指令级并行；它未能成为主流，但把 VLIW/EPIC 的取舍写进了体系结构史。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 65
+    },
+    {
+      "slug": "loongson",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 2002,
+      "title": "龙芯",
+      "summary": "中国自主通用微处理器的长期路线。",
+      "body": "龙芯从 MIPS 兼容走向自主指令集，展示了处理器生态、编译器与操作系统协同的难度。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "isa"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 66
+    },
+    {
+      "slug": "china-first-generation",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1958,
+      "title": "中国第一代计算机（103/104/119）",
+      "summary": "中国开始自研电子管计算机。",
+      "body": "1958 年 103 机、1959 年 104 机与后续 119 机把中国的电子计算机从仿制推进到自主研制；它们主要服务科学计算。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 67
+    },
+    {
+      "slug": "china-djs-5",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1965,
+      "title": "DJS-5",
+      "summary": "中国第一台晶体管计算机。",
+      "body": "DJS-5 用晶体管取代电子管，随后 DJS-121、DJS-108 等机型继续发展；中国计算机进入第二代。",
+      "generation": 2,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 68
+    },
+    {
+      "slug": "china-series-1970s",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1973,
+      "title": "中国系列计算机（150/DJS-130/220/182）",
+      "summary": "中国形成多层次的计算机系列。",
+      "body": "150 机、DJS-130、220 系列与 182 机覆盖大型机、小型机与系列化产品；中国计算机从单机研制走向系列化。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 69
+    },
+    {
+      "slug": "yinhe-i",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1983,
+      "title": "银河-I",
+      "summary": "中国第一台亿次巨型计算机。",
+      "body": "银河-I 由中国国防科技大学研制，标志中国进入巨型机俱乐部；它为气象、核能等大规模计算服务。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 70
+    },
+    {
+      "slug": "yinhe-iii",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1997,
+      "title": "银河-III",
+      "summary": "128 个 CPU 的大规模并行计算机。",
+      "body": "银河-III 用 128 个 CPU 组成大规模并行系统，进入国际高性能计算前列；它把并行体系结构带入中国超算路线。",
+      "generation": 4,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [
+        "serial-to-parallel"
+      ],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 71
+    }
+  ],
+  "lenses": [
+    {
+      "number": 1,
+      "slug": "overview",
+      "title": "绪论：体系结构与性能",
+      "titleEn": "Introduction: Architecture and Performance",
+      "group": "classic",
+      "coreQuestion": "机器语言程序员看到的机器属性是什么？如何分类与度量？",
+      "summary": "体系结构是软件与硬件之间的契约，也是性能、功耗与成本的取舍。",
+      "accent": "#64d8ff"
+    },
+    {
+      "number": 2,
+      "slug": "data",
+      "title": "数的表示与计算体系",
+      "titleEn": "Number Representation and Computer Arithmetic",
+      "group": "classic",
+      "coreQuestion": "有限位宽的机器如何表示和计算数？",
+      "summary": "进制、补码、浮点、校验码与 ALU，把数学运算变成可实现的电路。",
+      "accent": "#f5b955"
+    },
+    {
+      "number": 3,
+      "slug": "isa",
+      "title": "指令系统设计",
+      "titleEn": "Instruction Set Design",
+      "group": "classic",
+      "coreQuestion": "软件如何用指令表达意图，硬件如何读懂？",
+      "summary": "指令格式、寻址、CISC/RISC 与编译链共同定义 ISA 的边界。",
+      "accent": "#9b8cff"
+    },
+    {
+      "number": 4,
+      "slug": "cpu",
+      "title": "中央处理器体系结构设计",
+      "titleEn": "CPU Architecture Design",
+      "group": "classic",
+      "coreQuestion": "一条指令如何变成周期级动作并与其他指令重叠？",
+      "summary": "控制器、数据通路与流水线把 ISA 变成可执行的时序。",
+      "accent": "#64d8ff"
+    },
+    {
+      "number": 5,
+      "slug": "memory",
+      "title": "存储器体系结构设计",
+      "titleEn": "Memory Hierarchy Design",
+      "group": "classic",
+      "coreQuestion": "CPU 很快、DRAM 很慢，系统如何让大多数访问看起来很快？",
+      "summary": "Cache、虚拟存储、RAID 与存储层次用局部性填补速度差。",
+      "accent": "#76e6a8"
+    },
+    {
+      "number": 6,
+      "slug": "io",
+      "title": "I/O 系统设计",
+      "titleEn": "I/O System Design",
+      "group": "classic",
+      "coreQuestion": "外设如何与 CPU、内存和总线协作？",
+      "summary": "查询、中断、DMA、通道、总线与接口，决定数据如何进出系统。",
+      "accent": "#e28b5b"
+    },
+    {
+      "number": 7,
+      "slug": "parallel",
+      "title": "并行处理与普适计算",
+      "titleEn": "Parallel Processing and Pervasive Computing",
+      "group": "classic",
+      "coreQuestion": "频率不再免费提升后，性能还能从哪里来？",
+      "summary": "ILP、多核、GPU、网络与云，把并行变成系统级问题。",
+      "accent": "#76e6a8"
+    },
+    {
+      "number": 8,
+      "slug": "bio",
+      "title": "生物计算机",
+      "titleEn": "Biological Computers",
+      "group": "frontier",
+      "coreQuestion": "用生物分子与细胞能否实现计算？",
+      "summary": "基因开关、生物芯片、神经计算机、DNA 与细胞自动机。",
+      "accent": "#76e6a8"
+    },
+    {
+      "number": 9,
+      "slug": "optical",
+      "title": "光计算机",
+      "titleEn": "Optical Computers",
+      "group": "frontier",
+      "coreQuestion": "光子能否替代电子完成计算与通信？",
+      "summary": "数字光计算、光学傅里叶变换、激光通信与光量子。",
+      "accent": "#f5b955"
+    },
+    {
+      "number": 10,
+      "slug": "quantum",
+      "title": "量子计算机",
+      "titleEn": "Quantum Computers",
+      "group": "frontier",
+      "coreQuestion": "量子叠加与纠缠能带来什么计算能力？",
+      "summary": "量子位、量子门、Shor/Grover、量子通信与物理实现。",
+      "accent": "#9b8cff"
     }
   ]
 }

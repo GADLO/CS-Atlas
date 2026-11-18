@@ -2,7 +2,7 @@
 
 > A time-based, explorable atlas of computer hardware: from vacuum-tube cabinets to AI accelerators, explained through a timeline, 3D exhibits, and interactive models.
 
-**Status: structural scaffold / M0–M1 WIP.** The frontend/backend layout, API layering, and build pipeline are in place. Business pages and production content will be added during the M1 vertical slice.
+**Status: time-first M1 implemented.** The app now has one master timeline (4 periods × hardware/software/algorithm lanes, 73 nodes), ten derived chapter lenses, seven questions, a lab for calculators and the GPU module, and procedural 3D exhibits. The branch is awaiting review and has not been pushed.
 
 ## Overview
 
@@ -47,16 +47,18 @@ CS-Atlas/
 │   │   │   ├── connection.js
 │   │   │   ├── schema.sql
 │   │   │   └── seed.js
-│   │   ├── repositories/      # entities, content, annotations, meta
-│   │   ├── routes/            # meta, entities, content, annotations
+│   │   ├── repositories/      # entities, timeline, questions, AI, annotations
+│   │   ├── routes/            # meta, timeline, entities, questions, AI, models
 │   │   ├── lib/http.js
 │   │   ├── validation/seed.js
 │   │   └── seed.js
 │   └── test/
 ├── data/
-│   ├── seed.json              # development placeholder, replaced in M1
+│   ├── seed.json              # M1 seed (3 eras, 20 entities, 7 questions)
 │   └── README.md
-├── scripts/check-data.js
+├── scripts/
+│   ├── check-data.js
+│   └── check-questions.js
 ├── dist/                      # build output, gitignored
 ├── package.json
 └── README.md
@@ -75,35 +77,78 @@ npm run build
 npm start        # http://127.0.0.1:8787
 ```
 
+If you have a local SQLite file from an older schema, reset it before starting:
+
+```bash
+npm run db:reset
+```
+
 ## Verification
 
 ```bash
 npm run check:data
+npm run check:questions
 npm test
 npm run typecheck
 npm run build
 ```
 
-The scaffold currently passes:
+The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip):
 
-- 10 API tests
+- 17 API tests
+- Question coverage checks (2 published questions)
 - TypeScript type checking
 - Vite production build
 - A basic API/frontend smoke test
+- Headless browser checks for timeline switching, 3D scenes, calculators, quiz, and annotations
 
 ## Current status
 
 - [x] Frontend/backend directory structure
 - [x] Vite + React frontend scaffold
 - [x] Express routes, repositories, and database layers
-- [x] Development seed for local startup and tests
-- [x] API tests and production build
-- [ ] Data-layer hardening: migrations, seed upsert, generic annotations
-- [ ] M1: three eras, six machines, ENIAC/H100 exhibits, Q1/Q3, GPU module, three calculators
+- [x] M1 schema: periods, timeline nodes, lenses, events, questions, AI modules, generic annotations
+- [x] Seed upsert that preserves annotations
+- [x] Timeline, period, node, lens, question, AI module, model, and search APIs
+- [ ] Schema migrations
+- [x] M1 UI: time matrix, period pages, lenses, machine pages, question pages, lab
+- [x] 3D: ENIAC/H100/Babbage exhibits + datapath and memory scenes
+- [x] Three calculators and GPU module UI
+- [x] Responsive layout and headless browser interaction checks
+- [x] Editorial layer: About page and period/machine narrative
+- [x] Expanded prose: 5-paragraph periods, 4–5-paragraph machines, 5-section Q1/Q3, 4-section GPU module
+- [x] One master timeline: 4 periods × 3 lanes, with 73 nodes
+- [x] Ten derived chapter lenses (7 classic + 3 frontier) from the architecture-design reference
+- [x] Lab page merging three calculators and the GPU module
+- [x] Pre-electronic foundations (1642–1936) and generation tags (tube/transistor/IC/VLSI)
 
-## Development data
+## Routes
 
-`data/seed.json` is a **development placeholder** (3 entities, 20 instructions, 7 chapters). It exists only to validate the schema, API, and build pipeline. It is not final historical content and will be replaced during M1.
+- `/` — the only master timeline: 4 periods, hardware/software/algorithm lanes, node inspector, frontier branch
+- `/period/:slug` (and `/era/:slug` alias) — period narrative, nodes, machines, events
+- `/lenses` and `/lenses/:slug` — ten derived chapter lenses (7 classic + 3 frontier)
+- `/questions` and `/questions/:slug` — seven-question map, Q1/Q3 answers, quiz, related timeline nodes
+- `/lab` — CPU/AMAT/Roofline calculators and the GPU module
+- `/machine/:slug` and `/entity/:slug` — 3D exhibit, specs, relations, annotations
+- `/notes` — favorites and notes stored in SQLite
+- `/about` — method, reading paths, five-layer standard, sources and scope
+
+3D scenes are procedural Three.js builds: ENIAC tube cabinets, an H100 accelerator card, a Babbage analytical-engine workbench, a Pascal adder, a Leibniz stepped-drum calculator, a Jacquard loom, a Hollerith tabulator, a single-cycle/pipeline datapath, and a memory hierarchy. They are explanatory abstractions, not engineering replicas.
+
+## M1 data
+
+`data/seed.json` currently contains:
+
+- 4 periods: mechanical (1642–1936), electronic-early (1936–1971), pc-web (1971–2005), heterogeneous (2005–now)
+- 73 timeline nodes across hardware, software, and algorithm lanes
+- 10 chapter lenses: 7 classic + 3 frontier (bio, optical, quantum)
+- 20 entities: 6 machines, 10 hardware components, 6 software, 3 principle models, 1 AI concept
+- 12 events
+- 7 questions (Q1 and Q3 published; the rest planned)
+- 1 AI module (GPU)
+- 20 RV32I instructions and 7 book chapters
+
+It is a time-first M1 foundation, not final content. Later milestones deepen nodes, machines, and sources rather than adding parallel timelines.
 
 The generated `data/cs-atlas.db` file is local runtime state and is not committed.
 

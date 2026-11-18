@@ -2,40 +2,35 @@ import { rowToAnnotation } from './mappers.js';
 
 export function createAnnotationRepository(db) {
   function getAnnotation(id) {
-    const row = db
-      .prepare(
-        `SELECT a.id, a.entity_slug, a.kind, a.content, a.created_at,
-                e.name AS entity_name, e.type AS entity_type, e.icon AS entity_icon, e.accent AS entity_accent
-         FROM annotations a LEFT JOIN entities e ON e.slug = a.entity_slug WHERE a.id = ?`,
-      )
-      .get(id);
-    return rowToAnnotation(row);
+    return rowToAnnotation(db.prepare('SELECT * FROM annotations WHERE id = ?').get(id));
   }
 
   return {
-    listAnnotations({ entitySlug } = {}) {
-      const sql = `
-        SELECT a.id, a.entity_slug, a.kind, a.content, a.created_at,
-               e.name AS entity_name, e.type AS entity_type, e.icon AS entity_icon, e.accent AS entity_accent
-        FROM annotations a LEFT JOIN entities e ON e.slug = a.entity_slug
-        ${entitySlug ? 'WHERE a.entity_slug = ?' : ''}
-        ORDER BY a.created_at DESC, a.id DESC`;
-      const rows = entitySlug ? db.prepare(sql).all(entitySlug) : db.prepare(sql).all();
-      return rows.map(rowToAnnotation);
+    listAnnotations({ targetType, targetSlug } = {}) {
+      const where = [];
+      const params = [];
+      if (targetType) {
+        where.push('target_type = ?');
+        params.push(targetType);
+      }
+      if (targetSlug) {
+        where.push('target_slug = ?');
+        params.push(targetSlug);
+      }
+      const sql = `SELECT * FROM annotations ${where.length ? `WHERE ${where.join(' AND ')}` : ''} ORDER BY created_at DESC, id DESC`;
+      return db.prepare(sql).all(...params).map(rowToAnnotation);
     },
 
-    addAnnotation({ entitySlug, kind, content = '' }) {
+    addAnnotation({ targetType, targetSlug, targetLabel, kind, content = '' }) {
       if (kind === 'favorite') {
         const existing = db
-          .prepare("SELECT * FROM annotations WHERE entity_slug = ? AND kind = 'favorite'")
-          .get(entitySlug);
-        if (existing) {
-          return getAnnotation(existing.id);
-        }
+          .prepare("SELECT * FROM annotations WHERE target_type = ? AND target_slug = ? AND kind = 'favorite'")
+          .get(targetType, targetSlug);
+        if (existing) return getAnnotation(existing.id);
       }
       const result = db
-        .prepare('INSERT INTO annotations (entity_slug, kind, content) VALUES (?, ?, ?)')
-        .run(entitySlug, kind, content);
+        .prepare('INSERT INTO annotations (target_type, target_slug, target_label, kind, content) VALUES (?, ?, ?, ?, ?)')
+        .run(targetType, targetSlug, targetLabel, kind, content);
       return getAnnotation(Number(result.lastInsertRowid));
     },
 

@@ -1,15 +1,23 @@
 # data
 
-M1 之前的数据目录。
+Time-first M1 data foundation.
 
-- `seed.json`：**开发占位数据**，只用于验证 schema、API 与页面骨架；不是最终历史内容，M1 会整体替换。
-- `cs-atlas.db`：运行时生成的 SQLite 文件，不提交。
+- `seed.json`: 4 periods, 73 timeline nodes, 10 chapter lenses, 20 entities, 12 events, 7 questions, 1 AI module.
+- `cs-atlas.db`: local SQLite runtime state, not committed.
 
-## 命令
+The only factual spine is the timeline:
+
+```text
+periods × (hardware | software | algorithm)
+```
+
+The ten chapter lenses and seven questions are derived views over timeline nodes. They do not own separate timeline data.
+
+## Commands
 
 ```bash
 npm run check:data
+npm run check:questions
 npm run seed
+npm run db:reset   # delete local SQLite after schema changes
 ```
-
-正式内容将遵循 Obsidian 项目库中的「数据模型与 ERD」「时间线内容地图」。
