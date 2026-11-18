@@ -2,7 +2,7 @@
 
 > A time-based, explorable atlas of computer hardware: from vacuum-tube cabinets to AI accelerators, explained through a timeline, 3D exhibits, and interactive models.
 
-**Status: time-first M1 implemented.** The app now has one master timeline (4 periods × hardware/software/algorithm lanes, 73 nodes), ten derived chapter lenses, seven questions, a lab for calculators and the GPU module, and procedural 3D exhibits. The branch is awaiting review and has not been pushed.
+**Status: time-first M1 implemented.** The app now has one master timeline (4 periods × hardware/software/algorithm lanes, 78 nodes), ten derived chapter lenses, seven questions, a lab for calculators and the GPU module, and procedural 3D exhibits. The branch is awaiting review and has not been pushed.
 
 ## Overview
 
@@ -93,7 +93,7 @@ npm run typecheck
 npm run build
 ```
 
-The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip):
+The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip; CSS 10.96 KB gzip):
 
 - 17 API tests
 - Question coverage checks (2 published questions)
@@ -117,7 +117,7 @@ The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip):
 - [x] Responsive layout and headless browser interaction checks
 - [x] Editorial layer: About page and period/machine narrative
 - [x] Expanded prose: 5-paragraph periods, 4–5-paragraph machines, 5-section Q1/Q3, 4-section GPU module
-- [x] One master timeline: 4 periods × 3 lanes, with 73 nodes
+- [x] One master timeline: 4 periods × 3 lanes, with 78 nodes
 - [x] Ten derived chapter lenses (7 classic + 3 frontier) from the architecture-design reference
 - [x] Lab page merging three calculators and the GPU module
 - [x] Pre-electronic foundations (1642–1936) and generation tags (tube/transistor/IC/VLSI)
@@ -140,7 +140,7 @@ The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip):
 `data/seed.json` currently contains:
 
 - 4 periods: mechanical (1642–1936), electronic-early (1936–1971), pc-web (1971–2005), heterogeneous (2005–now)
-- 73 timeline nodes across hardware, software, and algorithm lanes
+- 78 timeline nodes across hardware, software, and algorithm lanes
 - 10 chapter lenses: 7 classic + 3 frontier (bio, optical, quantum)
 - 20 entities: 6 machines, 10 hardware components, 6 software, 3 principle models, 1 AI concept
 - 12 events
