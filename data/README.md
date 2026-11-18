@@ -21,3 +21,7 @@ npm run check:questions
 npm run seed
 npm run db:reset   # delete local SQLite after schema changes
 ```
+
+## Schema migrations
+
+Startup applies `server/src/db/migrations/*.sql` and records them in `schema_migrations`. `npm run db:reset` is only a local rebuild fallback.

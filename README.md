@@ -2,7 +2,7 @@
 
 > A time-based, explorable atlas of computer hardware: from vacuum-tube cabinets to AI accelerators, explained through a timeline, 3D exhibits, and interactive models.
 
-**Status: time-first M1 implemented.** The app now has one master timeline (4 periods × hardware/software/algorithm lanes, 78 nodes), ten derived chapter lenses, seven questions, a lab for calculators and the GPU module, and procedural 3D exhibits. The branch is awaiting review and has not been pushed.
+**Status: time-first M1 merged to `main`; M1.5 migrations in progress.** The app has one master timeline (4 periods × hardware/software/algorithm lanes, 78 nodes), ten derived chapter lenses, seven questions, a lab for calculators and the GPU module, and nine procedural 3D exhibits. Schema migrations and their legacy/empty-database tests are in `feat/m1.5-migrations`, awaiting review.
 
 ## Overview
 
@@ -54,7 +54,7 @@ CS-Atlas/
 │   │   └── seed.js
 │   └── test/
 ├── data/
-│   ├── seed.json              # M1 seed (3 eras, 20 entities, 7 questions)
+│   ├── seed.json              # time-first seed (4 periods, 78 nodes, 10 lenses)
 │   └── README.md
 ├── scripts/
 │   ├── check-data.js
@@ -77,11 +77,15 @@ npm run build
 npm start        # http://127.0.0.1:8787
 ```
 
-If you have a local SQLite file from an older schema, reset it before starting:
+Startup applies pending schema migrations automatically. `npm run db:reset` is only for a corrupted local database or a deliberate rebuild:
 
 ```bash
 npm run db:reset
 ```
+
+## Database migrations
+
+`openDatabase()` runs `server/src/db/migrations/*.sql` in order and records each file in `schema_migrations`. `schema.sql` is the full reference schema for review, not the runtime bootstrap.
 
 ## Verification
 
@@ -95,7 +99,7 @@ npm run build
 
 The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip; CSS 10.96 KB gzip):
 
-- 17 API tests
+- 19 tests (API + migrations)
 - Question coverage checks (2 published questions)
 - TypeScript type checking
 - Vite production build
@@ -110,7 +114,7 @@ The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip; 
 - [x] M1 schema: periods, timeline nodes, lenses, events, questions, AI modules, generic annotations
 - [x] Seed upsert that preserves annotations
 - [x] Timeline, period, node, lens, question, AI module, model, and search APIs
-- [ ] Schema migrations
+- [x] Schema migrations (001 baseline + 002 time-first)
 - [x] M1 UI: time matrix, period pages, lenses, machine pages, question pages, lab
 - [x] 3D: ENIAC/H100/Babbage exhibits + datapath and memory scenes
 - [x] Three calculators and GPU module UI
