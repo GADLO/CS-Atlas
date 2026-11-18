@@ -1,6 +1,16 @@
+-- Full current schema (reference).
+-- Runtime bootstrapping uses server/src/db/migrations/*.sql via migrations.js.
+-- Keep this file in sync for review and manual inspection.
+
 CREATE TABLE IF NOT EXISTS meta (
   key   TEXT PRIMARY KEY,
   value TEXT NOT NULL
+);
+
+-- Runtime migration ledger. Created by migrations.js before applying migrations.
+CREATE TABLE IF NOT EXISTS schema_migrations (
+  id         TEXT PRIMARY KEY,
+  applied_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
 );
 
 CREATE TABLE IF NOT EXISTS eras (
