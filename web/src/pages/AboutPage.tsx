@@ -206,7 +206,7 @@ npm run check:questions`}</code></pre>
           </div>
         </div>
         <ul className="about-limits">
-          <li>当前是 4 个时期、73 个时间节点、10 个章节镜头；M2 再补更细的机器与内容。</li>
+          <li>当前是 4 个时期、78 个时间节点、10 个章节镜头；M2 再补更细的机器与内容。</li>
           <li>Q1/Q3 已发布，其余 5 题仍是草稿；它们不会伪装成“已完成”。</li>
           <li>Macintosh 仍是静态插图；ENIAC/H100 是解释性 3D，不是精确复原。</li>
           <li>缺少 schema migrations 与前端自动化测试；旧数据库需要重置。</li>

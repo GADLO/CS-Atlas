@@ -1,7 +1,7 @@
 {
   "meta": {
-    "version": 10,
-    "contentVersion": "time-first-history-aligned-2",
+    "version": 11,
+    "contentVersion": "time-first-history-aligned-3",
     "title": "CS Atlas M1 数据基础",
     "subtitle": "Q1/Q3 + 三时代骨架",
     "source": "Patterson & Hennessy + public references"
@@ -42,7 +42,7 @@
       "narrative": [
         "1936 年图灵提出可计算性模型；1938–1944 年，Z1/Z3、ABC、Mark I 与 Colossus 把继电器和电子管推入计算。1946 年 ENIAC 用约 18,000 只电子管与 1,500 个继电器实现每秒约 5,000 次加法，程序仍靠接线与开关设置。",
         "1945 年 EDVAC 报告提出存储程序结构，1946 年 IAS 机把它工程化：指令与数据放进同一种可读写存储器，计算机开始自动、连续地执行程序。",
-        "1951 年 UNIVAC I 进入商业数据处理，IBM 701/704 把计算机带进科研机构；1959 年的 IBM 7090 用晶体管取代电子管，速度与可靠性同时提升。中国在 1958 年推出 103 机，1965 年推出第一台晶体管机 DJS-5。",
+        "1951 年 UNIVAC I 进入商业数据处理，IBM 701/704 把计算机带进科研机构；1959 年的 IBM 7090 用晶体管取代电子管，速度与可靠性同时提升。中国在 1958/1959/1964 年推出 103/104/119 机，1965 年推出第一台晶体管机 DJS-5。",
         "1958 年基尔比与诺伊斯把多个元件集成到同一块半导体材料上。集成电路继续小型化，IBM System/360、CDC 6600 与 PDP-8 分别把指令集契约、并行功能单元与小型机推向市场。",
         "软件在这一时期成形：Fortran、编译器、操作系统雏形与 AI 研究同时出现。硬件与软件开始分成两个相互约束的领域。"
       ],
@@ -64,7 +64,7 @@
       "narrative": [
         "1971 年 Intel 4004 把 CPU 集成到单芯片，约 2,300 个晶体管；1974 年 8080 与 1977 年 Apple II 把微处理器变成可购买的个人计算产品。",
         "1981 年 IBM PC 用开放扩展与兼容机生态把个人计算机变成产业；1984 年 Macintosh 把图形界面、鼠标与一体机带进主流。",
-        "1976 年 Cray-1 用向量寄存器与并行流水线定义超级计算机；1997 年 Deep Blue 用专用评估芯片与大规模搜索击败国际象棋世界冠军，1999 年神威-I 把超算推向国家基础设施。中国在 1970 年代形成 150/DJS-130/220/182 系列，1983 年银河-I 与 1997 年银河-III 进入巨型机路线。",
+        "1976 年 Cray-1 用向量寄存器与并行流水线定义超级计算机；1997 年 Deep Blue 用专用评估芯片与大规模搜索击败国际象棋世界冠军，1999 年神威-I 把超算推向国家基础设施。中国在 1973–1976 年推出 150、DJS-130、220、182 等机型，1983 年银河-I 与 1997 年银河-III 进入巨型机路线。",
         "软件层快速分化：Unix 与 C、图形界面、关系数据库、Web 浏览器相继出现。TCP/IP 与 WWW 把单机计算连接成网络。2000 年前后，Pentium 4、Itanium 与龙芯分别代表高主频、EPIC 与自主处理器的不同路线。",
         "1999 年 GPU 把大量并行执行单元带进消费级硬件；PageRank 等算法说明网络规模本身成为新的计算对象。性能问题从单机扩展到数据中心与互联网。"
       ],
@@ -5198,37 +5198,6 @@
       "sortOrder": 66
     },
     {
-      "slug": "china-first-generation",
-      "periodSlug": "electronic-early",
-      "lane": "hardware",
-      "year": 1958,
-      "title": "中国第一代计算机（103/104/119）",
-      "summary": "中国开始自研电子管计算机。",
-      "body": "1958 年 103 机、1959 年 104 机与后续 119 机把中国的电子计算机从仿制推进到自主研制；它们主要服务科学计算。",
-      "generation": 1,
-      "frontier": false,
-      "entitySlug": null,
-      "sceneKey": null,
-      "questionSlugs": [],
-      "modelSlugs": [],
-      "aiModuleSlugs": [],
-      "lensSlugs": [
-        "overview",
-        "cpu",
-        "data"
-      ],
-      "sources": [
-        {
-          "id": "book-architecture-design-2018",
-          "title": "计算机体系结构设计",
-          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
-          "tier": "secondary",
-          "accessed": "2026-11-18"
-        }
-      ],
-      "sortOrder": 67
-    },
-    {
       "slug": "china-djs-5",
       "periodSlug": "electronic-early",
       "lane": "hardware",
@@ -5257,37 +5226,6 @@
         }
       ],
       "sortOrder": 68
-    },
-    {
-      "slug": "china-series-1970s",
-      "periodSlug": "pc-web",
-      "lane": "hardware",
-      "year": 1973,
-      "title": "中国系列计算机（150/DJS-130/220/182）",
-      "summary": "中国形成多层次的计算机系列。",
-      "body": "150 机、DJS-130、220 系列与 182 机覆盖大型机、小型机与系列化产品；中国计算机从单机研制走向系列化。",
-      "generation": 3,
-      "frontier": false,
-      "entitySlug": null,
-      "sceneKey": null,
-      "questionSlugs": [],
-      "modelSlugs": [],
-      "aiModuleSlugs": [],
-      "lensSlugs": [
-        "overview",
-        "cpu",
-        "io"
-      ],
-      "sources": [
-        {
-          "id": "book-architecture-design-2018",
-          "title": "计算机体系结构设计",
-          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
-          "tier": "secondary",
-          "accessed": "2026-11-18"
-        }
-      ],
-      "sortOrder": 69
     },
     {
       "slug": "yinhe-i",
@@ -5354,6 +5292,222 @@
         }
       ],
       "sortOrder": 71
+    },
+    {
+      "slug": "china-103",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1958,
+      "title": "中国 103 机",
+      "summary": "中国第一台电子管计算机。",
+      "body": "1958 年 103 机完成，标志中国进入电子计算机时代；它主要服务科学计算，是中国第一代计算机的起点。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "data"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 72
+    },
+    {
+      "slug": "china-104",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1959,
+      "title": "中国 104 机",
+      "summary": "中国第一台大型通用电子管计算机。",
+      "body": "104 机在 103 机基础上扩展，1959 年投入运行，用于天气预报、工程计算等；它是第一代中国计算机的主力。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 73
+    },
+    {
+      "slug": "china-119",
+      "periodSlug": "electronic-early",
+      "lane": "hardware",
+      "year": 1964,
+      "title": "中国 119 机",
+      "summary": "中国自主设计的大型电子管计算机。",
+      "body": "119 机 1964 年完成，是中国第一代计算机的后期代表；它把自主设计与大型科学计算推进到新阶段。",
+      "generation": 1,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 74
+    },
+    {
+      "slug": "china-150",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1973,
+      "title": "中国 150 机",
+      "summary": "中国大型通用计算机的重要机型。",
+      "body": "150 机 1973 年投入运行，服务国防与科学计算；它标志中国大型计算机从仿制走向自主设计。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "parallel"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 75
+    },
+    {
+      "slug": "djs-130",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1974,
+      "title": "DJS-130",
+      "summary": "中国 100 系列小型机。",
+      "body": "DJS-130 是 100 系列的代表机型，1974 年推出；它把中国计算机从单机研制推向系列化与小规模化。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "io"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 76
+    },
+    {
+      "slug": "china-220",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1973,
+      "title": "中国 220 机",
+      "summary": "200 系列大型计算机。",
+      "body": "220 机 1973 年开始研制，覆盖 1973–1981 年的 200 系列；它用于大型科学计算与工程任务。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu",
+        "memory"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 77
+    },
+    {
+      "slug": "china-182",
+      "periodSlug": "pc-web",
+      "lane": "hardware",
+      "year": 1976,
+      "title": "中国 182 机",
+      "summary": "180 系列计算机。",
+      "body": "182 机 1976 年完成，是 180 系列的代表；中国计算机继续向系列化与多场景应用发展。",
+      "generation": 3,
+      "frontier": false,
+      "entitySlug": null,
+      "sceneKey": null,
+      "questionSlugs": [],
+      "modelSlugs": [],
+      "aiModuleSlugs": [],
+      "lensSlugs": [
+        "overview",
+        "cpu"
+      ],
+      "sources": [
+        {
+          "id": "book-architecture-design-2018",
+          "title": "计算机体系结构设计",
+          "publisher": "蔡政英、刘势、张上、肖明，清华大学出版社，2018",
+          "tier": "secondary",
+          "accessed": "2026-11-18"
+        }
+      ],
+      "sortOrder": 78
     }
   ],
   "lenses": [

@@ -2,7 +2,7 @@
 
 Time-first M1 data foundation.
 
-- `seed.json`: 4 periods, 73 timeline nodes, 10 chapter lenses, 20 entities, 12 events, 7 questions, 1 AI module.
+- `seed.json`: 4 periods, 78 timeline nodes, 10 chapter lenses, 20 entities, 12 events, 7 questions, 1 AI module.
 - `cs-atlas.db`: local SQLite runtime state, not committed.
 
 The only factual spine is the timeline:
