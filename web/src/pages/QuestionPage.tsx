@@ -9,7 +9,6 @@ import {
   Compass,
   Layers3,
   Lightbulb,
-  Sparkles,
   XCircle,
 } from 'lucide-react';
 import { useApi } from '../lib/api';
@@ -72,24 +71,11 @@ export default function QuestionPage() {
       </div>
 
       <header className="question-hero">
-        <div className="question-hero__number">Q{question.number}</div>
         <div className="question-hero__body">
-          <div className="question-hero__badges">
-            <StatusBadge status={question.status} />
-            {question.book && <Badge tone="neutral">COD {question.book.chapter} · {question.book.pages}</Badge>}
-          </div>
+          <StatusBadge status={question.status} />
           <h1>{question.title}</h1>
           <p className="question-hero__question">{question.question}</p>
-          <div className="one-line-answer">
-            <Sparkles size={17} aria-hidden="true" />
-            <p>{question.oneLineAnswer}</p>
-          </div>
-          <div className="question-hero__meta">
-            <span>{question.sources.length} 条来源</span>
-            <span>{question.timelineAnchors.length} 个时间线锚点</span>
-            <span>{scenes.length} 个 3D 场景</span>
-            {question.calculator && <span>含计算器</span>}
-          </div>
+          <p className="question-answer">{question.oneLineAnswer}</p>
         </div>
       </header>
 

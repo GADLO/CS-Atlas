@@ -97,7 +97,7 @@ npm run typecheck
 npm run build
 ```
 
-The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip; CSS 10.96 KB gzip):
+The current build passes (main JS 112.22 KB gzip; lazy 3D chunk 164.56 KB gzip; CSS 9.70 KB gzip):
 
 - 19 tests (API + migrations)
 - Question coverage checks (2 published questions)

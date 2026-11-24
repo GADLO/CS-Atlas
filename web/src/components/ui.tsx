@@ -79,13 +79,13 @@ export function ErrorPanel({ error, onRetry }: { error: Error; onRetry?: () => v
   );
 }
 
-export function EmptyState({ title, body }: { title: string; body: string }) {
+export function EmptyState({ title, body }: { title: string; body?: string }) {
   return (
     <div className="state-panel">
       <Inbox size={22} aria-hidden="true" />
       <div>
         <strong>{title}</strong>
-        <p>{body}</p>
+        {body && <p>{body}</p>}
       </div>
     </div>
   );

@@ -3,11 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import {
   ArrowLeft,
   ArrowRight,
-  BookOpen,
   CalendarDays,
   Expand,
-  Factory,
-  Layers3,
   Link2,
   Sparkles,
 } from 'lucide-react';
@@ -46,7 +43,7 @@ export default function EntityPage() {
   return (
     <div className="page page--entity" style={{ '--entity-accent': entity.accent } as CSSProperties}>
       <div className="breadcrumbs">
-        <Link to="/">时间长廊</Link>
+        <Link to="/">时间</Link>
         <span>/</span>
         {era ? <Link to={`/period/${era.slug}`}>{era.name}</Link> : <span>{entity.category}</span>}
         <span>/</span>
@@ -55,39 +52,8 @@ export default function EntityPage() {
 
       <header className="entity-header">
         <div>
-          <div className="entity-header__badges">
-            <Badge tone={entity.type === 'ai' ? 'violet' : entity.type === 'model' ? 'warn' : 'accent'}>
-              {typeLabels[entity.type]}
-            </Badge>
-            <Badge tone="neutral">{entity.layer}</Badge>
-            {entity.year && <Badge tone="neutral">{entity.year}</Badge>}
-          </div>
           <h1>{entity.name}</h1>
-          <div className="entity-header__en">{entity.nameEn}</div>
           <p className="entity-header__summary">{entity.summary}</p>
-          <div className="entity-header__meta">
-            {entity.maker && (
-              <span>
-                <Factory size={14} aria-hidden="true" />
-                {entity.maker}
-              </span>
-            )}
-            {entity.formFactor && (
-              <span>
-                <Layers3 size={14} aria-hidden="true" />
-                {entity.formFactor}
-              </span>
-            )}
-            {entity.book && (
-              <span>
-                <BookOpen size={14} aria-hidden="true" />
-                COD {entity.book.chapter} · {entity.book.pages}
-              </span>
-            )}
-          </div>
-        </div>
-        <div className="entity-header__accent" aria-hidden="true">
-          <TechDiagram accent={entity.accent} icon={entity.icon} sceneKey={entity.sceneKey} label={entity.name} />
         </div>
       </header>
 

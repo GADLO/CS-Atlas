@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Heart, NotebookPen, Trash2 } from 'lucide-react';
+import { ArrowRight, Heart, Trash2 } from 'lucide-react';
 import { deleteAnnotation, useApi } from '../lib/api';
 import type { Annotation } from '../lib/types';
 import { Badge, EmptyState, ErrorPanel, LoadingPanel } from '../components/ui';
@@ -54,16 +54,9 @@ export default function NotesPage() {
 
   return (
     <div className="page page--notes">
-      <header className="page-hero page-hero--notes">
-        <div className="eyebrow">
-          <NotebookPen size={13} aria-hidden="true" /> 我的批注
-        </div>
-        <h1>把逛展时<br /><em>停下来的地方</em>留下来</h1>
-        <p>收藏和笔记存在本地 SQLite。重新播种内容不会删掉它们；这是你的阅读痕迹。</p>
-        <div className="page-hero__meta">
-          <span>{favorites.length} 个收藏</span>
-          <span>{notes.length} 条笔记</span>
-        </div>
+      <header className="simple-head">
+        <h1>笔记</h1>
+        <span>{favorites.length} 个收藏 · {notes.length} 条笔记</span>
       </header>
 
       {loading && <LoadingPanel label="正在读取批注…" />}
@@ -71,18 +64,12 @@ export default function NotesPage() {
       {actionError && <div className="form-error">{actionError}</div>}
 
       {!loading && items.length === 0 && (
-        <EmptyState title="还没有收藏或笔记" body="在机器页或问题页点一下心形，或者写第一条笔记。" />
+        <EmptyState title="暂无收藏或笔记" />
       )}
 
       {favorites.length > 0 && (
         <section className="section">
-          <div className="section-header">
-            <div>
-              <div className="eyebrow">收藏</div>
-              <h2>先记住，再回来</h2>
-            </div>
-            <Badge tone="accent">{favorites.length}</Badge>
-          </div>
+          <h2>收藏</h2>
           <div className="notes-grid">
             {favorites.map((annotation) => (
               <article className="favorite-card" key={annotation.id}>
@@ -110,13 +97,7 @@ export default function NotesPage() {
 
       {notes.length > 0 && (
         <section className="section">
-          <div className="section-header">
-            <div>
-              <div className="eyebrow">笔记</div>
-              <h2>写下来的才算想过</h2>
-            </div>
-            <Badge tone="neutral">{notes.length}</Badge>
-          </div>
+          <h2>笔记</h2>
           <div className="notes-list">
             {notes.map((annotation) => (
               <article className="notes-item" key={annotation.id}>
